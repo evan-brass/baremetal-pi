@@ -1,7 +1,8 @@
 /*
  * MIT License
  *
- * Copyright (c) 2018 Andre Richter <andre.o.richter@gmail.com>
+ * Copyright (c) 2018 Jorge Aparicio
+ * Copyright (c) 2018-2019 Andre Richter <andre.o.richter@gmail.com>
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,34 +23,49 @@
  * SOFTWARE.
  */
 
-ENTRY(_boot_cores);
+#![deny(missing_docs)]
+#![deny(warnings)]
+#![no_std]
+#![feature(global_asm)]
 
-SECTIONS
-{
-    . = 0x80000;
+//! Low-level boot of the Raspberry's processor
 
-    .text :
-    {
-        KEEP(*(.text.boot)) *(.text .text.*)
-    }
+extern crate panic_abort;
 
-    .rodata :
-    {
-        *(.rodata .rodata.*)
-    }
+/// Type check the user-supplied entry function.
+#[macro_export]
+macro_rules! entry {
+    ($path:path) => {
+        #[export_name = "main"]
+        pub unsafe fn __main() -> ! {
+            // type check the given path
+            let f: fn() -> ! = $path;
 
-    .data :
-    {
-        *(.data .data.*)
-    }
-
-    .bss ALIGN(8):
-    {
-        __bss_start = .;
-        *(.bss .bss.*)
-        *(COMMON)
-        __bss_end = .;
-    }
-
-    /DISCARD/ : { *(.comment) *(.gnu*) *(.note*) *(.eh_frame*) }
+            f()
+        }
+    };
 }
+
+/// Reset function.
+///
+/// Initializes the bss section before calling into the user's `main()`.
+#[no_mangle]
+pub unsafe extern "C" fn reset() -> ! {
+    extern "C" {
+        // Boundaries of the .bss section, provided by the linker script
+        static mut __bss_start: u64;
+        static mut __bss_end: u64;
+    }
+
+    // Zeroes the .bss section
+    r0::zero_bss(&mut __bss_start, &mut __bss_end);
+
+    extern "Rust" {
+        fn main() -> !;
+    }
+
+    main();
+}
+
+// Disable all cores except core 0, and then jump to reset()
+global_asm!(include_str!("boot_cores.S"));
