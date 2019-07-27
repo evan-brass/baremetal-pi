@@ -1,5 +1,5 @@
 /target
 **/*.rs.bk
 xbuild_sysroot/*
-kernel8.img
 Cargo\.lock
+Rasbian-SD
