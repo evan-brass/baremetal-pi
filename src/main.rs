@@ -1,7 +1,7 @@
 /*
  * MIT License
  *
- * Copyright (c) 2018 Andre Richter <andre.o.richter@gmail.com>
+ * Copyright (c) 2018-2019 Andre Richter <andre.o.richter@gmail.com>
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -29,9 +29,13 @@
 const MMIO_BASE: u32 = 0x3F00_0000;
 
 mod gpio;
+mod mbox;
 mod uart;
 
+use core::sync::atomic::{compiler_fence, Ordering};
+
 fn kernel_entry() -> ! {
+    let mut mbox = mbox::Mbox::new();
     let uart = uart::MiniUart::new();
 
     // set up serial console
@@ -41,6 +45,32 @@ fn kernel_entry() -> ! {
     uart.puts("[1] Press a key to continue booting... ");
     uart.getc();
     uart.puts("Greetings fellow Rustacean!\n");
+
+    // get the board's unique serial number with a mailbox call
+    mbox.buffer[0] = 8 * 4; // length of the message
+    mbox.buffer[1] = mbox::REQUEST; // this is a request message
+    mbox.buffer[2] = mbox::tag::GETSERIAL; // get serial number command
+    mbox.buffer[3] = 8; // buffer size
+    mbox.buffer[4] = 8;
+    mbox.buffer[5] = 0; // clear output buffer
+    mbox.buffer[6] = 0;
+    mbox.buffer[7] = mbox::tag::LAST;
+
+    // Insert a compiler fence that ensures that all stores to the
+    // mbox buffer are finished before the GPU is signaled (which is
+    // done by a store operation as well).
+    compiler_fence(Ordering::Release);
+
+    // send the message to the GPU and receive answer
+    match mbox.call(mbox::channel::PROP) {
+        Err(_) => uart.puts("[i] Unable to query serial!\n"),
+        Ok(()) => {
+            uart.puts("[i] My serial number is: 0x");
+            uart.hex(mbox.buffer[6]);
+            uart.hex(mbox.buffer[5]);
+            uart.puts("\n");
+        }
+    };
 
     // echo everything back
     loop {
