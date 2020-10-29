@@ -1,58 +1,58 @@
 #![no_std]
-#![feature(asm)]
 #![no_main]
+#![feature(asm)]
 
-// const MAILBOX: u32 = 0x3f00b880;
-// static mut MSG: [u32;8] = [0, 0, 0, 0, 0, 0, 0, 0];
+use core::panic::PanicInfo;
 
-fn wait(time: u32) {
-	for _ in 0..time {
-		for _ in 0..100 {
-			unsafe { asm!("nop") }
+#[panic_handler]
+fn handle_panic(_: &PanicInfo) -> ! {
+	loop {}
+}
+
+const IO_BASE: usize = 0x3F000000;
+const GPFSEL2: *mut u32 = (IO_BASE + 0x20_0008) as *mut u32;
+const GPSET0: *mut u32 = (IO_BASE + 0x20_001c) as *mut u32;
+const GPCLR0: *mut u32 = (IO_BASE + 0x20_0028) as *mut u32;
+/**
+ * GPFSEL2: 0x7E20_0008(bus address)
+ * GPIO Pin 29 is the ACT LED.  It's FSEL is bits 29-27 of GPFSEL2.  001 is output, 000 is input.
+ * 
+ * Peripheral base address in bus coords: 0x7e00_0000
+ */
+
+ fn delay(count: usize) {
+	 for _ in 0..count {
+		 unsafe {
+			asm!("nop");
+		 }
+	 }
+ }
+
+#[no_mangle]
+pub extern "C" fn _start() -> ! {
+	unsafe {
+		// Setup stack pointer:
+		asm!("mov sp, #0x8000"); // Our code starts at 0x8000 so the stack must grow down in memory.
+		
+		// TODO: Setup interrupt handling
+	
+		// Sleep  if running on a core other than core 0:
+		let cpu_info: u64;
+		asm!("mrs {}, mpidr_el1", out(reg) cpu_info);
+		
+		let cpu_id = cpu_info & 0b11;
+		if cpu_id != 0 {
+			loop { asm!("wfe"); }
+		}
+
+		// set GPIO29 (ACT LED) to output:
+		*GPFSEL2 = 0b00_001_000_000_000_000_000_000_000_000_000;
+		
+		loop {
+			*GPSET0 = 1 << 29;
+			delay(1_000_000);
+			*GPCLR0 = 1 << 29;
+			delay(1_000_000);
 		}
 	}
 }
-
-// fn mailbox_send() {
-// 	let mut status: u32 = 0x80000000u32;
-// 	while (status & 0x80000000u32) != 0 {
-// 		status = unsafe{*((MAILBOX + 0x18) as *const u32)};
-// 	}
-// 	unsafe{
-// 		*((MAILBOX + 0x20) as *mut u32) = (&MSG as *const u32 as *const u8).offset(8) as u32
-// 	};
-// }
-
-const GPFSEL2: u32 = 0x3f_20_0008;
-fn led_init() {
-	unsafe {
-		*(GPFSEL2 as *mut u32) = 0b001 << 27;
-	}
-}
-
-const GPSET0: u32 = 0x3f_20_001c;
-fn led_off() {
-	unsafe {
-		*(GPSET0 as *mut u32) = 0b1 << 29;
-	}
-}
-
-const GPCLR0: u32 = 0x3f_20_0028;
-// LED is active low
-fn led_on() {
-	unsafe {
-		*(GPCLR0 as *mut u32) = 0b1 << 29;
-	}
-}
-
-fn kernel_entry() -> ! {
-	led_init();
-	loop {
-		led_on();
-		wait(100000);
-		led_off();
-		wait(100000);
-	}
-}
-
-raspi3_boot::entry!(kernel_entry);
