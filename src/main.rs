@@ -50,7 +50,7 @@ pub extern "C" fn _start() -> ! {
 		
 		loop {
 			*GPSET0 = 1 << 29;
-			delay(1_000_000);
+			delay(4_000_000);
 			*GPCLR0 = 1 << 29;
 			delay(1_000_000);
 		}
