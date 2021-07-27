@@ -2,6 +2,7 @@
 
 ## Dependencies
 * cargo-binutils: `cargo install cargo-binutils`
+	* (required by binutils) `rustup component add llvm-tools-preview`
 * ARM64 cross-target: `rustup target add aarch64-unknown-none`
 
 ## Instructions
@@ -25,3 +26,4 @@
 * Boot Codes: https://www.raspberrypi.org/documentation/configuration/led_blink_warnings.md
 * Network booting: https://metebalci.com/blog/bare-metal-rpi3-network-boot/
 * OS dev: https://github.com/rust-embedded/rust-raspberrypi-OS-tutorials
+* BCM2837: https://cs140e.sergio.bz/docs/BCM2837-ARM-Peripherals.pdf
