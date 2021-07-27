@@ -1,0 +1,197 @@
+ELF Header:
+  Magic:   7f 45 4c 46 02 01 01 00 00 00 00 00 00 00 00 00 
+  Class:                             ELF64
+  Data:                              2's complement, little endian
+  Version:                           1 (current)
+  OS/ABI:                            UNIX - System V
+  ABI Version:                       0
+  Type:                              EXEC (Executable file)
+  Machine:                           AArch64
+  Version:                           0x1
+  Entry point address:               0x801e0
+  Start of program headers:          64 (bytes into file)
+  Start of section headers:          820184 (bytes into file)
+  Flags:                             0x0
+  Size of this header:               64 (bytes)
+  Size of program headers:           56 (bytes)
+  Number of program headers:         3
+  Size of section headers:           64 (bytes)
+  Number of section headers:         27
+  Section header string table index: 25
+
+Section Headers:
+  [Nr] Name              Type             Address           Offset
+       Size              EntSize          Flags  Link  Info  Align
+  [ 0]                   NULL             0000000000000000  00000000
+       0000000000000000  0000000000000000           0     0     0
+  [ 1] .rodata.anon[...] PROGBITS         0000000000080000  00010000
+       0000000000000030  0000000000000000   A       0     0     8
+  [ 2] .rodata..Lan[...] PROGBITS         0000000000080030  00010030
+       000000000000000d  0000000000000000   A       0     0     1
+  [ 3] .rodata..Lan[...] PROGBITS         0000000000080040  00010040
+       0000000000000010  0000000000000000   A       0     0     8
+  [ 4] .rodata..Lan[...] PROGBITS         0000000000080050  00010050
+       0000000000000000  0000000000000000   A       0     0     8
+  [ 5] .rodata.cst8      PROGBITS         0000000000080050  00010050
+       0000000000000008  0000000000000008  AM       0     0     8
+  [ 6] .text._ZN4co[...] PROGBITS         0000000000080058  00010058
+       0000000000000004  0000000000000000  AX       0     0     4
+  [ 7] .text._ZN50_[...] PROGBITS         000000000008005c  0001005c
+       0000000000000114  0000000000000000  AX       0     0     4
+  [ 8] .text._ZN50_[...] PROGBITS         0000000000080170  00010170
+       0000000000000038  0000000000000000  AX       0     0     4
+  [ 9] .text._ZN50_[...] PROGBITS         00000000000801a8  000101a8
+       0000000000000038  0000000000000000  AX       0     0     4
+  [10] .text._start      PROGBITS         00000000000801e0  000101e0
+       00000000000000e0  0000000000000000  AX       0     0     4
+  [11] .text._ZN4co[...] PROGBITS         00000000000802c0  000102c0
+       0000000000000008  0000000000000000  AX       0     0     4
+  [12] .text._ZN4co[...] PROGBITS         00000000000802c8  000102c8
+       00000000000001f8  0000000000000000  AX       0     0     4
+  [13] .text.memcpy      PROGBITS         00000000000804c0  000104c0
+       000000000000034c  0000000000000000  AX       0     0     4
+  [14] .debug_abbrev     PROGBITS         0000000000000000  0001080c
+       00000000000004ef  0000000000000000           0     0     1
+  [15] .debug_info       PROGBITS         0000000000000000  00010cfb
+       0000000000026d9d  0000000000000000           0     0     1
+  [16] .debug_aranges    PROGBITS         0000000000000000  00037a98
+       0000000000003060  0000000000000000           0     0     1
+  [17] .debug_ranges     PROGBITS         0000000000000000  0003aaf8
+       000000000002ab40  0000000000000000           0     0     1
+  [18] .debug_str        PROGBITS         0000000000000000  00065638
+       000000000002ea05  0000000000000001  MS       0     0     1
+  [19] .debug_pubnames   PROGBITS         0000000000000000  0009403d
+       000000000000c572  0000000000000000           0     0     1
+  [20] .debug_pubtypes   PROGBITS         0000000000000000  000a05af
+       000000000000006c  0000000000000000           0     0     1
+  [21] .debug_frame      PROGBITS         0000000000000000  000a0620
+       0000000000005f70  0000000000000000           0     0     8
+  [22] .debug_line       PROGBITS         0000000000000000  000a6590
+       0000000000020db3  0000000000000000           0     0     1
+  [23] .comment          PROGBITS         0000000000000000  000c7343
+       0000000000000013  0000000000000001  MS       0     0     1
+  [24] .symtab           SYMTAB           0000000000000000  000c7358
+       00000000000007f8  0000000000000018          26    81     8
+  [25] .shstrtab         STRTAB           0000000000000000  000c7b50
+       00000000000003f0  0000000000000000           0     0     1
+  [26] .strtab           STRTAB           0000000000000000  000c7f40
+       0000000000000492  0000000000000000           0     0     1
+Key to Flags:
+  W (write), A (alloc), X (execute), M (merge), S (strings), I (info),
+  L (link order), O (extra OS processing required), G (group), T (TLS),
+  C (compressed), x (unknown), o (OS specific), E (exclude),
+  p (processor specific)
+
+There are no section groups in this file.
+
+Program Headers:
+  Type           Offset             VirtAddr           PhysAddr
+                 FileSiz            MemSiz              Flags  Align
+  LOAD           0x0000000000010000 0x0000000000080000 0x0000000000080000
+                 0x0000000000000058 0x0000000000000058  R      0x10000
+  LOAD           0x0000000000010058 0x0000000000080058 0x0000000000080058
+                 0x00000000000007b4 0x00000000000007b4  R E    0x10000
+  GNU_STACK      0x0000000000000000 0x0000000000000000 0x0000000000000000
+                 0x0000000000000000 0x0000000000000000  RW     0x0
+
+ Section to Segment mapping:
+  Segment Sections...
+   00     .rodata.anon.59b1fb1273877f6753985e0df4f6131f.0.llvm.9382689312734249080 .rodata..Lanon.fc0a1066aa4fa77f512f6c4b34f043aa.0 .rodata..Lanon.fc0a1066aa4fa77f512f6c4b34f043aa.1 .rodata..Lanon.fc0a1066aa4fa77f512f6c4b34f043aa.2 .rodata.cst8 
+   01     .text._ZN4core3ptr58drop_in_place$LT$$RF$mut$u20$baremetal_pi..uart..Uart1$GT$17h73c5014824799ddeE.llvm.9382689312734249080 .text._ZN50_$LT$$RF$mut$u20$W$u20$as$u20$core..fmt..Write$GT$10write_char17h9f49bcdb8b432cd3E.llvm.9382689312734249080 .text._ZN50_$LT$$RF$mut$u20$W$u20$as$u20$core..fmt..Write$GT$9write_fmt17hc1e0946ae12f0e06E.llvm.9382689312734249080 .text._ZN50_$LT$$RF$mut$u20$W$u20$as$u20$core..fmt..Write$GT$9write_str17h965e77dee5766f98E.llvm.9382689312734249080 .text._start .text._ZN4core3ops8function6FnOnce9call_once17hf084a51a9b44c1f3E .text._ZN4core3fmt5write17h63775af3066fbce8E .text.memcpy 
+   02     
+
+There is no dynamic section in this file.
+
+There are no relocations in this file.
+
+The decoding of unwind sections for machine type AArch64 is not currently supported.
+
+Symbol table '.symtab' contains 85 entries:
+   Num:    Value          Size Type    Bind   Vis      Ndx Name
+     0: 0000000000000000     0 NOTYPE  LOCAL  DEFAULT  UND 
+     1: 0000000000000000     0 FILE    LOCAL  DEFAULT  ABS baremetal_pi.ea0[...]
+     2: 0000000000080000     0 NOTYPE  LOCAL  DEFAULT    1 $d.6
+     3: 0000000000080058     0 NOTYPE  LOCAL  DEFAULT    6 $x.1
+     4: 000000000008005c     0 NOTYPE  LOCAL  DEFAULT    7 $x.2
+     5: 0000000000080170     0 NOTYPE  LOCAL  DEFAULT    8 $x.3
+     6: 00000000000801a8     0 NOTYPE  LOCAL  DEFAULT    9 $x.4
+     7: 0000000000080058     4 FUNC    LOCAL  HIDDEN     6 _ZN4core3ptr58dr[...]
+     8: 000000000008005c   276 FUNC    LOCAL  HIDDEN     7 _ZN50_$LT$$RF$mu[...]
+     9: 0000000000080170    56 FUNC    LOCAL  HIDDEN     8 _ZN50_$LT$$RF$mu[...]
+    10: 00000000000801a8    56 FUNC    LOCAL  HIDDEN     9 _ZN50_$LT$$RF$mu[...]
+    11: 0000000000080000    48 OBJECT  LOCAL  HIDDEN     1 anon.59b1fb12738[...]
+    12: 0000000000000000     0 FILE    LOCAL  DEFAULT  ABS baremetal_pi.ea0[...]
+    13: 0000000000000000     0 FILE    LOCAL  DEFAULT  ABS baremetal_pi.ea0[...]
+    14: 0000000000080030     0 NOTYPE  LOCAL  DEFAULT    2 $d.2
+    15: 0000000000080040     0 NOTYPE  LOCAL  DEFAULT    3 $d.3
+    16: 00000000000801e0     0 NOTYPE  LOCAL  DEFAULT   10 $x.1
+    17: 0000000000000000     0 FILE    LOCAL  DEFAULT  ABS baremetal_pi.ea0[...]
+    18: 0000000000000000     0 FILE    LOCAL  DEFAULT  ABS core.c413132a-cgu.0
+    19: 0000000000000000     0 NOTYPE  LOCAL  DEFAULT   14 $d.1487
+    20: 0000000000000000     0 NOTYPE  LOCAL  DEFAULT   15 $d.1488
+    21: 0000000000000000     0 NOTYPE  LOCAL  DEFAULT   16 $d.1489
+    22: 0000000000000000     0 NOTYPE  LOCAL  DEFAULT   17 $d.1490
+    23: 000000000002baff     0 NOTYPE  LOCAL  DEFAULT   18 $d.1491
+    24: 0000000000000000     0 NOTYPE  LOCAL  DEFAULT   19 $d.1492
+    25: 0000000000000000     0 NOTYPE  LOCAL  DEFAULT   20 $d.1493
+    26: 0000000000000000     0 NOTYPE  LOCAL  DEFAULT   21 $d.1494
+    27: 0000000000000000     0 NOTYPE  LOCAL  DEFAULT   22 $d.1495
+    28: 00000000000802c0     0 NOTYPE  LOCAL  DEFAULT   11 $x.0
+    29: 00000000000802c8     0 NOTYPE  LOCAL  DEFAULT   12 $x.193
+    30: 00000000000802c0     8 FUNC    LOCAL  DEFAULT   11 _ZN4core3ops8fun[...]
+    31: 0000000000000000     0 FILE    LOCAL  DEFAULT  ABS compiler_builtin[...]
+    32: 000000000001fc84     0 NOTYPE  LOCAL  DEFAULT   22 $d.10
+    33: 000000000000020e     0 NOTYPE  LOCAL  DEFAULT   14 $d.2
+    34: 0000000000025d9d     0 NOTYPE  LOCAL  DEFAULT   15 $d.3
+    35: 0000000000002e20     0 NOTYPE  LOCAL  DEFAULT   16 $d.4
+    36: 000000000002a770     0 NOTYPE  LOCAL  DEFAULT   17 $d.5
+    37: 000000000002baff     0 NOTYPE  LOCAL  DEFAULT   18 $d.6
+    38: 000000000000bbc0     0 NOTYPE  LOCAL  DEFAULT   19 $d.7
+    39: 0000000000000012     0 NOTYPE  LOCAL  DEFAULT   20 $d.8
+    40: 0000000000005c68     0 NOTYPE  LOCAL  DEFAULT   21 $d.9
+    41: 0000000000000000     0 FILE    LOCAL  DEFAULT  ABS compiler_builtin[...]
+    42: 00000000000002d0     0 NOTYPE  LOCAL  DEFAULT   14 $d.2
+    43: 0000000000025fea     0 NOTYPE  LOCAL  DEFAULT   15 $d.3
+    44: 0000000000002e50     0 NOTYPE  LOCAL  DEFAULT   16 $d.4
+    45: 000000000002baff     0 NOTYPE  LOCAL  DEFAULT   18 $d.5
+    46: 000000000000bcca     0 NOTYPE  LOCAL  DEFAULT   19 $d.6
+    47: 0000000000000024     0 NOTYPE  LOCAL  DEFAULT   20 $d.7
+    48: 0000000000005c98     0 NOTYPE  LOCAL  DEFAULT   21 $d.8
+    49: 000000000001fec2     0 NOTYPE  LOCAL  DEFAULT   22 $d.9
+    50: 0000000000000000     0 FILE    LOCAL  DEFAULT  ABS compiler_builtin[...]
+    51: 0000000000000036     0 NOTYPE  LOCAL  DEFAULT   20 $d.10
+    52: 0000000000005cc8     0 NOTYPE  LOCAL  DEFAULT   21 $d.11
+    53: 000000000001ffb3     0 NOTYPE  LOCAL  DEFAULT   22 $d.12
+    54: 0000000000000323     0 NOTYPE  LOCAL  DEFAULT   14 $d.4
+    55: 0000000000026066     0 NOTYPE  LOCAL  DEFAULT   15 $d.5
+    56: 0000000000002e80     0 NOTYPE  LOCAL  DEFAULT   16 $d.6
+    57: 000000000002a830     0 NOTYPE  LOCAL  DEFAULT   17 $d.7
+    58: 000000000002baff     0 NOTYPE  LOCAL  DEFAULT   18 $d.8
+    59: 000000000000bd11     0 NOTYPE  LOCAL  DEFAULT   19 $d.9
+    60: 0000000000000000     0 FILE    LOCAL  DEFAULT  ABS compiler_builtin[...]
+    61: 00000000000003e3     0 NOTYPE  LOCAL  DEFAULT   14 $d.2
+    62: 0000000000026528     0 NOTYPE  LOCAL  DEFAULT   15 $d.3
+    63: 0000000000002ed0     0 NOTYPE  LOCAL  DEFAULT   16 $d.4
+    64: 000000000002baff     0 NOTYPE  LOCAL  DEFAULT   18 $d.5
+    65: 000000000000be9e     0 NOTYPE  LOCAL  DEFAULT   19 $d.6
+    66: 0000000000000048     0 NOTYPE  LOCAL  DEFAULT   20 $d.7
+    67: 0000000000005d28     0 NOTYPE  LOCAL  DEFAULT   21 $d.8
+    68: 00000000000204c6     0 NOTYPE  LOCAL  DEFAULT   22 $d.9
+    69: 0000000000000000     0 FILE    LOCAL  DEFAULT  ABS compiler_builtin[...]
+    70: 0000000000000436     0 NOTYPE  LOCAL  DEFAULT   14 $d.21
+    71: 00000000000265a4     0 NOTYPE  LOCAL  DEFAULT   15 $d.22
+    72: 0000000000002f00     0 NOTYPE  LOCAL  DEFAULT   16 $d.23
+    73: 000000000002a990     0 NOTYPE  LOCAL  DEFAULT   17 $d.24
+    74: 000000000002baff     0 NOTYPE  LOCAL  DEFAULT   18 $d.25
+    75: 000000000000bee5     0 NOTYPE  LOCAL  DEFAULT   19 $d.26
+    76: 000000000000005a     0 NOTYPE  LOCAL  DEFAULT   20 $d.27
+    77: 0000000000005d60     0 NOTYPE  LOCAL  DEFAULT   21 $d.28
+    78: 00000000000205bf     0 NOTYPE  LOCAL  DEFAULT   22 $d.29
+    79: 00000000000804c0     0 NOTYPE  LOCAL  DEFAULT   13 $x.0
+    80: 00000000000804c0   844 FUNC    LOCAL  HIDDEN    13 memcpy
+    81: 00000000000802c8   504 FUNC    GLOBAL DEFAULT   12 _ZN4core3fmt5wri[...]
+    82: 00000000000801e0   224 FUNC    GLOBAL DEFAULT   10 _start
+    83: 0000000000080000     0 NOTYPE  GLOBAL DEFAULT    1 __bss_start
+    84: 0000000000080000     0 NOTYPE  GLOBAL DEFAULT    1 __bss_end
+
+No version information found in this file.

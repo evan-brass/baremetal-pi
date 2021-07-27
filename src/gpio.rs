@@ -1,5 +1,8 @@
-use core::{ptr, sync::atomic::{AtomicU32, Ordering}};
 use super::IO_BASE;
+use core::{
+	ptr,
+	sync::atomic::{AtomicU32, Ordering},
+};
 
 const GPIO_BASE: *const AtomicU32 = (IO_BASE + 0x20_000) as *mut AtomicU32;
 
@@ -12,7 +15,7 @@ pub enum Func {
 	Alt2,
 	Alt3,
 	Alt4,
-	Alt5
+	Alt5,
 }
 impl Func {
 	fn val(&self) -> u32 {
@@ -24,13 +27,13 @@ impl Func {
 			Func::Alt2 => 0b110,
 			Func::Alt3 => 0b111,
 			Func::Alt4 => 0b011,
-			Func::Alt5 => 0b010
+			Func::Alt5 => 0b010,
 		}
 	}
 }
 
 pub struct Gpio {
-	pin: u8
+	pin: u8,
 }
 impl Gpio {
 	// TODO: to make gpio pins accessible from multiple cores, we need to guard
@@ -54,14 +57,14 @@ impl Gpio {
 	}
 	#[inline]
 	pub fn high(&mut self) {
-		unsafe { 
+		unsafe {
 			let set = GPIO_BASE.offset(7 + self.pin as isize / 32) as *mut u32;
 			ptr::write_volatile(set, 0b1 << self.pin);
 		}
 	}
 	#[inline]
 	pub fn low(&mut self) {
-		unsafe { 
+		unsafe {
 			let clr = GPIO_BASE.offset(10 + self.pin as isize / 32) as *mut u32;
 			ptr::write_volatile(clr, 0b1 << self.pin);
 		}
