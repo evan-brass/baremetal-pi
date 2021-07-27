@@ -1,9 +1,15 @@
+#![allow(unused)]
 #![no_std]
 #![no_main]
 #![feature(asm)]
 
 use core::{panic::PanicInfo, ptr};
 use core::ops::Range;
+
+mod gpio;
+use self::{
+	gpio::Gpio
+};
 
 #[panic_handler]
 fn handle_panic(_: &PanicInfo) -> ! {
@@ -41,9 +47,9 @@ unsafe fn send_byte(b: u8) {
 
 const IO_BASE: usize = 0x3F000000;
 const GPFSEL1: *mut u32 = (IO_BASE + 0x20_0004) as *mut u32;
-const GPFSEL2: *mut u32 = (IO_BASE + 0x20_0008) as *mut u32;
-const GPSET0: *mut u32 = (IO_BASE + 0x20_001c) as *mut u32;
-const GPCLR0: *mut u32 = (IO_BASE + 0x20_0028) as *mut u32;
+// const GPFSEL2: *mut u32 = (IO_BASE + 0x20_0008) as *mut u32;
+// const GPSET0: *mut u32 = (IO_BASE + 0x20_001c) as *mut u32;
+// const GPCLR0: *mut u32 = (IO_BASE + 0x20_0028) as *mut u32;
 
 const AUX_MU_IO_REG: *mut u32 = (IO_BASE + 0x21_5040) as *mut u32;
 const AUX_MU_LCR_REG: *mut u32 = (IO_BASE + 0x21_504c) as *mut u32;
@@ -105,24 +111,28 @@ pub extern "C" fn _start() -> ! {
 		}
 
 		// set GPIO29 (ACT LED) to output:
-		set_bits(GPFSEL2, 27..30, 0b001);
+		let mut act_led = Gpio::new(29);
+		act_led.configure(gpio::Func::Output);
+		// set_bits(GPFSEL2, 27..30, 0b001);
 
 		// set GPIO15 and GPIO14 to AUX5
-		set_bits(GPFSEL1, 12..18, 0b010_010);
+		// set_bits(GPFSEL1, 12..18, 0b010_010);
 		// set baud rate to 115200
-		set_bits(AUX_MU_BAUD, 0..16, 270);
+		// set_bits(AUX_MU_BAUD, 0..16, 270);
 		// set the data size to 8 bit
-		*AUX_MU_LCR_REG = 0b11;
+		// *AUX_MU_LCR_REG = 0b11;
 		// Give a little delay so that the aux can take effect? I guess?
-		delay(150);
+		// delay(150);
 		// Enable the mini uart
-		*AUX_MU_CNTL_REG = 0b_0_0_00_0_0_1_1;
+		// *AUX_MU_CNTL_REG = 0b_0_0_00_0_0_1_1;
 		
 		loop {
-			*GPSET0 = 1 << 29;
-			send_byte(b"a"[0]);
+			act_led.high();
+			// *GPSET0 = 1 << 29;
+			// send_byte(b"a"[0]);
 			delay(4_000_000);
-			*GPCLR0 = 1 << 29;
+			act_led.low();
+			// *GPCLR0 = 1 << 29;
 			delay(1_000_000);
 		}
 	}
