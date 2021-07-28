@@ -8,6 +8,8 @@ edition = "2018"
 
 [profile.dev]
 panic = "abort"
+lto = "fat"
 
 [profile.release]
 panic = "abort"
+lto = "fat"
