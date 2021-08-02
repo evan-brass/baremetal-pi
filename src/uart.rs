@@ -1,10 +1,12 @@
-use super::{delay, set_bits, IO_BASE};
+use super::{
+	delay,
+	gpio::{self, Gpio},
+	set_bits, IO_BASE,
+};
 use core::{
 	fmt::{self, Write},
 	ptr,
 };
-
-const GPFSEL1: *mut u32 = (IO_BASE + 0x20_0004) as *mut u32;
 
 const AUX_MU_IO_REG: *mut u32 = (IO_BASE + 0x21_5040) as *mut u32;
 const AUX_MU_LCR_REG: *mut u32 = (IO_BASE + 0x21_504c) as *mut u32;
@@ -16,8 +18,9 @@ pub struct Uart1;
 impl Uart1 {
 	pub fn new() -> Self {
 		// set GPIO15 and GPIO14 to AUX5
+		Gpio::new(14).configure(gpio::Func::Alt5);
+		Gpio::new(15).configure(gpio::Func::Alt5);
 		unsafe {
-			set_bits(GPFSEL1, 12..18, 0b010_010);
 			// set baud rate to 115200
 			set_bits(AUX_MU_BAUD, 0..16, 270);
 			// set the data size to 8 bit
