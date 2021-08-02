@@ -29,17 +29,13 @@ impl Uart1 {
 		}
 		Self {}
 	}
-	pub fn write(&mut self, bytes: &[u8]) {
-		for b in bytes {
-			loop {
-				let s = unsafe { ptr::read_volatile(AUX_MU_STAT_REG) };
-
-				if s & 0b10 != 0 {
-					break;
-				}
-			}
-			unsafe { ptr::write_volatile(AUX_MU_IO_REG, *b as u32) };
-		}
+	fn transmit_ready(&self) -> bool {
+		let s = unsafe { ptr::read_volatile(AUX_MU_STAT_REG) };
+		s & 0b10 != 0
+	}
+	// If queue_byte is called when the transmit queue is full, the byte will be lost.
+	fn queue_byte(&mut self, b: u8) {
+		unsafe { ptr::write_volatile(AUX_MU_IO_REG, b as u32) };
 	}
 	pub fn flush(&mut self) {
 		loop {
@@ -52,7 +48,21 @@ impl Uart1 {
 }
 impl Write for Uart1 {
 	fn write_str(&mut self, s: &str) -> fmt::Result {
-		self.write(s.as_bytes());
+		let bytes = s.as_bytes();
+		let r = b"\r\n";
+
+		// Send out each byte, replacing \n with \r\n
+		for b in s
+			.char_indices()
+			.map(|(i, c)| match c {
+				'\n' => r,
+				_ => &bytes[i..i + c.len_utf8()],
+			})
+			.flatten()
+		{
+			while !self.transmit_ready() {}
+			self.queue_byte(*b);
+		}
 		self.flush();
 		Ok(())
 	}

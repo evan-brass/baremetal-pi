@@ -1,0 +1,18 @@
+# Use debug firmware
+# start_debug=1
+
+# Use minimal firmware 
+start_file=start_cd.elf
+fixup_file=fixup_cd.dat
+
+# Our kernel is for 64 bit mode
+arm_64bit=1
+
+# Misc.
+boot_delay=0
+uart_2ndstage=1
+gpu_mem=16
+
+# (From the default config.txt)
+# Enable audio (loads snd_bcm2835)
+# dtparam=audio=on
