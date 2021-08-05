@@ -5,6 +5,7 @@ use super::{
 };
 use core::{
 	fmt::{self, Write},
+	hint::spin_loop,
 	ptr,
 };
 
@@ -46,6 +47,7 @@ impl Uart1 {
 			if s & 0b1000 != 0 {
 				break;
 			}
+			spin_loop();
 		}
 	}
 }
@@ -63,7 +65,9 @@ impl Write for Uart1 {
 			})
 			.flatten()
 		{
-			while !self.transmit_ready() {}
+			while !self.transmit_ready() {
+				spin_loop();
+			}
 			self.queue_byte(*b);
 		}
 		self.flush();

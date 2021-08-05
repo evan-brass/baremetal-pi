@@ -3,7 +3,10 @@
 ## Dependencies
 * cargo-binutils: `cargo install cargo-binutils`
 	* (required by binutils) `rustup component add llvm-tools-preview`
-* ARM64 cross-target: `rustup target add aarch64-unknown-none`
+* ARM64 cross-target: `rustup target add aarch64-unknown-none-softfloat`
+
+## Status
+It doesn't do much.  It currently just blinks the green ACT led a few times and outputs "Hello World!" to the console before panicking.  The panic handler outputs the panic message to the console.
 
 ## Instructions
 ### Initial Configuration:
@@ -14,7 +17,7 @@
 ### Development time setup
 * Plug in the raspberry pi + power it on:
 	* The static ip configuration only takes effect when the computer sees something on eth0.  The DHCP server will ignore eth0 if doesn't have a subnet configuration that matches (eth0 is 169 if no device)
-* Start the DHCP server `clear; sudo dhcpd -f -4 -cf ./dhcp.conf`
+* Start the DHCP server `clear; sudo dhcpd -4 -cf ./dhcp.conf`
 * Start the TFTP server `clear; sudo in.tftpd -4 --listen -s tftp-root`
 * (optional) Run wireshark `sudo wireshark`
 

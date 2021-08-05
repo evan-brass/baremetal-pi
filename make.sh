@@ -6,7 +6,7 @@ rm ./kernel8.S
 # Output the binary and assembly
 cargo build --release --target $TARGET
 rust-objcopy -O binary target/$TARGET/release/baremetal-pi tftp-root/kernel8.img
-rust-objdump -d target/$TARGET/release/baremetal-pi > kernel8.S
+rust-objdump -d --no-leading-addr --no-show-raw-insn target/$TARGET/release/baremetal-pi > kernel8.S
 
 # cargo objcopy --release -- -O binary tftp-root/kernel8.img
 # OLD:

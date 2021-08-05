@@ -1,20 +1,15 @@
-#![no_main]
-#![no_std]
+#![cfg_attr(target_arch = "aarch64", no_main, no_std)]
+#![cfg_attr(not(target_arch = "aarch64"), allow(unused))]
 #![feature(asm)]
+#![feature(const_ptr_offset)]
 
-use core::{fmt::Write, ops::Range, panic::PanicInfo, ptr};
+use core::{fmt::Write, ops::Range, ptr};
 
 mod gpio;
 mod grit;
+mod register;
 mod uart;
-use self::{gpio::Gpio, grit::halt, uart::Uart1};
-
-#[panic_handler]
-fn handle_panic(panic_info: &PanicInfo) -> ! {
-	let mut uart1 = Uart1::new();
-	write!(&mut uart1, "\r\npanic occurred: {:#?}", panic_info).unwrap();
-	halt();
-}
+use self::{gpio::Gpio, uart::Uart1};
 
 #[inline]
 unsafe fn set_bits(target: *mut u32, r: Range<u32>, val: u32) {
@@ -43,7 +38,6 @@ fn delay(count: usize) {
 
 fn main() -> ! {
 	let mut uart1 = Uart1::new();
-	// recursive_test(&mut uart1, 15);
 
 	let mut act_led = Gpio::new(29);
 	act_led.configure(gpio::Func::Output);
@@ -59,7 +53,7 @@ fn main() -> ! {
 	panic!("End of program.");
 }
 
-#[cfg(test)]
+#[cfg(all(not(target_arch = "aarch64"), test))]
 mod tests {
 	use super::*;
 

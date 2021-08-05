@@ -1,11 +1,21 @@
-use super::main;
+use super::{main, uart::Uart1};
+use core::{fmt::Write, panic::PanicInfo};
 
 extern "C" {
 	static __bss_start: *mut u8;
 	static __bss_end: *mut u8;
 }
 
-pub fn halt() -> ! {
+#[cfg(target_arch = "aarch64")]
+#[panic_handler]
+fn handle_panic(panic_info: &PanicInfo) -> ! {
+	let mut uart1 = Uart1::new();
+	write!(&mut uart1, "\r\npanic occurred: {:#?}", panic_info).unwrap();
+	halt();
+}
+
+#[cfg(target_arch = "aarch64")]
+fn halt() -> ! {
 	loop {
 		unsafe {
 			asm!("wfe");
@@ -14,6 +24,7 @@ pub fn halt() -> ! {
 }
 
 // STAGE 0: Since we're setting up the stack pointer in this function, we can't use the stack pointer.  If we have any calls in here then a function prelude will be inserted that
+#[cfg(target_arch = "aarch64")]
 #[no_mangle]
 #[link_section = ".boot"]
 pub extern "C" fn _start() -> ! {
