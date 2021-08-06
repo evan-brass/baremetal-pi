@@ -7,6 +7,7 @@
 
 ## Status
 It doesn't do much.  It currently just blinks the green ACT led a few times and outputs "Hello World!" to the console before panicking.  The panic handler outputs the panic message to the console.
+The stack issue was resolved.  Current issue: Any atomic memory access fails.  I don't really know what that means.  I haven't setup everything yet.  We still need page tables.  Also, maybe there's some multi cpu setup that needs to happen before being able to use atomics.  I don't know.
 
 ## Instructions
 ### Initial Configuration:

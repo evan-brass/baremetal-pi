@@ -11,7 +11,7 @@ Disassembly of section .boot:
                	b.eq	0x80018 <_start+0x18>
                	wfe
                	b	0x80010 <_start+0x10>
-               	bl	0x8094c <_ZN12baremetal_pi4grit9stage_one17he24b54ccefa5d11eE>
+               	bl	0x80604 <_ZN12baremetal_pi4grit9stage_one17he24b54ccefa5d11eE>
                	brk	#0x1
 
 Disassembly of section .text:
@@ -73,12 +73,12 @@ Disassembly of section .text:
                	mov	x0, sp
                	mov	w2, #48
                	stp	x30, x8, [sp, #48]
-               	bl	0x833d0 <memcpy>
+               	bl	0x832e0 <memcpy>
                	adrp	x1, 0x83000 <_ZN50_$LT$$RF$mut$u20$W$u20$as$u20$core..fmt..Write$GT$9write_fmt17h9c893b50c2b84b21E+0x24>
                	add	x0, sp, #56
-               	add	x1, x1, #1168
+               	add	x1, x1, #928
                	mov	x2, sp
-               	bl	0x813a4 <_ZN4core3fmt5write17h4089dd81629a8d2eE>
+               	bl	0x8105c <_ZN4core3fmt5write17h4089dd81629a8d2eE>
                	ldr	x30, [sp, #48]
                	add	sp, sp, #64
                	ret
@@ -154,7 +154,7 @@ Disassembly of section .text:
                	add	x11, x8, x1
                	mov	w12, #3
                	mov	x14, x8
-               	add	x13, x13, #1216
+               	add	x13, x13, #976
                	cbnz	x9, 0x8024c <_ZN62_$LT$baremetal_pi..uart..Uart1$u20$as$u20$core..fmt..Write$GT$9write_str17ha964ce6a0ebd28faE+0x50>
                	b	0x80278 <_ZN62_$LT$baremetal_pi..uart..Uart1$u20$as$u20$core..fmt..Write$GT$9write_str17ha964ce6a0ebd28faE+0x7c>
                	mov	w17, #2
@@ -255,312 +255,102 @@ Disassembly of section .text:
                	ret
                	adrp	x2, 0x83000 <_ZN62_$LT$baremetal_pi..uart..Uart1$u20$as$u20$core..fmt..Write$GT$9write_str17ha964ce6a0ebd28faE+0x1c0>
                	mov	x0, x9
-               	add	x2, x2, #1232
-               	bl	0x80ef8 <_ZN4core5slice5index24slice_end_index_len_fail17h827cf37c6cc32b14E>
+               	add	x2, x2, #992
+               	bl	0x80bb0 <_ZN4core5slice5index24slice_end_index_len_fail17h827cf37c6cc32b14E>
                	brk	#0x1
                	adrp	x2, 0x83000 <_ZN62_$LT$baremetal_pi..uart..Uart1$u20$as$u20$core..fmt..Write$GT$9write_str17ha964ce6a0ebd28faE+0x1d4>
                	mov	x1, x9
-               	add	x2, x2, #1232
-               	bl	0x815a0 <_ZN4core5slice5index22slice_index_order_fail17he71d7140076fff6eE>
+               	add	x2, x2, #992
+               	bl	0x81258 <_ZN4core5slice5index22slice_index_order_fail17he71d7140076fff6eE>
                	brk	#0x1
 
 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17habe9122735e55e0cE>:
                	ldr	x0, [x0]
-               	b	0x82fc8 <_ZN71_$LT$core..panic..panic_info..PanicInfo$u20$as$u20$core..fmt..Debug$GT$3fmt17hdab5301ab1e937b8E>
+               	b	0x82c80 <_ZN71_$LT$core..panic..panic_info..PanicInfo$u20$as$u20$core..fmt..Debug$GT$3fmt17hdab5301ab1e937b8E>
 
 <_ZN12baremetal_pi4main17h02d93c4b0c6e8c9eE>:
-               	sub	sp, sp, #112
-               	str	x30, [sp, #48]
-               	stp	x24, x23, [sp, #64]
-               	stp	x22, x21, [sp, #80]
-               	stp	x20, x19, [sp, #96]
+               	sub	sp, sp, #96
+               	stp	x30, x19, [sp, #80]
                	mov	w0, #14
-               	mov	w20, #20584
-               	movk	w20, #16161, lsl #16
+               	mov	w19, #20584
+               	movk	w19, #16161, lsl #16
                	bl	0x80138 <_ZN12baremetal_pi4gpio4Gpio9configure17ha6cdbf5b7e529e2bE>
                	mov	w0, #15
                	bl	0x80138 <_ZN12baremetal_pi4gpio4Gpio9configure17ha6cdbf5b7e529e2bE>
-               	ldr	w9, [x20]
+               	ldr	w9, [x19]
                	mov	w8, #270
                	mov	w10, #3
                	bfxil	w9, w8, #0, #16
                	mov	w8, #150
-               	str	w9, [x20]
-               	stur	w10, [x20, #-28]
-               	nop
-               	subs	x8, x8, #1
-               	b.ne	0x80428 <_ZN12baremetal_pi4main17h02d93c4b0c6e8c9eE+0x48>
-               	mov	w8, #3
-               	mov	w19, #28
-               	movk	w19, #16160, lsl #16
-               	mov	w21, #16960
-               	movk	w21, #15, lsl #16
-               	mov	w10, #536870912
-               	stur	w8, [x20, #-8]
-               	ldur	w8, [x19, #-20]
-               	and	w8, w8, #0xc7ffffff
-               	orr	w9, w8, #0x8000000
-               	mov	x8, sp
-               	add	x20, x8, #16
-               	mov	x8, x21
-               	stur	w9, [x19, #-20]
-               	str	w10, [x19]
-               	nop
-               	subs	x8, x8, #1
-               	b.ne	0x80470 <_ZN12baremetal_pi4main17h02d93c4b0c6e8c9eE+0x90>
-               	adrp	x23, 0x83000 <_ZN12baremetal_pi4main17h02d93c4b0c6e8c9eE+0xa8>
-               	adrp	x24, 0x83000 <_ZN12baremetal_pi4main17h02d93c4b0c6e8c9eE+0xac>
-               	adrp	x1, 0x83000 <_ZN12baremetal_pi4main17h02d93c4b0c6e8c9eE+0xb0>
-               	mov	w8, #536870912
-               	mov	x9, sp
-               	add	x23, x23, #1296
-               	mov	w10, #1
-               	add	x24, x24, #1632
-               	add	x1, x1, #1168
-               	add	x0, sp, #56
-               	mov	x2, sp
-               	str	w8, [x19, #12]
-               	str	x9, [sp, #56]
-               	stp	x23, x10, [sp]
-               	stp	xzr, xzr, [x20]
-               	stp	x24, xzr, [sp, #32]
-               	bl	0x813a4 <_ZN4core3fmt5write17h4089dd81629a8d2eE>
-               	cbnz	w0, 0x80828 <_ZN12baremetal_pi4main17h02d93c4b0c6e8c9eE+0x448>
-               	mov	w22, #2304
-               	movk	w22, #61, lsl #16
-               	mov	x8, x22
-               	nop
-               	subs	x8, x8, #1
-               	b.ne	0x804d0 <_ZN12baremetal_pi4main17h02d93c4b0c6e8c9eE+0xf0>
-               	mov	w9, #536870912
-               	mov	x8, x21
                	str	w9, [x19]
+               	stur	w10, [x19, #-28]
                	nop
                	subs	x8, x8, #1
-               	b.ne	0x804e8 <_ZN12baremetal_pi4main17h02d93c4b0c6e8c9eE+0x108>
-               	adrp	x1, 0x83000 <_ZN12baremetal_pi4main17h02d93c4b0c6e8c9eE+0x120>
-               	mov	w8, #536870912
-               	mov	x9, sp
-               	mov	w10, #1
-               	add	x1, x1, #1168
-               	add	x0, sp, #56
-               	mov	x2, sp
-               	str	w8, [x19, #12]
-               	str	x9, [sp, #56]
-               	stp	x23, x10, [sp]
-               	stp	xzr, xzr, [x20]
-               	stp	x24, xzr, [sp, #32]
-               	bl	0x813a4 <_ZN4core3fmt5write17h4089dd81629a8d2eE>
-               	tbnz	w0, #0, 0x80828 <_ZN12baremetal_pi4main17h02d93c4b0c6e8c9eE+0x448>
-               	mov	x8, x22
+               	b.ne	0x8041c <_ZN12baremetal_pi4main17h02d93c4b0c6e8c9eE+0x3c>
+               	mov	w9, #3
+               	mov	w8, #8
+               	movk	w8, #16160, lsl #16
+               	mov	w11, #45
+               	mov	w12, #536870912
+               	stur	w9, [x19, #-8]
+               	ldr	w9, [x8]
+               	and	w9, w9, #0xc7ffffff
+               	orr	w10, w9, #0x8000000
+               	mov	w9, #16960
+               	movk	w9, #15, lsl #16
+               	str	w10, [x8]
+               	str	w11, [sp]
+               	str	w12, [x8, #20]
                	nop
-               	subs	x8, x8, #1
-               	b.ne	0x80530 <_ZN12baremetal_pi4main17h02d93c4b0c6e8c9eE+0x150>
+               	subs	x9, x9, #1
+               	b.ne	0x80460 <_ZN12baremetal_pi4main17h02d93c4b0c6e8c9eE+0x80>
                	mov	w9, #536870912
-               	mov	x8, x21
-               	str	w9, [x19]
-               	nop
-               	subs	x8, x8, #1
-               	b.ne	0x80548 <_ZN12baremetal_pi4main17h02d93c4b0c6e8c9eE+0x168>
-               	adrp	x1, 0x83000 <_ZN12baremetal_pi4main17h02d93c4b0c6e8c9eE+0x180>
-               	mov	w8, #536870912
-               	mov	x9, sp
-               	mov	w10, #1
-               	add	x1, x1, #1168
-               	add	x0, sp, #56
-               	mov	x2, sp
-               	str	w8, [x19, #12]
-               	str	x9, [sp, #56]
-               	stp	x23, x10, [sp]
-               	stp	xzr, xzr, [x20]
-               	stp	x24, xzr, [sp, #32]
-               	bl	0x813a4 <_ZN4core3fmt5write17h4089dd81629a8d2eE>
-               	tbnz	w0, #0, 0x80828 <_ZN12baremetal_pi4main17h02d93c4b0c6e8c9eE+0x448>
-               	mov	x8, x22
-               	nop
-               	subs	x8, x8, #1
-               	b.ne	0x80590 <_ZN12baremetal_pi4main17h02d93c4b0c6e8c9eE+0x1b0>
-               	mov	w9, #536870912
-               	mov	x8, x21
-               	str	w9, [x19]
-               	nop
-               	subs	x8, x8, #1
-               	b.ne	0x805a8 <_ZN12baremetal_pi4main17h02d93c4b0c6e8c9eE+0x1c8>
-               	adrp	x1, 0x83000 <_ZN12baremetal_pi4main17h02d93c4b0c6e8c9eE+0x1e0>
-               	mov	w8, #536870912
-               	mov	x9, sp
-               	mov	w10, #1
-               	add	x1, x1, #1168
-               	add	x0, sp, #56
-               	mov	x2, sp
-               	str	w8, [x19, #12]
-               	str	x9, [sp, #56]
-               	stp	x23, x10, [sp]
-               	stp	xzr, xzr, [x20]
-               	stp	x24, xzr, [sp, #32]
-               	bl	0x813a4 <_ZN4core3fmt5write17h4089dd81629a8d2eE>
-               	tbnz	w0, #0, 0x80828 <_ZN12baremetal_pi4main17h02d93c4b0c6e8c9eE+0x448>
-               	mov	x8, x22
-               	nop
-               	subs	x8, x8, #1
-               	b.ne	0x805f0 <_ZN12baremetal_pi4main17h02d93c4b0c6e8c9eE+0x210>
-               	mov	w9, #536870912
-               	mov	x8, x21
-               	str	w9, [x19]
-               	nop
-               	subs	x8, x8, #1
-               	b.ne	0x80608 <_ZN12baremetal_pi4main17h02d93c4b0c6e8c9eE+0x228>
-               	adrp	x1, 0x83000 <_ZN12baremetal_pi4main17h02d93c4b0c6e8c9eE+0x240>
-               	mov	w8, #536870912
-               	mov	x9, sp
-               	mov	w10, #1
-               	add	x1, x1, #1168
-               	add	x0, sp, #56
-               	mov	x2, sp
-               	str	w8, [x19, #12]
-               	str	x9, [sp, #56]
-               	stp	x23, x10, [sp]
-               	stp	xzr, xzr, [x20]
-               	stp	x24, xzr, [sp, #32]
-               	bl	0x813a4 <_ZN4core3fmt5write17h4089dd81629a8d2eE>
-               	tbnz	w0, #0, 0x80828 <_ZN12baremetal_pi4main17h02d93c4b0c6e8c9eE+0x448>
-               	mov	x8, x22
-               	nop
-               	subs	x8, x8, #1
-               	b.ne	0x80650 <_ZN12baremetal_pi4main17h02d93c4b0c6e8c9eE+0x270>
-               	mov	w9, #536870912
-               	mov	x8, x21
-               	str	w9, [x19]
-               	nop
-               	subs	x8, x8, #1
-               	b.ne	0x80668 <_ZN12baremetal_pi4main17h02d93c4b0c6e8c9eE+0x288>
-               	adrp	x1, 0x83000 <_ZN12baremetal_pi4main17h02d93c4b0c6e8c9eE+0x2a0>
-               	mov	w8, #536870912
-               	mov	x9, sp
-               	mov	w10, #1
-               	add	x1, x1, #1168
-               	add	x0, sp, #56
-               	mov	x2, sp
-               	str	w8, [x19, #12]
-               	str	x9, [sp, #56]
-               	stp	x23, x10, [sp]
-               	stp	xzr, xzr, [x20]
-               	stp	x24, xzr, [sp, #32]
-               	bl	0x813a4 <_ZN4core3fmt5write17h4089dd81629a8d2eE>
-               	tbnz	w0, #0, 0x80828 <_ZN12baremetal_pi4main17h02d93c4b0c6e8c9eE+0x448>
-               	mov	x8, x22
-               	nop
-               	subs	x8, x8, #1
-               	b.ne	0x806b0 <_ZN12baremetal_pi4main17h02d93c4b0c6e8c9eE+0x2d0>
-               	mov	w9, #536870912
-               	mov	x8, x21
-               	str	w9, [x19]
-               	nop
-               	subs	x8, x8, #1
-               	b.ne	0x806c8 <_ZN12baremetal_pi4main17h02d93c4b0c6e8c9eE+0x2e8>
-               	adrp	x1, 0x83000 <_ZN12baremetal_pi4main17h02d93c4b0c6e8c9eE+0x300>
-               	mov	w8, #536870912
-               	mov	x9, sp
-               	mov	w10, #1
-               	add	x1, x1, #1168
-               	add	x0, sp, #56
-               	mov	x2, sp
-               	str	w8, [x19, #12]
-               	str	x9, [sp, #56]
-               	stp	x23, x10, [sp]
-               	stp	xzr, xzr, [x20]
-               	stp	x24, xzr, [sp, #32]
-               	bl	0x813a4 <_ZN4core3fmt5write17h4089dd81629a8d2eE>
-               	tbnz	w0, #0, 0x80828 <_ZN12baremetal_pi4main17h02d93c4b0c6e8c9eE+0x448>
-               	mov	x8, x22
-               	nop
-               	subs	x8, x8, #1
-               	b.ne	0x80710 <_ZN12baremetal_pi4main17h02d93c4b0c6e8c9eE+0x330>
-               	mov	w9, #536870912
-               	mov	x8, x21
-               	str	w9, [x19]
-               	nop
-               	subs	x8, x8, #1
-               	b.ne	0x80728 <_ZN12baremetal_pi4main17h02d93c4b0c6e8c9eE+0x348>
-               	adrp	x1, 0x83000 <_ZN12baremetal_pi4main17h02d93c4b0c6e8c9eE+0x360>
-               	mov	w8, #536870912
-               	mov	x9, sp
-               	mov	w10, #1
-               	add	x1, x1, #1168
-               	add	x0, sp, #56
-               	mov	x2, sp
-               	str	w8, [x19, #12]
-               	str	x9, [sp, #56]
-               	stp	x23, x10, [sp]
-               	stp	xzr, xzr, [x20]
-               	stp	x24, xzr, [sp, #32]
-               	bl	0x813a4 <_ZN4core3fmt5write17h4089dd81629a8d2eE>
-               	tbnz	w0, #0, 0x80828 <_ZN12baremetal_pi4main17h02d93c4b0c6e8c9eE+0x448>
-               	mov	x8, x22
-               	nop
-               	subs	x8, x8, #1
-               	b.ne	0x80770 <_ZN12baremetal_pi4main17h02d93c4b0c6e8c9eE+0x390>
-               	mov	w9, #536870912
-               	mov	x8, x21
-               	str	w9, [x19]
-               	nop
-               	subs	x8, x8, #1
-               	b.ne	0x80788 <_ZN12baremetal_pi4main17h02d93c4b0c6e8c9eE+0x3a8>
-               	adrp	x1, 0x83000 <_ZN12baremetal_pi4main17h02d93c4b0c6e8c9eE+0x3c0>
-               	mov	w8, #536870912
-               	mov	x9, sp
-               	mov	w10, #1
-               	add	x1, x1, #1168
-               	add	x0, sp, #56
-               	mov	x2, sp
-               	str	w8, [x19, #12]
-               	str	x9, [sp, #56]
-               	stp	x23, x10, [sp]
-               	stp	xzr, xzr, [x20]
-               	stp	x24, xzr, [sp, #32]
-               	bl	0x813a4 <_ZN4core3fmt5write17h4089dd81629a8d2eE>
-               	tbnz	w0, #0, 0x80828 <_ZN12baremetal_pi4main17h02d93c4b0c6e8c9eE+0x448>
-               	mov	x8, x22
-               	nop
-               	subs	x8, x8, #1
-               	b.ne	0x807d0 <_ZN12baremetal_pi4main17h02d93c4b0c6e8c9eE+0x3f0>
-               	mov	w8, #536870912
-               	str	w8, [x19]
-               	nop
-               	subs	x21, x21, #1
-               	b.ne	0x807e4 <_ZN12baremetal_pi4main17h02d93c4b0c6e8c9eE+0x404>
-               	adrp	x1, 0x83000 <_ZN12baremetal_pi4main17h02d93c4b0c6e8c9eE+0x41c>
-               	mov	w8, #536870912
-               	mov	x9, sp
-               	mov	w10, #1
-               	add	x1, x1, #1168
-               	add	x0, sp, #56
-               	mov	x2, sp
-               	str	w8, [x19, #12]
-               	str	x9, [sp, #56]
-               	stp	x23, x10, [sp]
-               	stp	xzr, xzr, [x20]
-               	stp	x24, xzr, [sp, #32]
-               	bl	0x813a4 <_ZN4core3fmt5write17h4089dd81629a8d2eE>
-               	tbz	w0, #0, 0x8084c <_ZN12baremetal_pi4main17h02d93c4b0c6e8c9eE+0x46c>
-               	adrp	x0, 0x83000 <_ZN12baremetal_pi4main17h02d93c4b0c6e8c9eE+0x454>
-               	adrp	x2, 0x83000 <_ZN12baremetal_pi4main17h02d93c4b0c6e8c9eE+0x458>
-               	adrp	x3, 0x83000 <_ZN12baremetal_pi4main17h02d93c4b0c6e8c9eE+0x45c>
-               	add	x0, x0, #1464
-               	add	x2, x2, #1312
-               	add	x3, x3, #1344
-               	mov	x1, sp
-               	bl	0x815e8 <_ZN4core6result13unwrap_failed17h514395d9b84745f5E>
+               	adrp	x11, 0x83000 <_ZN12baremetal_pi4main17h02d93c4b0c6e8c9eE+0x9c>
+               	adrp	x1, 0x83000 <_ZN12baremetal_pi4main17h02d93c4b0c6e8c9eE+0xa0>
+               	mov	x10, sp
+               	add	x11, x11, #112
+               	add	x1, x1, #928
+               	str	w9, [x8, #32]
+               	add	x8, sp, #32
+               	adrp	x9, 0x83000 <_ZN12baremetal_pi4main17h02d93c4b0c6e8c9eE+0xb8>
+               	add	x0, sp, #24
+               	add	x9, x9, #1016
+               	add	x2, sp, #32
+               	str	x8, [sp, #24]
+               	mov	w8, #2
+               	stp	x10, x11, [sp, #8]
+               	stp	xzr, xzr, [sp, #48]
+               	stp	x9, x8, [sp, #32]
+               	add	x8, sp, #8
+               	mov	w9, #1
+               	stp	x8, x9, [sp, #64]
+               	bl	0x8105c <_ZN4core3fmt5write17h4089dd81629a8d2eE>
+               	cbz	w0, 0x804e8 <_ZN12baremetal_pi4main17h02d93c4b0c6e8c9eE+0x108>
+               	adrp	x0, 0x83000 <_ZN12baremetal_pi4main17h02d93c4b0c6e8c9eE+0xf0>
+               	adrp	x2, 0x83000 <_ZN12baremetal_pi4main17h02d93c4b0c6e8c9eE+0xf4>
+               	adrp	x3, 0x83000 <_ZN12baremetal_pi4main17h02d93c4b0c6e8c9eE+0xf8>
+               	add	x0, x0, #1248
+               	add	x2, x2, #1048
+               	add	x3, x3, #1080
+               	add	x1, sp, #32
+               	bl	0x812a0 <_ZN4core6result13unwrap_failed17h514395d9b84745f5E>
                	brk	#0x1
+               	mov	w8, #2304
+               	movk	w8, #61, lsl #16
                	nop
-               	subs	x22, x22, #1
-               	b.ne	0x8084c <_ZN12baremetal_pi4main17h02d93c4b0c6e8c9eE+0x46c>
-               	adrp	x0, 0x83000 <_ZN12baremetal_pi4main17h02d93c4b0c6e8c9eE+0x484>
-               	adrp	x2, 0x83000 <_ZN12baremetal_pi4main17h02d93c4b0c6e8c9eE+0x488>
-               	add	x0, x0, #1256
-               	add	x2, x2, #1272
+               	subs	x8, x8, #1
+               	b.ne	0x804f0 <_ZN12baremetal_pi4main17h02d93c4b0c6e8c9eE+0x110>
+               	mov	x8, sp
+               	ldxr	w9, [x8]
+               	add	w9, w9, #2
+               	stxr	w10, w9, [x8]
+               	cbnz	w10, 0x80500 <_ZN12baremetal_pi4main17h02d93c4b0c6e8c9eE+0x120>
+               	adrp	x0, 0x83000 <_ZN12baremetal_pi4main17h02d93c4b0c6e8c9eE+0x13c>
+               	adrp	x2, 0x83000 <_ZN12baremetal_pi4main17h02d93c4b0c6e8c9eE+0x140>
+               	add	x0, x0, #1104
+               	add	x2, x2, #1120
                	mov	w1, #15
-               	bl	0x80f40 <_ZN4core9panicking5panic17ha7217054e020f4cfE>
+               	bl	0x80bf8 <_ZN4core9panicking5panic17ha7217054e020f4cfE>
                	brk	#0x1
 
 <_ZN4core3ptr37drop_in_place$LT$core..fmt..Error$GT$17hc0e0a78b6d7f041bE>:
@@ -585,12 +375,12 @@ Disassembly of section .text:
                	stur	w10, [x19, #-28]
                	nop
                	subs	x8, x8, #1
-               	b.ne	0x808b8 <rust_begin_unwind+0x40>
+               	b.ne	0x80570 <rust_begin_unwind+0x40>
                	mov	w8, #3
                	mov	x9, sp
                	add	x10, sp, #32
                	adrp	x1, 0x83000 <rust_begin_unwind+0x64>
-               	add	x1, x1, #1168
+               	add	x1, x1, #928
                	add	x0, sp, #24
                	stur	w8, [x19, #-8]
                	adrp	x8, 0x80000 <rust_begin_unwind+0x68>
@@ -598,27 +388,27 @@ Disassembly of section .text:
                	add	x2, sp, #32
                	stp	x9, x8, [sp, #8]
                	adrp	x8, 0x83000 <rust_begin_unwind+0x84>
-               	add	x8, x8, #1392
+               	add	x8, x8, #1176
                	mov	w9, #1
                	stp	x10, x8, [sp, #24]
                	adrp	x10, 0x83000 <rust_begin_unwind+0x94>
-               	add	x10, x10, #1408
+               	add	x10, x10, #1192
                	add	x8, sp, #8
                	str	x9, [sp, #72]
                	stp	x9, x10, [sp, #40]
                	stp	x9, x8, [sp, #56]
-               	bl	0x813a4 <_ZN4core3fmt5write17h4089dd81629a8d2eE>
-               	cbnz	w0, 0x80928 <rust_begin_unwind+0xb0>
+               	bl	0x8105c <_ZN4core3fmt5write17h4089dd81629a8d2eE>
+               	cbnz	w0, 0x805e0 <rust_begin_unwind+0xb0>
                	wfe
-               	b	0x80920 <rust_begin_unwind+0xa8>
+               	b	0x805d8 <rust_begin_unwind+0xa8>
                	adrp	x0, 0x83000 <rust_begin_unwind+0xbc>
                	adrp	x2, 0x83000 <rust_begin_unwind+0xc0>
                	adrp	x3, 0x83000 <rust_begin_unwind+0xc4>
-               	add	x0, x0, #1464
-               	add	x2, x2, #1512
-               	add	x3, x3, #1544
+               	add	x0, x0, #1248
+               	add	x2, x2, #1296
+               	add	x3, x3, #1328
                	add	x1, sp, #32
-               	bl	0x815e8 <_ZN4core6result13unwrap_failed17h514395d9b84745f5E>
+               	bl	0x812a0 <_ZN4core6result13unwrap_failed17h514395d9b84745f5E>
                	brk	#0x1
 
 <_ZN12baremetal_pi4grit9stage_one17he24b54ccefa5d11eE>:
@@ -626,25 +416,25 @@ Disassembly of section .text:
                	adrp	x8, 0x84000 <_ZN12baremetal_pi4grit9stage_one17he24b54ccefa5d11eE+0x14>
                	adrp	x9, 0x84000 <_ZN12baremetal_pi4grit9stage_one17he24b54ccefa5d11eE+0x18>
                	mov	w1, wzr
-               	ldr	x0, [x8, #1488]
-               	ldr	x8, [x9, #1488]
+               	ldr	x0, [x8, #1272]
+               	ldr	x8, [x9, #1272]
                	sub	x2, x0, x8
-               	bl	0x833ec <memset>
+               	bl	0x832fc <memset>
                	bl	0x803e0 <_ZN12baremetal_pi4main17h02d93c4b0c6e8c9eE>
                	brk	#0x1
 
 <_ZN4core3ops8function6FnOnce9call_once17h1e0b4b2b1b15e514E>:
                	ldr	xzr, [x0]
-               	b	0x80978 <_ZN4core3ops8function6FnOnce9call_once17h1e0b4b2b1b15e514E+0x4>
+               	b	0x80630 <_ZN4core3ops8function6FnOnce9call_once17h1e0b4b2b1b15e514E+0x4>
 
 <_ZN4core9panicking18panic_bounds_check17h21e59d1a29014f09E>:
                	stp	x0, x1, [sp, #-96]!
                	adrp	x9, 0x80000 <_ZN4core9panicking18panic_bounds_check17h21e59d1a29014f09E+0x4>
                	add	x8, sp, #8
-               	add	x9, x9, #2500
+               	add	x9, x9, #1660
                	adrp	x11, 0x83000 <_ZN4core9panicking18panic_bounds_check17h21e59d1a29014f09E+0x1c>
                	mov	x10, sp
-               	add	x11, x11, #1600
+               	add	x11, x11, #1384
                	mov	w12, #2
                	stp	x8, x9, [sp, #64]
                	add	x8, sp, #64
@@ -654,7 +444,7 @@ Disassembly of section .text:
                	stp	x10, x9, [sp, #80]
                	stp	x11, x12, [sp, #16]
                	stp	x8, x12, [sp, #48]
-               	bl	0x80b38 <_ZN4core9panicking9panic_fmt17h548b34a47a4ac578E>
+               	bl	0x807f0 <_ZN4core9panicking9panic_fmt17h548b34a47a4ac578E>
                	brk	#0x1
 
 <_ZN4core3fmt3num3imp52_$LT$impl$u20$core..fmt..Display$u20$for$u20$u64$GT$3fmt17hd9011ba631c18f60E>:
@@ -665,8 +455,8 @@ Disassembly of section .text:
                	lsr	x9, x10, #4
                	cmp	x9, #625
                	adrp	x9, 0x83000 <_ZN4core3fmt3num3imp52_$LT$impl$u20$core..fmt..Display$u20$for$u20$u64$GT$3fmt17hd9011ba631c18f60E+0x24>
-               	add	x9, x9, #1778
-               	b.lo	0x80a80 <_ZN4core3fmt3num3imp52_$LT$impl$u20$core..fmt..Display$u20$for$u20$u64$GT$3fmt17hd9011ba631c18f60E+0xbc>
+               	add	x9, x9, #1562
+               	b.lo	0x80738 <_ZN4core3fmt3num3imp52_$LT$impl$u20$core..fmt..Display$u20$for$u20$u64$GT$3fmt17hd9011ba631c18f60E+0xbc>
                	mov	x12, #22859
                	movk	x12, #14470, lsl #16
                	movk	x12, #50646, lsl #32
@@ -700,14 +490,14 @@ Disassembly of section .text:
                	strb	w2, [x0, #35]
                	strb	w3, [x0, #38]
                	strb	w18, [x0, #37]
-               	b.hi	0x80a18 <_ZN4core3fmt3num3imp52_$LT$impl$u20$core..fmt..Display$u20$for$u20$u64$GT$3fmt17hd9011ba631c18f60E+0x54>
+               	b.hi	0x806d0 <_ZN4core3fmt3num3imp52_$LT$impl$u20$core..fmt..Display$u20$for$u20$u64$GT$3fmt17hd9011ba631c18f60E+0x54>
                	add	x11, x11, #39
                	cmp	x10, #99
-               	b.gt	0x80a8c <_ZN4core3fmt3num3imp52_$LT$impl$u20$core..fmt..Display$u20$for$u20$u64$GT$3fmt17hd9011ba631c18f60E+0xc8>
-               	b	0x80acc <_ZN4core3fmt3num3imp52_$LT$impl$u20$core..fmt..Display$u20$for$u20$u64$GT$3fmt17hd9011ba631c18f60E+0x108>
+               	b.gt	0x80744 <_ZN4core3fmt3num3imp52_$LT$impl$u20$core..fmt..Display$u20$for$u20$u64$GT$3fmt17hd9011ba631c18f60E+0xc8>
+               	b	0x80784 <_ZN4core3fmt3num3imp52_$LT$impl$u20$core..fmt..Display$u20$for$u20$u64$GT$3fmt17hd9011ba631c18f60E+0x108>
                	mov	w11, #39
                	cmp	x10, #99
-               	b.le	0x80acc <_ZN4core3fmt3num3imp52_$LT$impl$u20$core..fmt..Display$u20$for$u20$u64$GT$3fmt17hd9011ba631c18f60E+0x108>
+               	b.le	0x80784 <_ZN4core3fmt3num3imp52_$LT$impl$u20$core..fmt..Display$u20$for$u20$u64$GT$3fmt17hd9011ba631c18f60E+0x108>
                	mov	w13, #34079
                	and	w12, w10, #0xffff
                	movk	w13, #20971, lsl #16
@@ -725,12 +515,12 @@ Disassembly of section .text:
                	mov	x10, x12
                	strb	w13, [x14, #1]
                	cmp	x10, #10
-               	b.ge	0x80ae8 <_ZN4core3fmt3num3imp52_$LT$impl$u20$core..fmt..Display$u20$for$u20$u64$GT$3fmt17hd9011ba631c18f60E+0x124>
+               	b.ge	0x807a0 <_ZN4core3fmt3num3imp52_$LT$impl$u20$core..fmt..Display$u20$for$u20$u64$GT$3fmt17hd9011ba631c18f60E+0x124>
                	sub	x11, x11, #1
                	add	w9, w10, #48
                	add	x10, sp, #8
                	strb	w9, [x10, x11]
-               	b	0x80b08 <_ZN4core3fmt3num3imp52_$LT$impl$u20$core..fmt..Display$u20$for$u20$u64$GT$3fmt17hd9011ba631c18f60E+0x144>
+               	b	0x807c0 <_ZN4core3fmt3num3imp52_$LT$impl$u20$core..fmt..Display$u20$for$u20$u64$GT$3fmt17hd9011ba631c18f60E+0x144>
                	add	x9, x9, x10, lsl #1
                	ldrb	w10, [x9, #1]
                	ldrb	w9, [x9]
@@ -744,10 +534,10 @@ Disassembly of section .text:
                	adrp	x1, 0x83000 <_ZN4core3fmt3num3imp52_$LT$impl$u20$core..fmt..Display$u20$for$u20$u64$GT$3fmt17hd9011ba631c18f60E+0x158>
                	add	x3, x9, x11
                	sub	x4, x10, x11
-               	add	x1, x1, #1632
+               	add	x1, x1, #1416
                	mov	x0, x8
                	mov	x2, xzr
-               	bl	0x80b74 <_ZN4core3fmt9Formatter12pad_integral17h4be5fae25bf478d6E>
+               	bl	0x8082c <_ZN4core3fmt9Formatter12pad_integral17h4be5fae25bf478d6E>
                	ldr	x30, [sp, #48]
                	add	sp, sp, #64
                	ret
@@ -755,12 +545,12 @@ Disassembly of section .text:
 <_ZN4core9panicking9panic_fmt17h548b34a47a4ac578E>:
                	adrp	x8, 0x83000 <_ZN4core9panicking9panic_fmt17h548b34a47a4ac578E+0xc>
                	adrp	x9, 0x83000 <_ZN4core9panicking9panic_fmt17h548b34a47a4ac578E+0x10>
-               	add	x8, x8, #1632
-               	add	x9, x9, #1632
+               	add	x8, x8, #1416
+               	add	x9, x9, #1416
                	stp	x8, x9, [sp, #-32]!
                	stp	x0, x1, [sp, #16]
                	mov	x0, sp
-               	bl	0x80878 <rust_begin_unwind>
+               	bl	0x80530 <rust_begin_unwind>
                	brk	#0x1
 
 <_ZN4core3ptr102drop_in_place$LT$$RF$core..iter..adapters..copied..Copied$LT$core..slice..iter..Iter$LT$u8$GT$$GT$$GT$17h2926ff8863b04fafE>:
@@ -790,22 +580,22 @@ Disassembly of section .text:
                	mov	x21, x0
                	csel	w24, w10, w9, eq
                	add	x9, x11, x4
-               	tbnz	w8, #2, 0x80bd0 <_ZN4core3fmt9Formatter12pad_integral17h4be5fae25bf478d6E+0x5c>
+               	tbnz	w8, #2, 0x80888 <_ZN4core3fmt9Formatter12pad_integral17h4be5fae25bf478d6E+0x5c>
                	mov	x23, xzr
                	mov	x22, xzr
                	ldr	x10, [x21]
                	cmp	x10, #1
-               	b.eq	0x80c6c <_ZN4core3fmt9Formatter12pad_integral17h4be5fae25bf478d6E+0xf8>
-               	b	0x80ca0 <_ZN4core3fmt9Formatter12pad_integral17h4be5fae25bf478d6E+0x12c>
+               	b.eq	0x80924 <_ZN4core3fmt9Formatter12pad_integral17h4be5fae25bf478d6E+0xf8>
+               	b	0x80958 <_ZN4core3fmt9Formatter12pad_integral17h4be5fae25bf478d6E+0x12c>
                	mov	x22, x2
                	mov	x23, x1
                	mov	x11, x2
-               	cbz	x2, 0x80c5c <_ZN4core3fmt9Formatter12pad_integral17h4be5fae25bf478d6E+0xe8>
+               	cbz	x2, 0x80914 <_ZN4core3fmt9Formatter12pad_integral17h4be5fae25bf478d6E+0xe8>
                	cmp	x22, #1
-               	b.ne	0x80bf4 <_ZN4core3fmt9Formatter12pad_integral17h4be5fae25bf478d6E+0x80>
+               	b.ne	0x808ac <_ZN4core3fmt9Formatter12pad_integral17h4be5fae25bf478d6E+0x80>
                	mov	x11, xzr
                	mov	x10, x23
-               	b	0x80c40 <_ZN4core3fmt9Formatter12pad_integral17h4be5fae25bf478d6E+0xcc>
+               	b	0x808f8 <_ZN4core3fmt9Formatter12pad_integral17h4be5fae25bf478d6E+0xcc>
                	and	x10, x22, #0xfffffffffffffffe
                	mov	x11, xzr
                	mov	x12, xzr
@@ -820,10 +610,10 @@ Disassembly of section .text:
                	cmp	w16, #128
                	cinc	x12, x12, ne
                	subs	x14, x14, #2
-               	b.ne	0x80c08 <_ZN4core3fmt9Formatter12pad_integral17h4be5fae25bf478d6E+0x94>
+               	b.ne	0x808c0 <_ZN4core3fmt9Formatter12pad_integral17h4be5fae25bf478d6E+0x94>
                	cmp	x10, x22
                	add	x11, x12, x11
-               	b.eq	0x80c5c <_ZN4core3fmt9Formatter12pad_integral17h4be5fae25bf478d6E+0xe8>
+               	b.eq	0x80914 <_ZN4core3fmt9Formatter12pad_integral17h4be5fae25bf478d6E+0xe8>
                	add	x10, x23, x10
                	add	x12, x23, x22
                	ldrb	w13, [x10], #1
@@ -831,30 +621,30 @@ Disassembly of section .text:
                	cmp	w13, #128
                	cinc	x11, x11, ne
                	cmp	x12, x10
-               	b.ne	0x80c44 <_ZN4core3fmt9Formatter12pad_integral17h4be5fae25bf478d6E+0xd0>
+               	b.ne	0x808fc <_ZN4core3fmt9Formatter12pad_integral17h4be5fae25bf478d6E+0xd0>
                	add	x9, x11, x9
                	ldr	x10, [x21]
                	cmp	x10, #1
-               	b.ne	0x80ca0 <_ZN4core3fmt9Formatter12pad_integral17h4be5fae25bf478d6E+0x12c>
+               	b.ne	0x80958 <_ZN4core3fmt9Formatter12pad_integral17h4be5fae25bf478d6E+0x12c>
                	ldr	x10, [x21, #8]
                	subs	x28, x10, x9
-               	b.ls	0x80ca0 <_ZN4core3fmt9Formatter12pad_integral17h4be5fae25bf478d6E+0x12c>
-               	tbnz	w8, #3, 0x80d08 <_ZN4core3fmt9Formatter12pad_integral17h4be5fae25bf478d6E+0x194>
+               	b.ls	0x80958 <_ZN4core3fmt9Formatter12pad_integral17h4be5fae25bf478d6E+0x12c>
+               	tbnz	w8, #3, 0x809c0 <_ZN4core3fmt9Formatter12pad_integral17h4be5fae25bf478d6E+0x194>
                	ldrb	w8, [x21, #56]
                	cmp	w8, #3
                	csinc	w8, w8, wzr, ne
                	ands	w8, w8, #0x3
-               	b.eq	0x80d60 <_ZN4core3fmt9Formatter12pad_integral17h4be5fae25bf478d6E+0x1ec>
+               	b.eq	0x80a18 <_ZN4core3fmt9Formatter12pad_integral17h4be5fae25bf478d6E+0x1ec>
                	cmp	w8, #1
-               	b.ne	0x80d6c <_ZN4core3fmt9Formatter12pad_integral17h4be5fae25bf478d6E+0x1f8>
+               	b.ne	0x80a24 <_ZN4core3fmt9Formatter12pad_integral17h4be5fae25bf478d6E+0x1f8>
                	mov	x29, xzr
-               	b	0x80d78 <_ZN4core3fmt9Formatter12pad_integral17h4be5fae25bf478d6E+0x204>
+               	b	0x80a30 <_ZN4core3fmt9Formatter12pad_integral17h4be5fae25bf478d6E+0x204>
                	mov	x0, x21
                	mov	w1, w24
                	mov	x2, x23
                	mov	x3, x22
-               	bl	0x80e44 <_ZN4core3fmt9Formatter12pad_integral12write_prefix17h7ec449827422f958E>
-               	tbz	w0, #0, 0x80cdc <_ZN4core3fmt9Formatter12pad_integral17h4be5fae25bf478d6E+0x168>
+               	bl	0x80afc <_ZN4core3fmt9Formatter12pad_integral12write_prefix17h7ec449827422f958E>
+               	tbz	w0, #0, 0x80994 <_ZN4core3fmt9Formatter12pad_integral17h4be5fae25bf478d6E+0x168>
                	mov	w25, #1
                	mov	w0, w25
                	ldp	x20, x19, [sp, #80]
@@ -885,21 +675,21 @@ Disassembly of section .text:
                	mov	x3, x22
                	str	w8, [x21, #52]
                	strb	w25, [x21, #56]
-               	bl	0x80e44 <_ZN4core3fmt9Formatter12pad_integral12write_prefix17h7ec449827422f958E>
-               	tbnz	w0, #0, 0x80cbc <_ZN4core3fmt9Formatter12pad_integral17h4be5fae25bf478d6E+0x148>
+               	bl	0x80afc <_ZN4core3fmt9Formatter12pad_integral12write_prefix17h7ec449827422f958E>
+               	tbnz	w0, #0, 0x80974 <_ZN4core3fmt9Formatter12pad_integral17h4be5fae25bf478d6E+0x148>
                	ldp	x22, x23, [x21, #32]
                	add	x24, x28, #1
                	subs	x24, x24, #1
-               	b.eq	0x80e0c <_ZN4core3fmt9Formatter12pad_integral17h4be5fae25bf478d6E+0x298>
+               	b.eq	0x80ac4 <_ZN4core3fmt9Formatter12pad_integral17h4be5fae25bf478d6E+0x298>
                	ldr	x8, [x23, #32]
                	mov	w1, #48
                	mov	x0, x22
                	blr	x8
-               	tbz	w0, #0, 0x80d40 <_ZN4core3fmt9Formatter12pad_integral17h4be5fae25bf478d6E+0x1cc>
-               	b	0x80cb8 <_ZN4core3fmt9Formatter12pad_integral17h4be5fae25bf478d6E+0x144>
+               	tbz	w0, #0, 0x809f8 <_ZN4core3fmt9Formatter12pad_integral17h4be5fae25bf478d6E+0x1cc>
+               	b	0x80970 <_ZN4core3fmt9Formatter12pad_integral17h4be5fae25bf478d6E+0x144>
                	mov	x29, x28
                	mov	x28, xzr
-               	b	0x80d78 <_ZN4core3fmt9Formatter12pad_integral17h4be5fae25bf478d6E+0x204>
+               	b	0x80a30 <_ZN4core3fmt9Formatter12pad_integral17h4be5fae25bf478d6E+0x204>
                	add	x8, x28, #1
                	lsr	x28, x28, #1
                	lsr	x29, x8, #1
@@ -907,53 +697,53 @@ Disassembly of section .text:
                	ldr	w26, [x21, #52]
                	add	x28, x28, #1
                	subs	x28, x28, #1
-               	b.eq	0x80da4 <_ZN4core3fmt9Formatter12pad_integral17h4be5fae25bf478d6E+0x230>
+               	b.eq	0x80a5c <_ZN4core3fmt9Formatter12pad_integral17h4be5fae25bf478d6E+0x230>
                	ldr	x8, [x27, #32]
                	mov	x0, x25
                	mov	w1, w26
                	blr	x8
-               	tbz	w0, #0, 0x80d84 <_ZN4core3fmt9Formatter12pad_integral17h4be5fae25bf478d6E+0x210>
-               	b	0x80cb8 <_ZN4core3fmt9Formatter12pad_integral17h4be5fae25bf478d6E+0x144>
+               	tbz	w0, #0, 0x80a3c <_ZN4core3fmt9Formatter12pad_integral17h4be5fae25bf478d6E+0x210>
+               	b	0x80970 <_ZN4core3fmt9Formatter12pad_integral17h4be5fae25bf478d6E+0x144>
                	cmp	w26, #272, lsl #12
                	csel	x28, xzr, x29, eq
-               	b.eq	0x80cb8 <_ZN4core3fmt9Formatter12pad_integral17h4be5fae25bf478d6E+0x144>
+               	b.eq	0x80970 <_ZN4core3fmt9Formatter12pad_integral17h4be5fae25bf478d6E+0x144>
                	mov	x0, x21
                	mov	w1, w24
                	mov	x2, x23
                	mov	x3, x22
-               	bl	0x80e44 <_ZN4core3fmt9Formatter12pad_integral12write_prefix17h7ec449827422f958E>
-               	tbnz	w0, #0, 0x80cb8 <_ZN4core3fmt9Formatter12pad_integral17h4be5fae25bf478d6E+0x144>
+               	bl	0x80afc <_ZN4core3fmt9Formatter12pad_integral12write_prefix17h7ec449827422f958E>
+               	tbnz	w0, #0, 0x80970 <_ZN4core3fmt9Formatter12pad_integral17h4be5fae25bf478d6E+0x144>
                	ldr	x8, [x27, #24]
                	mov	x0, x25
                	mov	x1, x20
                	mov	x2, x19
                	blr	x8
-               	tbnz	w0, #0, 0x80cb8 <_ZN4core3fmt9Formatter12pad_integral17h4be5fae25bf478d6E+0x144>
+               	tbnz	w0, #0, 0x80970 <_ZN4core3fmt9Formatter12pad_integral17h4be5fae25bf478d6E+0x144>
                	mov	x19, xzr
                	cmp	x28, x19
-               	b.eq	0x80e34 <_ZN4core3fmt9Formatter12pad_integral17h4be5fae25bf478d6E+0x2c0>
+               	b.eq	0x80aec <_ZN4core3fmt9Formatter12pad_integral17h4be5fae25bf478d6E+0x2c0>
                	ldr	x8, [x27, #32]
                	mov	x0, x25
                	mov	w1, w26
                	add	x19, x19, #1
                	blr	x8
-               	cbz	w0, 0x80de4 <_ZN4core3fmt9Formatter12pad_integral17h4be5fae25bf478d6E+0x270>
+               	cbz	w0, 0x80a9c <_ZN4core3fmt9Formatter12pad_integral17h4be5fae25bf478d6E+0x270>
                	sub	x8, x19, #1
-               	b	0x80e38 <_ZN4core3fmt9Formatter12pad_integral17h4be5fae25bf478d6E+0x2c4>
+               	b	0x80af0 <_ZN4core3fmt9Formatter12pad_integral17h4be5fae25bf478d6E+0x2c4>
                	ldr	x8, [x23, #24]
                	mov	x0, x22
                	mov	x1, x20
                	mov	x2, x19
                	blr	x8
-               	tbnz	w0, #0, 0x80cb8 <_ZN4core3fmt9Formatter12pad_integral17h4be5fae25bf478d6E+0x144>
+               	tbnz	w0, #0, 0x80970 <_ZN4core3fmt9Formatter12pad_integral17h4be5fae25bf478d6E+0x144>
                	mov	w25, wzr
                	str	w26, [x21, #52]
                	strb	w27, [x21, #56]
-               	b	0x80cbc <_ZN4core3fmt9Formatter12pad_integral17h4be5fae25bf478d6E+0x148>
+               	b	0x80974 <_ZN4core3fmt9Formatter12pad_integral17h4be5fae25bf478d6E+0x148>
                	mov	x8, x28
                	cmp	x8, x28
                	cset	w25, lo
-               	b	0x80cbc <_ZN4core3fmt9Formatter12pad_integral17h4be5fae25bf478d6E+0x148>
+               	b	0x80974 <_ZN4core3fmt9Formatter12pad_integral17h4be5fae25bf478d6E+0x148>
 
 <_ZN4core3fmt9Formatter12pad_integral12write_prefix17h7ec449827422f958E>:
                	stp	x30, x21, [sp, #-32]!
@@ -962,16 +752,16 @@ Disassembly of section .text:
                	mov	x20, x2
                	cmp	w1, #272, lsl #12
                	mov	x21, x0
-               	b.eq	0x80e80 <_ZN4core3fmt9Formatter12pad_integral12write_prefix17h7ec449827422f958E+0x3c>
+               	b.eq	0x80b38 <_ZN4core3fmt9Formatter12pad_integral12write_prefix17h7ec449827422f958E+0x3c>
                	ldp	x0, x8, [x21, #32]
                	ldr	x8, [x8, #32]
                	blr	x8
-               	tbz	w0, #0, 0x80e80 <_ZN4core3fmt9Formatter12pad_integral12write_prefix17h7ec449827422f958E+0x3c>
+               	tbz	w0, #0, 0x80b38 <_ZN4core3fmt9Formatter12pad_integral12write_prefix17h7ec449827422f958E+0x3c>
                	mov	w0, #1
                	ldp	x20, x19, [sp, #16]
                	ldp	x30, x21, [sp], #32
                	ret
-               	cbz	x20, 0x80ea0 <_ZN4core3fmt9Formatter12pad_integral12write_prefix17h7ec449827422f958E+0x5c>
+               	cbz	x20, 0x80b58 <_ZN4core3fmt9Formatter12pad_integral12write_prefix17h7ec449827422f958E+0x5c>
                	ldp	x0, x8, [x21, #32]
                	mov	x1, x20
                	mov	x2, x19
@@ -988,10 +778,10 @@ Disassembly of section .text:
                	stp	x0, x1, [sp, #-96]!
                	adrp	x9, 0x80000 <_ZN4core5slice5index26slice_start_index_len_fail17ha5c8a54d8fb05d93E+0x4>
                	mov	x8, sp
-               	add	x9, x9, #2500
+               	add	x9, x9, #1660
                	adrp	x11, 0x83000 <_ZN4core5slice5index26slice_start_index_len_fail17ha5c8a54d8fb05d93E+0x1c>
                	add	x10, sp, #8
-               	add	x11, x11, #1984
+               	add	x11, x11, #1768
                	mov	w12, #2
                	stp	x8, x9, [sp, #64]
                	add	x8, sp, #64
@@ -1001,17 +791,17 @@ Disassembly of section .text:
                	stp	x10, x9, [sp, #80]
                	stp	x11, x12, [sp, #16]
                	stp	x8, x12, [sp, #48]
-               	bl	0x80b38 <_ZN4core9panicking9panic_fmt17h548b34a47a4ac578E>
+               	bl	0x807f0 <_ZN4core9panicking9panic_fmt17h548b34a47a4ac578E>
                	brk	#0x1
 
 <_ZN4core5slice5index24slice_end_index_len_fail17h827cf37c6cc32b14E>:
                	stp	x0, x1, [sp, #-96]!
                	adrp	x9, 0x80000 <_ZN4core5slice5index24slice_end_index_len_fail17h827cf37c6cc32b14E+0x4>
                	mov	x8, sp
-               	add	x9, x9, #2500
+               	add	x9, x9, #1660
                	adrp	x11, 0x83000 <_ZN4core5slice5index24slice_end_index_len_fail17h827cf37c6cc32b14E+0x1c>
                	add	x10, sp, #8
-               	add	x11, x11, #2072
+               	add	x11, x11, #1856
                	mov	w12, #2
                	stp	x8, x9, [sp, #64]
                	add	x8, sp, #64
@@ -1021,7 +811,7 @@ Disassembly of section .text:
                	stp	x10, x9, [sp, #80]
                	stp	x11, x12, [sp, #16]
                	stp	x8, x12, [sp, #48]
-               	bl	0x80b38 <_ZN4core9panicking9panic_fmt17h548b34a47a4ac578E>
+               	bl	0x807f0 <_ZN4core9panicking9panic_fmt17h548b34a47a4ac578E>
                	brk	#0x1
 
 <_ZN4core9panicking5panic17ha7217054e020f4cfE>:
@@ -1030,13 +820,13 @@ Disassembly of section .text:
                	stp	x0, x1, [sp, #48]
                	add	x8, sp, #48
                	mov	w9, #1
-               	add	x10, x10, #1632
+               	add	x10, x10, #1416
                	mov	x0, sp
                	mov	x1, x2
                	stp	xzr, xzr, [sp, #16]
                	stp	x8, x9, [sp]
                	stp	x10, xzr, [sp, #32]
-               	bl	0x80b38 <_ZN4core9panicking9panic_fmt17h548b34a47a4ac578E>
+               	bl	0x807f0 <_ZN4core9panicking9panic_fmt17h548b34a47a4ac578E>
                	brk	#0x1
 
 <_ZN44_$LT$$RF$T$u20$as$u20$core..fmt..Display$GT$3fmt17h3f94e73c8b157ba1E>:
@@ -1048,18 +838,18 @@ Disassembly of section .text:
                	ldp	x20, x19, [x0]
                	ldr	x9, [x1, #16]
                	cmp	x8, #1
-               	b.ne	0x80fa4 <_ZN44_$LT$$RF$T$u20$as$u20$core..fmt..Display$GT$3fmt17h3f94e73c8b157ba1E+0x30>
+               	b.ne	0x80c5c <_ZN44_$LT$$RF$T$u20$as$u20$core..fmt..Display$GT$3fmt17h3f94e73c8b157ba1E+0x30>
                	cmp	x9, #1
-               	b.eq	0x80fac <_ZN44_$LT$$RF$T$u20$as$u20$core..fmt..Display$GT$3fmt17h3f94e73c8b157ba1E+0x38>
-               	b	0x81108 <_ZN44_$LT$$RF$T$u20$as$u20$core..fmt..Display$GT$3fmt17h3f94e73c8b157ba1E+0x194>
+               	b.eq	0x80c64 <_ZN44_$LT$$RF$T$u20$as$u20$core..fmt..Display$GT$3fmt17h3f94e73c8b157ba1E+0x38>
+               	b	0x80dc0 <_ZN44_$LT$$RF$T$u20$as$u20$core..fmt..Display$GT$3fmt17h3f94e73c8b157ba1E+0x194>
                	cmp	x9, #1
-               	b.ne	0x811b8 <_ZN44_$LT$$RF$T$u20$as$u20$core..fmt..Display$GT$3fmt17h3f94e73c8b157ba1E+0x244>
+               	b.ne	0x80e70 <_ZN44_$LT$$RF$T$u20$as$u20$core..fmt..Display$GT$3fmt17h3f94e73c8b157ba1E+0x244>
                	ldr	x11, [x1, #24]
                	add	x10, x20, x19
                	mov	x9, xzr
-               	cbz	x11, 0x81084 <_ZN44_$LT$$RF$T$u20$as$u20$core..fmt..Display$GT$3fmt17h3f94e73c8b157ba1E+0x110>
+               	cbz	x11, 0x80d3c <_ZN44_$LT$$RF$T$u20$as$u20$core..fmt..Display$GT$3fmt17h3f94e73c8b157ba1E+0x110>
                	mov	x13, x20
-               	b	0x80ff8 <_ZN44_$LT$$RF$T$u20$as$u20$core..fmt..Display$GT$3fmt17h3f94e73c8b157ba1E+0x84>
+               	b	0x80cb0 <_ZN44_$LT$$RF$T$u20$as$u20$core..fmt..Display$GT$3fmt17h3f94e73c8b157ba1E+0x84>
                	ldrb	w17, [x12], #1
                	and	w17, w17, #0x3f
                	ubfiz	w15, w15, #18, #3
@@ -1067,90 +857,90 @@ Disassembly of section .text:
                	bfi	w15, w16, #6, #6
                	orr	w14, w15, w17
                	cmp	w14, #272, lsl #12
-               	b.eq	0x81100 <_ZN44_$LT$$RF$T$u20$as$u20$core..fmt..Display$GT$3fmt17h3f94e73c8b157ba1E+0x18c>
+               	b.eq	0x80db8 <_ZN44_$LT$$RF$T$u20$as$u20$core..fmt..Display$GT$3fmt17h3f94e73c8b157ba1E+0x18c>
                	sub	x9, x9, x13
                	subs	x11, x11, #1
                	add	x9, x9, x12
                	mov	x13, x12
-               	b.eq	0x81088 <_ZN44_$LT$$RF$T$u20$as$u20$core..fmt..Display$GT$3fmt17h3f94e73c8b157ba1E+0x114>
+               	b.eq	0x80d40 <_ZN44_$LT$$RF$T$u20$as$u20$core..fmt..Display$GT$3fmt17h3f94e73c8b157ba1E+0x114>
                	cmp	x13, x10
-               	b.eq	0x81100 <_ZN44_$LT$$RF$T$u20$as$u20$core..fmt..Display$GT$3fmt17h3f94e73c8b157ba1E+0x18c>
+               	b.eq	0x80db8 <_ZN44_$LT$$RF$T$u20$as$u20$core..fmt..Display$GT$3fmt17h3f94e73c8b157ba1E+0x18c>
                	mov	x12, x13
                	ldrsb	w15, [x12], #1
-               	tbz	w15, #31, 0x80fe4 <_ZN44_$LT$$RF$T$u20$as$u20$core..fmt..Display$GT$3fmt17h3f94e73c8b157ba1E+0x70>
+               	tbz	w15, #31, 0x80c9c <_ZN44_$LT$$RF$T$u20$as$u20$core..fmt..Display$GT$3fmt17h3f94e73c8b157ba1E+0x70>
                	cmp	x12, x10
-               	b.eq	0x81030 <_ZN44_$LT$$RF$T$u20$as$u20$core..fmt..Display$GT$3fmt17h3f94e73c8b157ba1E+0xbc>
+               	b.eq	0x80ce8 <_ZN44_$LT$$RF$T$u20$as$u20$core..fmt..Display$GT$3fmt17h3f94e73c8b157ba1E+0xbc>
                	ldrb	w14, [x13, #1]
                	add	x12, x13, #2
                	and	w14, w14, #0x3f
                	and	w15, w15, #0xff
                	cmp	w15, #224
-               	b.lo	0x80fe4 <_ZN44_$LT$$RF$T$u20$as$u20$core..fmt..Display$GT$3fmt17h3f94e73c8b157ba1E+0x70>
-               	b	0x81044 <_ZN44_$LT$$RF$T$u20$as$u20$core..fmt..Display$GT$3fmt17h3f94e73c8b157ba1E+0xd0>
+               	b.lo	0x80c9c <_ZN44_$LT$$RF$T$u20$as$u20$core..fmt..Display$GT$3fmt17h3f94e73c8b157ba1E+0x70>
+               	b	0x80cfc <_ZN44_$LT$$RF$T$u20$as$u20$core..fmt..Display$GT$3fmt17h3f94e73c8b157ba1E+0xd0>
                	mov	w14, wzr
                	mov	x12, x10
                	and	w15, w15, #0xff
                	cmp	w15, #224
-               	b.lo	0x80fe4 <_ZN44_$LT$$RF$T$u20$as$u20$core..fmt..Display$GT$3fmt17h3f94e73c8b157ba1E+0x70>
+               	b.lo	0x80c9c <_ZN44_$LT$$RF$T$u20$as$u20$core..fmt..Display$GT$3fmt17h3f94e73c8b157ba1E+0x70>
                	cmp	x12, x10
-               	b.eq	0x81060 <_ZN44_$LT$$RF$T$u20$as$u20$core..fmt..Display$GT$3fmt17h3f94e73c8b157ba1E+0xec>
+               	b.eq	0x80d18 <_ZN44_$LT$$RF$T$u20$as$u20$core..fmt..Display$GT$3fmt17h3f94e73c8b157ba1E+0xec>
                	ldrb	w16, [x12], #1
                	and	w16, w16, #0x3f
                	cmp	w15, #240
-               	b.lo	0x80fe4 <_ZN44_$LT$$RF$T$u20$as$u20$core..fmt..Display$GT$3fmt17h3f94e73c8b157ba1E+0x70>
-               	b	0x81070 <_ZN44_$LT$$RF$T$u20$as$u20$core..fmt..Display$GT$3fmt17h3f94e73c8b157ba1E+0xfc>
+               	b.lo	0x80c9c <_ZN44_$LT$$RF$T$u20$as$u20$core..fmt..Display$GT$3fmt17h3f94e73c8b157ba1E+0x70>
+               	b	0x80d28 <_ZN44_$LT$$RF$T$u20$as$u20$core..fmt..Display$GT$3fmt17h3f94e73c8b157ba1E+0xfc>
                	mov	w16, wzr
                	mov	x12, x10
                	cmp	w15, #240
-               	b.lo	0x80fe4 <_ZN44_$LT$$RF$T$u20$as$u20$core..fmt..Display$GT$3fmt17h3f94e73c8b157ba1E+0x70>
+               	b.lo	0x80c9c <_ZN44_$LT$$RF$T$u20$as$u20$core..fmt..Display$GT$3fmt17h3f94e73c8b157ba1E+0x70>
                	cmp	x12, x10
-               	b.ne	0x80fc4 <_ZN44_$LT$$RF$T$u20$as$u20$core..fmt..Display$GT$3fmt17h3f94e73c8b157ba1E+0x50>
+               	b.ne	0x80c7c <_ZN44_$LT$$RF$T$u20$as$u20$core..fmt..Display$GT$3fmt17h3f94e73c8b157ba1E+0x50>
                	mov	w17, wzr
                	mov	x12, x10
-               	b	0x80fcc <_ZN44_$LT$$RF$T$u20$as$u20$core..fmt..Display$GT$3fmt17h3f94e73c8b157ba1E+0x58>
+               	b	0x80c84 <_ZN44_$LT$$RF$T$u20$as$u20$core..fmt..Display$GT$3fmt17h3f94e73c8b157ba1E+0x58>
                	mov	x12, x20
                	cmp	x12, x10
-               	b.eq	0x81100 <_ZN44_$LT$$RF$T$u20$as$u20$core..fmt..Display$GT$3fmt17h3f94e73c8b157ba1E+0x18c>
+               	b.eq	0x80db8 <_ZN44_$LT$$RF$T$u20$as$u20$core..fmt..Display$GT$3fmt17h3f94e73c8b157ba1E+0x18c>
                	mov	x11, x12
                	ldrsb	w13, [x11], #1
-               	tbnz	w13, #31, 0x810c0 <_ZN44_$LT$$RF$T$u20$as$u20$core..fmt..Display$GT$3fmt17h3f94e73c8b157ba1E+0x14c>
-               	cbz	x9, 0x810f0 <_ZN44_$LT$$RF$T$u20$as$u20$core..fmt..Display$GT$3fmt17h3f94e73c8b157ba1E+0x17c>
+               	tbnz	w13, #31, 0x80d78 <_ZN44_$LT$$RF$T$u20$as$u20$core..fmt..Display$GT$3fmt17h3f94e73c8b157ba1E+0x14c>
+               	cbz	x9, 0x80da8 <_ZN44_$LT$$RF$T$u20$as$u20$core..fmt..Display$GT$3fmt17h3f94e73c8b157ba1E+0x17c>
                	cmp	x9, x19
-               	b.hs	0x810e8 <_ZN44_$LT$$RF$T$u20$as$u20$core..fmt..Display$GT$3fmt17h3f94e73c8b157ba1E+0x174>
+               	b.hs	0x80da0 <_ZN44_$LT$$RF$T$u20$as$u20$core..fmt..Display$GT$3fmt17h3f94e73c8b157ba1E+0x174>
                	ldrsb	w10, [x20, x9]
                	cmn	w10, #64
-               	b.ge	0x810f0 <_ZN44_$LT$$RF$T$u20$as$u20$core..fmt..Display$GT$3fmt17h3f94e73c8b157ba1E+0x17c>
+               	b.ge	0x80da8 <_ZN44_$LT$$RF$T$u20$as$u20$core..fmt..Display$GT$3fmt17h3f94e73c8b157ba1E+0x17c>
                	mov	x10, xzr
                	mov	x9, xzr
-               	b	0x810f4 <_ZN44_$LT$$RF$T$u20$as$u20$core..fmt..Display$GT$3fmt17h3f94e73c8b157ba1E+0x180>
+               	b	0x80dac <_ZN44_$LT$$RF$T$u20$as$u20$core..fmt..Display$GT$3fmt17h3f94e73c8b157ba1E+0x180>
                	cmp	x11, x10
                	and	w11, w13, #0xff
-               	b.eq	0x81318 <_ZN44_$LT$$RF$T$u20$as$u20$core..fmt..Display$GT$3fmt17h3f94e73c8b157ba1E+0x3a4>
+               	b.eq	0x80fd0 <_ZN44_$LT$$RF$T$u20$as$u20$core..fmt..Display$GT$3fmt17h3f94e73c8b157ba1E+0x3a4>
                	ldrb	w14, [x12, #1]
                	add	x13, x12, #2
                	and	w12, w14, #0x3f
                	lsl	w12, w12, #12
                	cmp	w11, #224
-               	b.hs	0x81328 <_ZN44_$LT$$RF$T$u20$as$u20$core..fmt..Display$GT$3fmt17h3f94e73c8b157ba1E+0x3b4>
-               	b	0x8109c <_ZN44_$LT$$RF$T$u20$as$u20$core..fmt..Display$GT$3fmt17h3f94e73c8b157ba1E+0x128>
+               	b.hs	0x80fe0 <_ZN44_$LT$$RF$T$u20$as$u20$core..fmt..Display$GT$3fmt17h3f94e73c8b157ba1E+0x3b4>
+               	b	0x80d54 <_ZN44_$LT$$RF$T$u20$as$u20$core..fmt..Display$GT$3fmt17h3f94e73c8b157ba1E+0x128>
                	cmp	x9, x19
-               	b.ne	0x810b4 <_ZN44_$LT$$RF$T$u20$as$u20$core..fmt..Display$GT$3fmt17h3f94e73c8b157ba1E+0x140>
+               	b.ne	0x80d6c <_ZN44_$LT$$RF$T$u20$as$u20$core..fmt..Display$GT$3fmt17h3f94e73c8b157ba1E+0x140>
                	mov	x10, x20
                	cmp	x10, #0
                	csel	x20, x20, x10, eq
                	csel	x19, x19, x9, eq
                	cmp	x8, #1
-               	b.ne	0x811b8 <_ZN44_$LT$$RF$T$u20$as$u20$core..fmt..Display$GT$3fmt17h3f94e73c8b157ba1E+0x244>
-               	cbz	x19, 0x81120 <_ZN44_$LT$$RF$T$u20$as$u20$core..fmt..Display$GT$3fmt17h3f94e73c8b157ba1E+0x1ac>
+               	b.ne	0x80e70 <_ZN44_$LT$$RF$T$u20$as$u20$core..fmt..Display$GT$3fmt17h3f94e73c8b157ba1E+0x244>
+               	cbz	x19, 0x80dd8 <_ZN44_$LT$$RF$T$u20$as$u20$core..fmt..Display$GT$3fmt17h3f94e73c8b157ba1E+0x1ac>
                	cmp	x19, #1
-               	b.ne	0x81130 <_ZN44_$LT$$RF$T$u20$as$u20$core..fmt..Display$GT$3fmt17h3f94e73c8b157ba1E+0x1bc>
+               	b.ne	0x80de8 <_ZN44_$LT$$RF$T$u20$as$u20$core..fmt..Display$GT$3fmt17h3f94e73c8b157ba1E+0x1bc>
                	mov	x9, xzr
                	mov	x8, x20
-               	b	0x8117c <_ZN44_$LT$$RF$T$u20$as$u20$core..fmt..Display$GT$3fmt17h3f94e73c8b157ba1E+0x208>
+               	b	0x80e34 <_ZN44_$LT$$RF$T$u20$as$u20$core..fmt..Display$GT$3fmt17h3f94e73c8b157ba1E+0x208>
                	ldr	x8, [x1, #8]
-               	cbz	x8, 0x811b8 <_ZN44_$LT$$RF$T$u20$as$u20$core..fmt..Display$GT$3fmt17h3f94e73c8b157ba1E+0x244>
+               	cbz	x8, 0x80e70 <_ZN44_$LT$$RF$T$u20$as$u20$core..fmt..Display$GT$3fmt17h3f94e73c8b157ba1E+0x244>
                	mov	x9, xzr
-               	b	0x81244 <_ZN44_$LT$$RF$T$u20$as$u20$core..fmt..Display$GT$3fmt17h3f94e73c8b157ba1E+0x2d0>
+               	b	0x80efc <_ZN44_$LT$$RF$T$u20$as$u20$core..fmt..Display$GT$3fmt17h3f94e73c8b157ba1E+0x2d0>
                	and	x8, x19, #0xfffffffffffffffe
                	mov	x9, xzr
                	mov	x10, xzr
@@ -1165,10 +955,10 @@ Disassembly of section .text:
                	cmp	w14, #128
                	cinc	x10, x10, ne
                	subs	x12, x12, #2
-               	b.ne	0x81144 <_ZN44_$LT$$RF$T$u20$as$u20$core..fmt..Display$GT$3fmt17h3f94e73c8b157ba1E+0x1d0>
+               	b.ne	0x80dfc <_ZN44_$LT$$RF$T$u20$as$u20$core..fmt..Display$GT$3fmt17h3f94e73c8b157ba1E+0x1d0>
                	cmp	x19, x8
                	add	x9, x10, x9
-               	b.eq	0x81198 <_ZN44_$LT$$RF$T$u20$as$u20$core..fmt..Display$GT$3fmt17h3f94e73c8b157ba1E+0x224>
+               	b.eq	0x80e50 <_ZN44_$LT$$RF$T$u20$as$u20$core..fmt..Display$GT$3fmt17h3f94e73c8b157ba1E+0x224>
                	add	x8, x20, x8
                	add	x10, x20, x19
                	ldrb	w11, [x8], #1
@@ -1176,15 +966,15 @@ Disassembly of section .text:
                	cmp	w11, #128
                	cinc	x9, x9, ne
                	cmp	x10, x8
-               	b.ne	0x81180 <_ZN44_$LT$$RF$T$u20$as$u20$core..fmt..Display$GT$3fmt17h3f94e73c8b157ba1E+0x20c>
+               	b.ne	0x80e38 <_ZN44_$LT$$RF$T$u20$as$u20$core..fmt..Display$GT$3fmt17h3f94e73c8b157ba1E+0x20c>
                	ldr	x8, [x1, #8]
                	cmp	x9, x8
-               	b.hs	0x811b8 <_ZN44_$LT$$RF$T$u20$as$u20$core..fmt..Display$GT$3fmt17h3f94e73c8b157ba1E+0x244>
+               	b.hs	0x80e70 <_ZN44_$LT$$RF$T$u20$as$u20$core..fmt..Display$GT$3fmt17h3f94e73c8b157ba1E+0x244>
                	cmp	x19, #1
-               	b.hi	0x811dc <_ZN44_$LT$$RF$T$u20$as$u20$core..fmt..Display$GT$3fmt17h3f94e73c8b157ba1E+0x268>
+               	b.hi	0x80e94 <_ZN44_$LT$$RF$T$u20$as$u20$core..fmt..Display$GT$3fmt17h3f94e73c8b157ba1E+0x268>
                	mov	x9, xzr
                	mov	x10, x20
-               	b	0x81228 <_ZN44_$LT$$RF$T$u20$as$u20$core..fmt..Display$GT$3fmt17h3f94e73c8b157ba1E+0x2b4>
+               	b	0x80ee0 <_ZN44_$LT$$RF$T$u20$as$u20$core..fmt..Display$GT$3fmt17h3f94e73c8b157ba1E+0x2b4>
                	ldp	x0, x8, [x1, #32]
                	mov	x1, x20
                	mov	x2, x19
@@ -1208,10 +998,10 @@ Disassembly of section .text:
                	cmp	w15, #128
                	cinc	x11, x11, ne
                	subs	x13, x13, #2
-               	b.ne	0x811f0 <_ZN44_$LT$$RF$T$u20$as$u20$core..fmt..Display$GT$3fmt17h3f94e73c8b157ba1E+0x27c>
+               	b.ne	0x80ea8 <_ZN44_$LT$$RF$T$u20$as$u20$core..fmt..Display$GT$3fmt17h3f94e73c8b157ba1E+0x27c>
                	cmp	x19, x10
                	add	x9, x11, x9
-               	b.eq	0x81244 <_ZN44_$LT$$RF$T$u20$as$u20$core..fmt..Display$GT$3fmt17h3f94e73c8b157ba1E+0x2d0>
+               	b.eq	0x80efc <_ZN44_$LT$$RF$T$u20$as$u20$core..fmt..Display$GT$3fmt17h3f94e73c8b157ba1E+0x2d0>
                	add	x10, x20, x10
                	add	x11, x20, x19
                	ldrb	w12, [x10], #1
@@ -1219,20 +1009,20 @@ Disassembly of section .text:
                	cmp	w12, #128
                	cinc	x9, x9, ne
                	cmp	x11, x10
-               	b.ne	0x8122c <_ZN44_$LT$$RF$T$u20$as$u20$core..fmt..Display$GT$3fmt17h3f94e73c8b157ba1E+0x2b8>
+               	b.ne	0x80ee4 <_ZN44_$LT$$RF$T$u20$as$u20$core..fmt..Display$GT$3fmt17h3f94e73c8b157ba1E+0x2b8>
                	ldrb	w10, [x1, #56]
                	sub	x8, x8, x9
                	cmp	w10, #3
                	csel	w10, wzr, w10, eq
                	ands	w10, w10, #0x3
-               	b.eq	0x8126c <_ZN44_$LT$$RF$T$u20$as$u20$core..fmt..Display$GT$3fmt17h3f94e73c8b157ba1E+0x2f8>
+               	b.eq	0x80f24 <_ZN44_$LT$$RF$T$u20$as$u20$core..fmt..Display$GT$3fmt17h3f94e73c8b157ba1E+0x2f8>
                	cmp	w10, #1
-               	b.ne	0x81278 <_ZN44_$LT$$RF$T$u20$as$u20$core..fmt..Display$GT$3fmt17h3f94e73c8b157ba1E+0x304>
+               	b.ne	0x80f30 <_ZN44_$LT$$RF$T$u20$as$u20$core..fmt..Display$GT$3fmt17h3f94e73c8b157ba1E+0x304>
                	mov	x24, xzr
-               	b	0x81284 <_ZN44_$LT$$RF$T$u20$as$u20$core..fmt..Display$GT$3fmt17h3f94e73c8b157ba1E+0x310>
+               	b	0x80f3c <_ZN44_$LT$$RF$T$u20$as$u20$core..fmt..Display$GT$3fmt17h3f94e73c8b157ba1E+0x310>
                	mov	x24, x8
                	mov	x8, xzr
-               	b	0x81284 <_ZN44_$LT$$RF$T$u20$as$u20$core..fmt..Display$GT$3fmt17h3f94e73c8b157ba1E+0x310>
+               	b	0x80f3c <_ZN44_$LT$$RF$T$u20$as$u20$core..fmt..Display$GT$3fmt17h3f94e73c8b157ba1E+0x310>
                	add	x9, x8, #1
                	lsr	x8, x8, #1
                	lsr	x24, x9, #1
@@ -1240,22 +1030,22 @@ Disassembly of section .text:
                	ldr	w22, [x1, #52]
                	add	x25, x8, #1
                	subs	x25, x25, #1
-               	b.eq	0x812b0 <_ZN44_$LT$$RF$T$u20$as$u20$core..fmt..Display$GT$3fmt17h3f94e73c8b157ba1E+0x33c>
+               	b.eq	0x80f68 <_ZN44_$LT$$RF$T$u20$as$u20$core..fmt..Display$GT$3fmt17h3f94e73c8b157ba1E+0x33c>
                	ldr	x8, [x23, #32]
                	mov	x0, x21
                	mov	w1, w22
                	blr	x8
-               	tbz	w0, #0, 0x81290 <_ZN44_$LT$$RF$T$u20$as$u20$core..fmt..Display$GT$3fmt17h3f94e73c8b157ba1E+0x31c>
-               	b	0x812d4 <_ZN44_$LT$$RF$T$u20$as$u20$core..fmt..Display$GT$3fmt17h3f94e73c8b157ba1E+0x360>
+               	tbz	w0, #0, 0x80f48 <_ZN44_$LT$$RF$T$u20$as$u20$core..fmt..Display$GT$3fmt17h3f94e73c8b157ba1E+0x31c>
+               	b	0x80f8c <_ZN44_$LT$$RF$T$u20$as$u20$core..fmt..Display$GT$3fmt17h3f94e73c8b157ba1E+0x360>
                	cmp	w22, #272, lsl #12
                	csel	x24, xzr, x24, eq
-               	b.eq	0x812d4 <_ZN44_$LT$$RF$T$u20$as$u20$core..fmt..Display$GT$3fmt17h3f94e73c8b157ba1E+0x360>
+               	b.eq	0x80f8c <_ZN44_$LT$$RF$T$u20$as$u20$core..fmt..Display$GT$3fmt17h3f94e73c8b157ba1E+0x360>
                	ldr	x8, [x23, #24]
                	mov	x0, x21
                	mov	x1, x20
                	mov	x2, x19
                	blr	x8
-               	tbz	w0, #0, 0x812ec <_ZN44_$LT$$RF$T$u20$as$u20$core..fmt..Display$GT$3fmt17h3f94e73c8b157ba1E+0x378>
+               	tbz	w0, #0, 0x80fa4 <_ZN44_$LT$$RF$T$u20$as$u20$core..fmt..Display$GT$3fmt17h3f94e73c8b157ba1E+0x378>
                	mov	w0, #1
                	ldp	x20, x19, [sp, #48]
                	ldp	x22, x21, [sp, #32]
@@ -1264,47 +1054,47 @@ Disassembly of section .text:
                	ret
                	mov	x19, xzr
                	cmp	x24, x19
-               	b.eq	0x81348 <_ZN44_$LT$$RF$T$u20$as$u20$core..fmt..Display$GT$3fmt17h3f94e73c8b157ba1E+0x3d4>
+               	b.eq	0x81000 <_ZN44_$LT$$RF$T$u20$as$u20$core..fmt..Display$GT$3fmt17h3f94e73c8b157ba1E+0x3d4>
                	ldr	x8, [x23, #32]
                	mov	x0, x21
                	mov	w1, w22
                	add	x19, x19, #1
                	blr	x8
-               	cbz	w0, 0x812f0 <_ZN44_$LT$$RF$T$u20$as$u20$core..fmt..Display$GT$3fmt17h3f94e73c8b157ba1E+0x37c>
+               	cbz	w0, 0x80fa8 <_ZN44_$LT$$RF$T$u20$as$u20$core..fmt..Display$GT$3fmt17h3f94e73c8b157ba1E+0x37c>
                	sub	x8, x19, #1
-               	b	0x8134c <_ZN44_$LT$$RF$T$u20$as$u20$core..fmt..Display$GT$3fmt17h3f94e73c8b157ba1E+0x3d8>
+               	b	0x81004 <_ZN44_$LT$$RF$T$u20$as$u20$core..fmt..Display$GT$3fmt17h3f94e73c8b157ba1E+0x3d8>
                	mov	w12, wzr
                	mov	x13, x10
                	cmp	w11, #224
-               	b.lo	0x8109c <_ZN44_$LT$$RF$T$u20$as$u20$core..fmt..Display$GT$3fmt17h3f94e73c8b157ba1E+0x128>
+               	b.lo	0x80d54 <_ZN44_$LT$$RF$T$u20$as$u20$core..fmt..Display$GT$3fmt17h3f94e73c8b157ba1E+0x128>
                	cmp	x13, x10
-               	b.eq	0x81358 <_ZN44_$LT$$RF$T$u20$as$u20$core..fmt..Display$GT$3fmt17h3f94e73c8b157ba1E+0x3e4>
+               	b.eq	0x81010 <_ZN44_$LT$$RF$T$u20$as$u20$core..fmt..Display$GT$3fmt17h3f94e73c8b157ba1E+0x3e4>
                	ldrb	w14, [x13], #1
                	and	w14, w14, #0x3f
                	lsl	w14, w14, #6
                	cmp	w11, #240
-               	b.hs	0x81368 <_ZN44_$LT$$RF$T$u20$as$u20$core..fmt..Display$GT$3fmt17h3f94e73c8b157ba1E+0x3f4>
-               	b	0x8109c <_ZN44_$LT$$RF$T$u20$as$u20$core..fmt..Display$GT$3fmt17h3f94e73c8b157ba1E+0x128>
+               	b.hs	0x81020 <_ZN44_$LT$$RF$T$u20$as$u20$core..fmt..Display$GT$3fmt17h3f94e73c8b157ba1E+0x3f4>
+               	b	0x80d54 <_ZN44_$LT$$RF$T$u20$as$u20$core..fmt..Display$GT$3fmt17h3f94e73c8b157ba1E+0x128>
                	mov	x8, x24
                	cmp	x8, x24
                	cset	w0, lo
-               	b	0x812d8 <_ZN44_$LT$$RF$T$u20$as$u20$core..fmt..Display$GT$3fmt17h3f94e73c8b157ba1E+0x364>
+               	b	0x80f90 <_ZN44_$LT$$RF$T$u20$as$u20$core..fmt..Display$GT$3fmt17h3f94e73c8b157ba1E+0x364>
                	mov	w14, wzr
                	mov	x13, x10
                	cmp	w11, #240
-               	b.lo	0x8109c <_ZN44_$LT$$RF$T$u20$as$u20$core..fmt..Display$GT$3fmt17h3f94e73c8b157ba1E+0x128>
+               	b.lo	0x80d54 <_ZN44_$LT$$RF$T$u20$as$u20$core..fmt..Display$GT$3fmt17h3f94e73c8b157ba1E+0x128>
                	cmp	x13, x10
-               	b.eq	0x8137c <_ZN44_$LT$$RF$T$u20$as$u20$core..fmt..Display$GT$3fmt17h3f94e73c8b157ba1E+0x408>
+               	b.eq	0x81034 <_ZN44_$LT$$RF$T$u20$as$u20$core..fmt..Display$GT$3fmt17h3f94e73c8b157ba1E+0x408>
                	ldrb	w10, [x13]
                	and	w10, w10, #0x3f
-               	b	0x81380 <_ZN44_$LT$$RF$T$u20$as$u20$core..fmt..Display$GT$3fmt17h3f94e73c8b157ba1E+0x40c>
+               	b	0x81038 <_ZN44_$LT$$RF$T$u20$as$u20$core..fmt..Display$GT$3fmt17h3f94e73c8b157ba1E+0x40c>
                	mov	w10, wzr
                	bfi	w12, w11, #18, #3
                	orr	w11, w12, w14
                	orr	w10, w11, w10
                	cmp	w10, #272, lsl #12
-               	b.eq	0x81100 <_ZN44_$LT$$RF$T$u20$as$u20$core..fmt..Display$GT$3fmt17h3f94e73c8b157ba1E+0x18c>
-               	b	0x8109c <_ZN44_$LT$$RF$T$u20$as$u20$core..fmt..Display$GT$3fmt17h3f94e73c8b157ba1E+0x128>
+               	b.eq	0x80db8 <_ZN44_$LT$$RF$T$u20$as$u20$core..fmt..Display$GT$3fmt17h3f94e73c8b157ba1E+0x18c>
+               	b	0x80d54 <_ZN44_$LT$$RF$T$u20$as$u20$core..fmt..Display$GT$3fmt17h3f94e73c8b157ba1E+0x128>
 
 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h4b8fb327fe2e6f34E>:
                	ldp	x0, x8, [x0]
@@ -1327,25 +1117,25 @@ Disassembly of section .text:
                	str	xzr, [sp]
                	str	xzr, [sp, #16]
                	str	x0, [sp, #32]
-               	cbz	x8, 0x814f8 <_ZN4core3fmt5write17h4089dd81629a8d2eE+0x154>
+               	cbz	x8, 0x811b0 <_ZN4core3fmt5write17h4089dd81629a8d2eE+0x154>
                	ldr	x9, [x19, #24]
                	ldp	x20, x21, [x19]
                	cmp	x9, x21
                	csel	x22, x21, x9, hi
-               	cbz	x22, 0x81558 <_ZN4core3fmt5write17h4089dd81629a8d2eE+0x1b4>
+               	cbz	x22, 0x81210 <_ZN4core3fmt5write17h4089dd81629a8d2eE+0x1b4>
                	adrp	x25, 0x80000 <_ZN4core3fmt5write17h4089dd81629a8d2eE+0x50>
                	mov	x23, xzr
                	add	x24, x8, #48
-               	add	x25, x25, #2420
+               	add	x25, x25, #1580
                	mov	x26, x22
                	add	x8, x20, x23
                	ldr	x2, [x8, #8]
-               	cbz	x2, 0x8142c <_ZN4core3fmt5write17h4089dd81629a8d2eE+0x88>
+               	cbz	x2, 0x810e4 <_ZN4core3fmt5write17h4089dd81629a8d2eE+0x88>
                	ldp	x0, x8, [sp, #32]
                	ldr	x1, [x20, x23]
                	ldr	x8, [x8, #24]
                	blr	x8
-               	tbnz	w0, #0, 0x81578 <_ZN4core3fmt5write17h4089dd81629a8d2eE+0x1d4>
+               	tbnz	w0, #0, 0x81230 <_ZN4core3fmt5write17h4089dd81629a8d2eE+0x1d4>
                	ldur	w8, [x24, #-8]
                	str	w8, [sp, #52]
                	ldrb	w8, [x24]
@@ -1354,33 +1144,33 @@ Disassembly of section .text:
                	ldr	x8, [x19, #32]
                	str	w9, [sp, #48]
                	ldp	x10, x9, [x24, #-24]
-               	cbz	x10, 0x81488 <_ZN4core3fmt5write17h4089dd81629a8d2eE+0xe4>
+               	cbz	x10, 0x81140 <_ZN4core3fmt5write17h4089dd81629a8d2eE+0xe4>
                	cmp	x10, #1
-               	b.ne	0x81468 <_ZN4core3fmt5write17h4089dd81629a8d2eE+0xc4>
+               	b.ne	0x81120 <_ZN4core3fmt5write17h4089dd81629a8d2eE+0xc4>
                	add	x10, x8, x9, lsl #4
                	ldr	x10, [x10, #8]
                	cmp	x10, x25
-               	b.eq	0x8147c <_ZN4core3fmt5write17h4089dd81629a8d2eE+0xd8>
+               	b.eq	0x81134 <_ZN4core3fmt5write17h4089dd81629a8d2eE+0xd8>
                	mov	x10, xzr
                	stp	x10, x9, [sp]
                	ldp	x10, x9, [x24, #-40]
-               	cbnz	x10, 0x81498 <_ZN4core3fmt5write17h4089dd81629a8d2eE+0xf4>
-               	b	0x814c4 <_ZN4core3fmt5write17h4089dd81629a8d2eE+0x120>
+               	cbnz	x10, 0x81150 <_ZN4core3fmt5write17h4089dd81629a8d2eE+0xf4>
+               	b	0x8117c <_ZN4core3fmt5write17h4089dd81629a8d2eE+0x120>
                	lsl	x9, x9, #4
                	ldr	x9, [x8, x9]
                	ldr	x9, [x9]
                	mov	w10, #1
                	stp	x10, x9, [sp]
                	ldp	x10, x9, [x24, #-40]
-               	cbz	x10, 0x814c4 <_ZN4core3fmt5write17h4089dd81629a8d2eE+0x120>
+               	cbz	x10, 0x8117c <_ZN4core3fmt5write17h4089dd81629a8d2eE+0x120>
                	cmp	x10, #1
-               	b.ne	0x814b0 <_ZN4core3fmt5write17h4089dd81629a8d2eE+0x10c>
+               	b.ne	0x81168 <_ZN4core3fmt5write17h4089dd81629a8d2eE+0x10c>
                	add	x10, x8, x9, lsl #4
                	ldr	x10, [x10, #8]
                	cmp	x10, x25
-               	b.eq	0x814b8 <_ZN4core3fmt5write17h4089dd81629a8d2eE+0x114>
+               	b.eq	0x81170 <_ZN4core3fmt5write17h4089dd81629a8d2eE+0x114>
                	mov	x10, xzr
-               	b	0x814c8 <_ZN4core3fmt5write17h4089dd81629a8d2eE+0x124>
+               	b	0x81180 <_ZN4core3fmt5write17h4089dd81629a8d2eE+0x124>
                	lsl	x9, x9, #4
                	ldr	x9, [x8, x9]
                	ldr	x9, [x9]
@@ -1391,46 +1181,46 @@ Disassembly of section .text:
                	add	x8, x8, x9, lsl #4
                	ldp	x0, x9, [x8]
                	blr	x9
-               	tbnz	w0, #0, 0x81578 <_ZN4core3fmt5write17h4089dd81629a8d2eE+0x1d4>
+               	tbnz	w0, #0, 0x81230 <_ZN4core3fmt5write17h4089dd81629a8d2eE+0x1d4>
                	subs	x26, x26, #1
                	add	x24, x24, #56
                	add	x23, x23, #16
-               	b.ne	0x8140c <_ZN4core3fmt5write17h4089dd81629a8d2eE+0x68>
-               	b	0x81558 <_ZN4core3fmt5write17h4089dd81629a8d2eE+0x1b4>
+               	b.ne	0x810c4 <_ZN4core3fmt5write17h4089dd81629a8d2eE+0x68>
+               	b	0x81210 <_ZN4core3fmt5write17h4089dd81629a8d2eE+0x1b4>
                	ldr	x8, [x19, #40]
                	ldp	x20, x21, [x19]
                	cmp	x8, x21
                	csel	x22, x21, x8, hi
-               	cbz	x22, 0x81558 <_ZN4core3fmt5write17h4089dd81629a8d2eE+0x1b4>
+               	cbz	x22, 0x81210 <_ZN4core3fmt5write17h4089dd81629a8d2eE+0x1b4>
                	ldr	x19, [x19, #32]
                	mov	x23, xzr
                	mov	x24, x22
                	add	x8, x20, x23
                	ldr	x2, [x8, #8]
-               	cbz	x2, 0x81538 <_ZN4core3fmt5write17h4089dd81629a8d2eE+0x194>
+               	cbz	x2, 0x811f0 <_ZN4core3fmt5write17h4089dd81629a8d2eE+0x194>
                	ldp	x0, x8, [sp, #32]
                	ldr	x1, [x20, x23]
                	ldr	x8, [x8, #24]
                	blr	x8
-               	tbnz	w0, #0, 0x81578 <_ZN4core3fmt5write17h4089dd81629a8d2eE+0x1d4>
+               	tbnz	w0, #0, 0x81230 <_ZN4core3fmt5write17h4089dd81629a8d2eE+0x1d4>
                	add	x8, x19, x23
                	ldp	x0, x9, [x8]
                	mov	x1, sp
                	blr	x9
-               	tbnz	w0, #0, 0x81578 <_ZN4core3fmt5write17h4089dd81629a8d2eE+0x1d4>
+               	tbnz	w0, #0, 0x81230 <_ZN4core3fmt5write17h4089dd81629a8d2eE+0x1d4>
                	subs	x24, x24, #1
                	add	x23, x23, #16
-               	b.ne	0x81518 <_ZN4core3fmt5write17h4089dd81629a8d2eE+0x174>
+               	b.ne	0x811d0 <_ZN4core3fmt5write17h4089dd81629a8d2eE+0x174>
                	cmp	x22, x21
-               	b.hs	0x81580 <_ZN4core3fmt5write17h4089dd81629a8d2eE+0x1dc>
+               	b.hs	0x81238 <_ZN4core3fmt5write17h4089dd81629a8d2eE+0x1dc>
                	ldp	x0, x8, [sp, #32]
                	add	x9, x20, x22, lsl #4
                	ldp	x1, x2, [x9]
                	ldr	x8, [x8, #24]
                	blr	x8
-               	tbz	w0, #0, 0x81580 <_ZN4core3fmt5write17h4089dd81629a8d2eE+0x1dc>
+               	tbz	w0, #0, 0x81238 <_ZN4core3fmt5write17h4089dd81629a8d2eE+0x1dc>
                	mov	w0, #1
-               	b	0x81584 <_ZN4core3fmt5write17h4089dd81629a8d2eE+0x1e0>
+               	b	0x8123c <_ZN4core3fmt5write17h4089dd81629a8d2eE+0x1e0>
                	mov	w0, wzr
                	ldp	x20, x19, [sp, #128]
                	ldp	x22, x21, [sp, #112]
@@ -1444,10 +1234,10 @@ Disassembly of section .text:
                	stp	x0, x1, [sp, #-96]!
                	adrp	x9, 0x80000 <_ZN4core5slice5index22slice_index_order_fail17he71d7140076fff6eE>
                	mov	x8, sp
-               	add	x9, x9, #2500
+               	add	x9, x9, #1660
                	adrp	x11, 0x83000 <_ZN4core5slice5index22slice_index_order_fail17he71d7140076fff6eE+0x18>
                	add	x10, sp, #8
-               	add	x11, x11, #2200
+               	add	x11, x11, #1984
                	mov	w12, #2
                	stp	x8, x9, [sp, #64]
                	add	x8, sp, #64
@@ -1457,7 +1247,7 @@ Disassembly of section .text:
                	stp	x10, x9, [sp, #80]
                	stp	x11, x12, [sp, #16]
                	stp	x8, x12, [sp, #48]
-               	bl	0x80b38 <_ZN4core9panicking9panic_fmt17h548b34a47a4ac578E>
+               	bl	0x807f0 <_ZN4core9panicking9panic_fmt17h548b34a47a4ac578E>
                	brk	#0x1
 
 <_ZN4core6result13unwrap_failed17h514395d9b84745f5E>:
@@ -1465,14 +1255,14 @@ Disassembly of section .text:
                	mov	w8, #43
                	adrp	x10, 0x80000 <_ZN4core6result13unwrap_failed17h514395d9b84745f5E+0x4>
                	mov	x9, sp
-               	add	x10, x10, #3956
+               	add	x10, x10, #3116
                	adrp	x12, 0x81000 <_ZN4core6result13unwrap_failed17h514395d9b84745f5E+0x14>
                	stp	x0, x8, [sp]
                	adrp	x8, 0x83000 <_ZN4core6result13unwrap_failed17h514395d9b84745f5E+0x24>
                	stp	x1, x2, [sp, #16]
                	add	x11, sp, #16
-               	add	x12, x12, #920
-               	add	x8, x8, #2304
+               	add	x12, x12, #80
+               	add	x8, x8, #2088
                	stp	x9, x10, [sp, #80]
                	mov	w9, #2
                	add	x10, sp, #80
@@ -1482,7 +1272,7 @@ Disassembly of section .text:
                	stp	x11, x12, [sp, #96]
                	stp	x8, x9, [sp, #32]
                	stp	x10, x9, [sp, #64]
-               	bl	0x80b38 <_ZN4core9panicking9panic_fmt17h548b34a47a4ac578E>
+               	bl	0x807f0 <_ZN4core9panicking9panic_fmt17h548b34a47a4ac578E>
                	brk	#0x1
 
 <_ZN68_$LT$core..fmt..builders..PadAdapter$u20$as$u20$core..fmt..Write$GT$9write_str17h006d11991b68be72E>:
@@ -1491,7 +1281,7 @@ Disassembly of section .text:
                	stp	x24, x23, [sp, #32]
                	stp	x22, x21, [sp, #48]
                	stp	x20, x19, [sp, #64]
-               	cbz	x2, 0x81880 <_ZN68_$LT$core..fmt..builders..PadAdapter$u20$as$u20$core..fmt..Write$GT$9write_str17h006d11991b68be72E+0x23c>
+               	cbz	x2, 0x81538 <_ZN68_$LT$core..fmt..builders..PadAdapter$u20$as$u20$core..fmt..Write$GT$9write_str17h006d11991b68be72E+0x23c>
                	ldp	x25, x24, [x0, #8]
                	ldr	x21, [x0]
                	mov	x27, #2570
@@ -1503,56 +1293,56 @@ Disassembly of section .text:
                	mov	x20, x1
                	movk	x26, #65279
                	movk	x27, #2570, lsl #48
-               	add	x22, x22, #2338
-               	b	0x8169c <_ZN68_$LT$core..fmt..builders..PadAdapter$u20$as$u20$core..fmt..Write$GT$9write_str17h006d11991b68be72E+0x58>
+               	add	x22, x22, #2122
+               	b	0x81354 <_ZN68_$LT$core..fmt..builders..PadAdapter$u20$as$u20$core..fmt..Write$GT$9write_str17h006d11991b68be72E+0x58>
                	subs	x19, x19, x23
                	add	x20, x20, x23
-               	b.eq	0x81880 <_ZN68_$LT$core..fmt..builders..PadAdapter$u20$as$u20$core..fmt..Write$GT$9write_str17h006d11991b68be72E+0x23c>
+               	b.eq	0x81538 <_ZN68_$LT$core..fmt..builders..PadAdapter$u20$as$u20$core..fmt..Write$GT$9write_str17h006d11991b68be72E+0x23c>
                	ldrb	w8, [x24]
-               	cbz	w8, 0x816bc <_ZN68_$LT$core..fmt..builders..PadAdapter$u20$as$u20$core..fmt..Write$GT$9write_str17h006d11991b68be72E+0x78>
+               	cbz	w8, 0x81374 <_ZN68_$LT$core..fmt..builders..PadAdapter$u20$as$u20$core..fmt..Write$GT$9write_str17h006d11991b68be72E+0x78>
                	ldr	x8, [x25, #24]
                	mov	w2, #4
                	mov	x0, x21
                	mov	x1, x22
                	blr	x8
-               	tbnz	w0, #0, 0x81888 <_ZN68_$LT$core..fmt..builders..PadAdapter$u20$as$u20$core..fmt..Write$GT$9write_str17h006d11991b68be72E+0x244>
+               	tbnz	w0, #0, 0x81540 <_ZN68_$LT$core..fmt..builders..PadAdapter$u20$as$u20$core..fmt..Write$GT$9write_str17h006d11991b68be72E+0x244>
                	mov	x23, xzr
                	mov	x1, x19
-               	b	0x816d8 <_ZN68_$LT$core..fmt..builders..PadAdapter$u20$as$u20$core..fmt..Write$GT$9write_str17h006d11991b68be72E+0x94>
+               	b	0x81390 <_ZN68_$LT$core..fmt..builders..PadAdapter$u20$as$u20$core..fmt..Write$GT$9write_str17h006d11991b68be72E+0x94>
                	subs	x8, x19, x23
                	csel	x1, xzr, x8, lo
                	cmp	x23, x19
-               	b.hi	0x8181c <_ZN68_$LT$core..fmt..builders..PadAdapter$u20$as$u20$core..fmt..Write$GT$9write_str17h006d11991b68be72E+0x1d8>
+               	b.hi	0x814d4 <_ZN68_$LT$core..fmt..builders..PadAdapter$u20$as$u20$core..fmt..Write$GT$9write_str17h006d11991b68be72E+0x1d8>
                	subs	x8, x1, #16
-               	b.hs	0x81708 <_ZN68_$LT$core..fmt..builders..PadAdapter$u20$as$u20$core..fmt..Write$GT$9write_str17h006d11991b68be72E+0xc4>
-               	cbz	x1, 0x8181c <_ZN68_$LT$core..fmt..builders..PadAdapter$u20$as$u20$core..fmt..Write$GT$9write_str17h006d11991b68be72E+0x1d8>
+               	b.hs	0x813c0 <_ZN68_$LT$core..fmt..builders..PadAdapter$u20$as$u20$core..fmt..Write$GT$9write_str17h006d11991b68be72E+0xc4>
+               	cbz	x1, 0x814d4 <_ZN68_$LT$core..fmt..builders..PadAdapter$u20$as$u20$core..fmt..Write$GT$9write_str17h006d11991b68be72E+0x1d8>
                	mov	x9, xzr
                	add	x8, x20, x23
                	ldrb	w10, [x8, x9]
                	cmp	w10, #10
-               	b.eq	0x817d0 <_ZN68_$LT$core..fmt..builders..PadAdapter$u20$as$u20$core..fmt..Write$GT$9write_str17h006d11991b68be72E+0x18c>
+               	b.eq	0x81488 <_ZN68_$LT$core..fmt..builders..PadAdapter$u20$as$u20$core..fmt..Write$GT$9write_str17h006d11991b68be72E+0x18c>
                	add	x9, x9, #1
                	cmp	x1, x9
-               	b.ne	0x816ec <_ZN68_$LT$core..fmt..builders..PadAdapter$u20$as$u20$core..fmt..Write$GT$9write_str17h006d11991b68be72E+0xa8>
-               	b	0x8181c <_ZN68_$LT$core..fmt..builders..PadAdapter$u20$as$u20$core..fmt..Write$GT$9write_str17h006d11991b68be72E+0x1d8>
+               	b.ne	0x813a4 <_ZN68_$LT$core..fmt..builders..PadAdapter$u20$as$u20$core..fmt..Write$GT$9write_str17h006d11991b68be72E+0xa8>
+               	b	0x814d4 <_ZN68_$LT$core..fmt..builders..PadAdapter$u20$as$u20$core..fmt..Write$GT$9write_str17h006d11991b68be72E+0x1d8>
                	add	x9, x20, x23
                	add	x10, x9, #7
                	and	x10, x10, #0xfffffffffffffff8
                	subs	x10, x10, x9
-               	b.eq	0x81750 <_ZN68_$LT$core..fmt..builders..PadAdapter$u20$as$u20$core..fmt..Write$GT$9write_str17h006d11991b68be72E+0x10c>
+               	b.eq	0x81408 <_ZN68_$LT$core..fmt..builders..PadAdapter$u20$as$u20$core..fmt..Write$GT$9write_str17h006d11991b68be72E+0x10c>
                	cmp	x10, x1
                	mov	x9, xzr
                	csel	x0, x1, x10, hi
                	add	x10, x20, x23
                	ldrb	w11, [x10, x9]
                	cmp	w11, #10
-               	b.eq	0x817d0 <_ZN68_$LT$core..fmt..builders..PadAdapter$u20$as$u20$core..fmt..Write$GT$9write_str17h006d11991b68be72E+0x18c>
+               	b.eq	0x81488 <_ZN68_$LT$core..fmt..builders..PadAdapter$u20$as$u20$core..fmt..Write$GT$9write_str17h006d11991b68be72E+0x18c>
                	add	x9, x9, #1
                	cmp	x0, x9
-               	b.ne	0x8172c <_ZN68_$LT$core..fmt..builders..PadAdapter$u20$as$u20$core..fmt..Write$GT$9write_str17h006d11991b68be72E+0xe8>
+               	b.ne	0x813e4 <_ZN68_$LT$core..fmt..builders..PadAdapter$u20$as$u20$core..fmt..Write$GT$9write_str17h006d11991b68be72E+0xe8>
                	cmp	x0, x8
-               	b.ls	0x81754 <_ZN68_$LT$core..fmt..builders..PadAdapter$u20$as$u20$core..fmt..Write$GT$9write_str17h006d11991b68be72E+0x110>
-               	b	0x81798 <_ZN68_$LT$core..fmt..builders..PadAdapter$u20$as$u20$core..fmt..Write$GT$9write_str17h006d11991b68be72E+0x154>
+               	b.ls	0x8140c <_ZN68_$LT$core..fmt..builders..PadAdapter$u20$as$u20$core..fmt..Write$GT$9write_str17h006d11991b68be72E+0x110>
+               	b	0x81450 <_ZN68_$LT$core..fmt..builders..PadAdapter$u20$as$u20$core..fmt..Write$GT$9write_str17h006d11991b68be72E+0x154>
                	mov	x0, xzr
                	add	x9, x20, x23
                	add	x10, x9, x0
@@ -1565,72 +1355,72 @@ Disassembly of section .text:
                	bic	x10, x13, x10
                	orr	x10, x10, x11
                	tst	x10, #0x8080808080808080
-               	b.ne	0x81790 <_ZN68_$LT$core..fmt..builders..PadAdapter$u20$as$u20$core..fmt..Write$GT$9write_str17h006d11991b68be72E+0x14c>
+               	b.ne	0x81448 <_ZN68_$LT$core..fmt..builders..PadAdapter$u20$as$u20$core..fmt..Write$GT$9write_str17h006d11991b68be72E+0x14c>
                	add	x0, x0, #16
                	cmp	x0, x8
-               	b.ls	0x81758 <_ZN68_$LT$core..fmt..builders..PadAdapter$u20$as$u20$core..fmt..Write$GT$9write_str17h006d11991b68be72E+0x114>
+               	b.ls	0x81410 <_ZN68_$LT$core..fmt..builders..PadAdapter$u20$as$u20$core..fmt..Write$GT$9write_str17h006d11991b68be72E+0x114>
                	cmp	x0, x1
-               	b.hi	0x818c4 <_ZN68_$LT$core..fmt..builders..PadAdapter$u20$as$u20$core..fmt..Write$GT$9write_str17h006d11991b68be72E+0x280>
+               	b.hi	0x8157c <_ZN68_$LT$core..fmt..builders..PadAdapter$u20$as$u20$core..fmt..Write$GT$9write_str17h006d11991b68be72E+0x280>
                	cmp	x0, x1
-               	b.eq	0x8181c <_ZN68_$LT$core..fmt..builders..PadAdapter$u20$as$u20$core..fmt..Write$GT$9write_str17h006d11991b68be72E+0x1d8>
+               	b.eq	0x814d4 <_ZN68_$LT$core..fmt..builders..PadAdapter$u20$as$u20$core..fmt..Write$GT$9write_str17h006d11991b68be72E+0x1d8>
                	add	x9, x0, x23
                	mov	x8, xzr
                	add	x9, x20, x9
                	sub	x10, x1, x0
                	ldrb	w11, [x9, x8]
                	cmp	w11, #10
-               	b.eq	0x817cc <_ZN68_$LT$core..fmt..builders..PadAdapter$u20$as$u20$core..fmt..Write$GT$9write_str17h006d11991b68be72E+0x188>
+               	b.eq	0x81484 <_ZN68_$LT$core..fmt..builders..PadAdapter$u20$as$u20$core..fmt..Write$GT$9write_str17h006d11991b68be72E+0x188>
                	add	x8, x8, #1
                	cmp	x10, x8
-               	b.ne	0x817b0 <_ZN68_$LT$core..fmt..builders..PadAdapter$u20$as$u20$core..fmt..Write$GT$9write_str17h006d11991b68be72E+0x16c>
-               	b	0x8181c <_ZN68_$LT$core..fmt..builders..PadAdapter$u20$as$u20$core..fmt..Write$GT$9write_str17h006d11991b68be72E+0x1d8>
+               	b.ne	0x81468 <_ZN68_$LT$core..fmt..builders..PadAdapter$u20$as$u20$core..fmt..Write$GT$9write_str17h006d11991b68be72E+0x16c>
+               	b	0x814d4 <_ZN68_$LT$core..fmt..builders..PadAdapter$u20$as$u20$core..fmt..Write$GT$9write_str17h006d11991b68be72E+0x1d8>
                	add	x9, x0, x8
                	add	x8, x9, x23
                	cmp	x8, x19
                	add	x23, x8, #1
-               	b.hs	0x816c8 <_ZN68_$LT$core..fmt..builders..PadAdapter$u20$as$u20$core..fmt..Write$GT$9write_str17h006d11991b68be72E+0x84>
+               	b.hs	0x81380 <_ZN68_$LT$core..fmt..builders..PadAdapter$u20$as$u20$core..fmt..Write$GT$9write_str17h006d11991b68be72E+0x84>
                	ldrb	w8, [x20, x8]
                	cmp	w8, #10
-               	b.ne	0x816c8 <_ZN68_$LT$core..fmt..builders..PadAdapter$u20$as$u20$core..fmt..Write$GT$9write_str17h006d11991b68be72E+0x84>
+               	b.ne	0x81380 <_ZN68_$LT$core..fmt..builders..PadAdapter$u20$as$u20$core..fmt..Write$GT$9write_str17h006d11991b68be72E+0x84>
                	mov	w8, #1
                	cmp	x19, x23
                	strb	w8, [x24]
-               	b.hi	0x81830 <_ZN68_$LT$core..fmt..builders..PadAdapter$u20$as$u20$core..fmt..Write$GT$9write_str17h006d11991b68be72E+0x1ec>
-               	b.ne	0x818a4 <_ZN68_$LT$core..fmt..builders..PadAdapter$u20$as$u20$core..fmt..Write$GT$9write_str17h006d11991b68be72E+0x260>
+               	b.hi	0x814e8 <_ZN68_$LT$core..fmt..builders..PadAdapter$u20$as$u20$core..fmt..Write$GT$9write_str17h006d11991b68be72E+0x1ec>
+               	b.ne	0x8155c <_ZN68_$LT$core..fmt..builders..PadAdapter$u20$as$u20$core..fmt..Write$GT$9write_str17h006d11991b68be72E+0x260>
                	ldr	x8, [x25, #24]
                	mov	x0, x21
                	mov	x1, x20
                	mov	x2, x19
                	blr	x8
-               	tbz	w0, #0, 0x81690 <_ZN68_$LT$core..fmt..builders..PadAdapter$u20$as$u20$core..fmt..Write$GT$9write_str17h006d11991b68be72E+0x4c>
-               	b	0x81888 <_ZN68_$LT$core..fmt..builders..PadAdapter$u20$as$u20$core..fmt..Write$GT$9write_str17h006d11991b68be72E+0x244>
+               	tbz	w0, #0, 0x81348 <_ZN68_$LT$core..fmt..builders..PadAdapter$u20$as$u20$core..fmt..Write$GT$9write_str17h006d11991b68be72E+0x4c>
+               	b	0x81540 <_ZN68_$LT$core..fmt..builders..PadAdapter$u20$as$u20$core..fmt..Write$GT$9write_str17h006d11991b68be72E+0x244>
                	mov	w8, wzr
                	mov	x23, x19
                	cmp	x19, x23
                	strb	w8, [x24]
-               	b.ls	0x817fc <_ZN68_$LT$core..fmt..builders..PadAdapter$u20$as$u20$core..fmt..Write$GT$9write_str17h006d11991b68be72E+0x1b8>
+               	b.ls	0x814b4 <_ZN68_$LT$core..fmt..builders..PadAdapter$u20$as$u20$core..fmt..Write$GT$9write_str17h006d11991b68be72E+0x1b8>
                	ldrsb	w8, [x20, x23]
                	cmn	w8, #65
-               	b.le	0x818a4 <_ZN68_$LT$core..fmt..builders..PadAdapter$u20$as$u20$core..fmt..Write$GT$9write_str17h006d11991b68be72E+0x260>
+               	b.le	0x8155c <_ZN68_$LT$core..fmt..builders..PadAdapter$u20$as$u20$core..fmt..Write$GT$9write_str17h006d11991b68be72E+0x260>
                	ldr	x8, [x25, #24]
                	mov	x0, x21
                	mov	x1, x20
                	mov	x2, x23
                	blr	x8
-               	tbnz	w0, #0, 0x81888 <_ZN68_$LT$core..fmt..builders..PadAdapter$u20$as$u20$core..fmt..Write$GT$9write_str17h006d11991b68be72E+0x244>
+               	tbnz	w0, #0, 0x81540 <_ZN68_$LT$core..fmt..builders..PadAdapter$u20$as$u20$core..fmt..Write$GT$9write_str17h006d11991b68be72E+0x244>
                	ldrsb	w8, [x20, x23]
                	cmn	w8, #65
-               	b.gt	0x81690 <_ZN68_$LT$core..fmt..builders..PadAdapter$u20$as$u20$core..fmt..Write$GT$9write_str17h006d11991b68be72E+0x4c>
+               	b.gt	0x81348 <_ZN68_$LT$core..fmt..builders..PadAdapter$u20$as$u20$core..fmt..Write$GT$9write_str17h006d11991b68be72E+0x4c>
                	adrp	x4, 0x83000 <_ZN68_$LT$core..fmt..builders..PadAdapter$u20$as$u20$core..fmt..Write$GT$9write_str17h006d11991b68be72E+0x224>
-               	add	x4, x4, #2416
+               	add	x4, x4, #2200
                	mov	x0, x20
                	mov	x1, x19
                	mov	x2, x23
                	mov	x3, x19
-               	bl	0x818d4 <_ZN4core3str16slice_error_fail17hf7d2a92268a53d29E>
+               	bl	0x8158c <_ZN4core3str16slice_error_fail17hf7d2a92268a53d29E>
                	brk	#0x1
                	mov	w0, wzr
-               	b	0x8188c <_ZN68_$LT$core..fmt..builders..PadAdapter$u20$as$u20$core..fmt..Write$GT$9write_str17h006d11991b68be72E+0x248>
+               	b	0x81544 <_ZN68_$LT$core..fmt..builders..PadAdapter$u20$as$u20$core..fmt..Write$GT$9write_str17h006d11991b68be72E+0x248>
                	mov	w0, #1
                	ldp	x20, x19, [sp, #64]
                	ldp	x22, x21, [sp, #48]
@@ -1639,63 +1429,63 @@ Disassembly of section .text:
                	ldp	x30, x27, [sp], #80
                	ret
                	adrp	x4, 0x83000 <_ZN68_$LT$core..fmt..builders..PadAdapter$u20$as$u20$core..fmt..Write$GT$9write_str17h006d11991b68be72E+0x268>
-               	add	x4, x4, #2392
+               	add	x4, x4, #2176
                	mov	x0, x20
                	mov	x1, x19
                	mov	x2, xzr
                	mov	x3, x23
-               	bl	0x818d4 <_ZN4core3str16slice_error_fail17hf7d2a92268a53d29E>
+               	bl	0x8158c <_ZN4core3str16slice_error_fail17hf7d2a92268a53d29E>
                	brk	#0x1
                	adrp	x2, 0x83000 <_ZN68_$LT$core..fmt..builders..PadAdapter$u20$as$u20$core..fmt..Write$GT$9write_str17h006d11991b68be72E+0x288>
-               	add	x2, x2, #2368
-               	bl	0x80eb0 <_ZN4core5slice5index26slice_start_index_len_fail17ha5c8a54d8fb05d93E>
+               	add	x2, x2, #2152
+               	bl	0x80b68 <_ZN4core5slice5index26slice_start_index_len_fail17ha5c8a54d8fb05d93E>
                	brk	#0x1
 
 <_ZN4core3str16slice_error_fail17hf7d2a92268a53d29E>:
                	stp	x2, x3, [sp, #-208]!
                	cmp	x1, #257
-               	b.hs	0x81900 <_ZN4core3str16slice_error_fail17hf7d2a92268a53d29E+0x2c>
+               	b.hs	0x815b8 <_ZN4core3str16slice_error_fail17hf7d2a92268a53d29E+0x2c>
                	adrp	x9, 0x83000 <_ZN4core3str16slice_error_fail17hf7d2a92268a53d29E+0x14>
-               	add	x9, x9, #1632
+               	add	x9, x9, #1416
                	mov	x8, xzr
                	stp	x0, x1, [sp, #16]
                	stp	x9, x8, [sp, #32]
                	cmp	x2, x1
-               	b.ls	0x8194c <_ZN4core3str16slice_error_fail17hf7d2a92268a53d29E+0x78>
-               	b	0x819a8 <_ZN4core3str16slice_error_fail17hf7d2a92268a53d29E+0xd4>
+               	b.ls	0x81604 <_ZN4core3str16slice_error_fail17hf7d2a92268a53d29E+0x78>
+               	b	0x81660 <_ZN4core3str16slice_error_fail17hf7d2a92268a53d29E+0xd4>
                	mov	w8, #256
-               	b	0x8191c <_ZN4core3str16slice_error_fail17hf7d2a92268a53d29E+0x48>
+               	b	0x815d4 <_ZN4core3str16slice_error_fail17hf7d2a92268a53d29E+0x48>
                	ldrsb	w9, [x0, x8]
                	cmn	w9, #65
-               	b.gt	0x81930 <_ZN4core3str16slice_error_fail17hf7d2a92268a53d29E+0x5c>
+               	b.gt	0x815e8 <_ZN4core3str16slice_error_fail17hf7d2a92268a53d29E+0x5c>
                	subs	x8, x8, #1
-               	b.eq	0x81930 <_ZN4core3str16slice_error_fail17hf7d2a92268a53d29E+0x5c>
+               	b.eq	0x815e8 <_ZN4core3str16slice_error_fail17hf7d2a92268a53d29E+0x5c>
                	cmp	x8, x1
-               	b.lo	0x81908 <_ZN4core3str16slice_error_fail17hf7d2a92268a53d29E+0x34>
+               	b.lo	0x815c0 <_ZN4core3str16slice_error_fail17hf7d2a92268a53d29E+0x34>
                	cmp	x1, x8
-               	b.ne	0x81914 <_ZN4core3str16slice_error_fail17hf7d2a92268a53d29E+0x40>
+               	b.ne	0x815cc <_ZN4core3str16slice_error_fail17hf7d2a92268a53d29E+0x40>
                	mov	x8, x1
                	stp	x0, x8, [sp, #16]
                	adrp	x8, 0x83000 <_ZN4core3str16slice_error_fail17hf7d2a92268a53d29E+0x68>
-               	add	x9, x8, #2440
+               	add	x9, x8, #2224
                	mov	w8, #5
                	cmp	x2, x1
                	stp	x9, x8, [sp, #32]
-               	b.hi	0x819a8 <_ZN4core3str16slice_error_fail17hf7d2a92268a53d29E+0xd4>
+               	b.hi	0x81660 <_ZN4core3str16slice_error_fail17hf7d2a92268a53d29E+0xd4>
                	cmp	x3, x1
-               	b.hi	0x819a8 <_ZN4core3str16slice_error_fail17hf7d2a92268a53d29E+0xd4>
+               	b.hi	0x81660 <_ZN4core3str16slice_error_fail17hf7d2a92268a53d29E+0xd4>
                	cmp	x2, x3
-               	b.ls	0x81a08 <_ZN4core3str16slice_error_fail17hf7d2a92268a53d29E+0x134>
+               	b.ls	0x816c0 <_ZN4core3str16slice_error_fail17hf7d2a92268a53d29E+0x134>
                	adrp	x9, 0x80000 <_ZN4core3str16slice_error_fail17hf7d2a92268a53d29E+0x84>
                	mov	x8, sp
-               	add	x9, x9, #2500
+               	add	x9, x9, #1660
                	adrp	x12, 0x80000 <_ZN4core3str16slice_error_fail17hf7d2a92268a53d29E+0x90>
                	adrp	x14, 0x83000 <_ZN4core3str16slice_error_fail17hf7d2a92268a53d29E+0xa0>
                	add	x10, sp, #8
                	add	x11, sp, #16
-               	add	x12, x12, #3956
+               	add	x12, x12, #3116
                	add	x13, sp, #32
-               	add	x14, x14, #2496
+               	add	x14, x14, #2280
                	stp	x8, x9, [sp, #128]
                	mov	w8, #4
                	stp	x10, x9, [sp, #144]
@@ -1704,18 +1494,18 @@ Disassembly of section .text:
                	stp	x13, x12, [sp, #176]
                	add	x9, sp, #128
                	stp	x14, x8, [sp, #80]
-               	b	0x819f4 <_ZN4core3str16slice_error_fail17hf7d2a92268a53d29E+0x120>
+               	b	0x816ac <_ZN4core3str16slice_error_fail17hf7d2a92268a53d29E+0x120>
                	adrp	x9, 0x80000 <_ZN4core3str16slice_error_fail17hf7d2a92268a53d29E+0xd0>
                	cmp	x2, x1
                	add	x8, sp, #64
-               	add	x9, x9, #2500
+               	add	x9, x9, #1660
                	adrp	x11, 0x80000 <_ZN4core3str16slice_error_fail17hf7d2a92268a53d29E+0xe0>
                	adrp	x14, 0x83000 <_ZN4core3str16slice_error_fail17hf7d2a92268a53d29E+0xf0>
                	add	x10, sp, #16
-               	add	x11, x11, #3956
+               	add	x11, x11, #3116
                	add	x12, sp, #32
                	csel	x13, x2, x3, hi
-               	add	x14, x14, #2448
+               	add	x14, x14, #2232
                	stp	x8, x9, [sp, #128]
                	mov	w8, #3
                	add	x9, sp, #128
@@ -1727,120 +1517,120 @@ Disassembly of section .text:
                	stp	x9, x8, [sp, #112]
                	add	x0, sp, #80
                	mov	x1, x4
-               	bl	0x80b38 <_ZN4core9panicking9panic_fmt17h548b34a47a4ac578E>
+               	bl	0x807f0 <_ZN4core9panicking9panic_fmt17h548b34a47a4ac578E>
                	brk	#0x1
-               	cbnz	x2, 0x81a38 <_ZN4core3str16slice_error_fail17hf7d2a92268a53d29E+0x164>
+               	cbnz	x2, 0x816f0 <_ZN4core3str16slice_error_fail17hf7d2a92268a53d29E+0x164>
                	str	x3, [sp, #48]
-               	cbnz	x3, 0x81a94 <_ZN4core3str16slice_error_fail17hf7d2a92268a53d29E+0x1c0>
+               	cbnz	x3, 0x8174c <_ZN4core3str16slice_error_fail17hf7d2a92268a53d29E+0x1c0>
                	mov	x3, xzr
                	cmp	x3, x1
-               	b.ne	0x81a50 <_ZN4core3str16slice_error_fail17hf7d2a92268a53d29E+0x17c>
+               	b.ne	0x81708 <_ZN4core3str16slice_error_fail17hf7d2a92268a53d29E+0x17c>
                	adrp	x0, 0x83000 <_ZN4core3str16slice_error_fail17hf7d2a92268a53d29E+0x154>
-               	add	x0, x0, #2560
+               	add	x0, x0, #2344
                	mov	w1, #43
                	mov	x2, x4
-               	bl	0x80f40 <_ZN4core9panicking5panic17ha7217054e020f4cfE>
+               	bl	0x80bf8 <_ZN4core9panicking5panic17ha7217054e020f4cfE>
                	brk	#0x1
                	cmp	x2, x1
-               	b.hs	0x81a70 <_ZN4core3str16slice_error_fail17hf7d2a92268a53d29E+0x19c>
+               	b.hs	0x81728 <_ZN4core3str16slice_error_fail17hf7d2a92268a53d29E+0x19c>
                	ldrsb	w8, [x0, x2]
                	cmn	w8, #65
-               	b.gt	0x81a0c <_ZN4core3str16slice_error_fail17hf7d2a92268a53d29E+0x138>
-               	b	0x81a78 <_ZN4core3str16slice_error_fail17hf7d2a92268a53d29E+0x1a4>
+               	b.gt	0x816c4 <_ZN4core3str16slice_error_fail17hf7d2a92268a53d29E+0x138>
+               	b	0x81730 <_ZN4core3str16slice_error_fail17hf7d2a92268a53d29E+0x1a4>
                	add	x8, x0, x3
                	mov	x11, x8
                	ldrsb	w10, [x11], #1
                	and	w9, w10, #0xff
-               	tbnz	w10, #31, 0x81aac <_ZN4core3str16slice_error_fail17hf7d2a92268a53d29E+0x1d8>
+               	tbnz	w10, #31, 0x81764 <_ZN4core3str16slice_error_fail17hf7d2a92268a53d29E+0x1d8>
                	str	w9, [sp, #60]
                	mov	w8, #1
-               	b	0x81b7c <_ZN4core3str16slice_error_fail17hf7d2a92268a53d29E+0x2a8>
+               	b	0x81834 <_ZN4core3str16slice_error_fail17hf7d2a92268a53d29E+0x2a8>
                	cmp	x1, x2
-               	b.eq	0x81a0c <_ZN4core3str16slice_error_fail17hf7d2a92268a53d29E+0x138>
+               	b.eq	0x816c4 <_ZN4core3str16slice_error_fail17hf7d2a92268a53d29E+0x138>
                	mov	x3, x2
                	str	x2, [sp, #48]
-               	b	0x81a94 <_ZN4core3str16slice_error_fail17hf7d2a92268a53d29E+0x1c0>
+               	b	0x8174c <_ZN4core3str16slice_error_fail17hf7d2a92268a53d29E+0x1c0>
                	cmp	x1, x3
-               	b.eq	0x81a20 <_ZN4core3str16slice_error_fail17hf7d2a92268a53d29E+0x14c>
+               	b.eq	0x816d8 <_ZN4core3str16slice_error_fail17hf7d2a92268a53d29E+0x14c>
                	subs	x3, x3, #1
-               	b.eq	0x81a14 <_ZN4core3str16slice_error_fail17hf7d2a92268a53d29E+0x140>
+               	b.eq	0x816cc <_ZN4core3str16slice_error_fail17hf7d2a92268a53d29E+0x140>
                	cmp	x3, x1
-               	b.hs	0x81a84 <_ZN4core3str16slice_error_fail17hf7d2a92268a53d29E+0x1b0>
+               	b.hs	0x8173c <_ZN4core3str16slice_error_fail17hf7d2a92268a53d29E+0x1b0>
                	ldrsb	w8, [x0, x3]
                	cmn	w8, #64
-               	b.lt	0x81a8c <_ZN4core3str16slice_error_fail17hf7d2a92268a53d29E+0x1b8>
-               	b	0x81a18 <_ZN4core3str16slice_error_fail17hf7d2a92268a53d29E+0x144>
+               	b.lt	0x81744 <_ZN4core3str16slice_error_fail17hf7d2a92268a53d29E+0x1b8>
+               	b	0x816d0 <_ZN4core3str16slice_error_fail17hf7d2a92268a53d29E+0x144>
                	add	x10, x0, x1
                	cmp	x11, x10
-               	b.ne	0x81ad4 <_ZN4core3str16slice_error_fail17hf7d2a92268a53d29E+0x200>
+               	b.ne	0x8178c <_ZN4core3str16slice_error_fail17hf7d2a92268a53d29E+0x200>
                	mov	w8, wzr
                	mov	x12, x10
                	cmp	w9, #223
                	and	w11, w9, #0x1f
-               	b.hi	0x81aec <_ZN4core3str16slice_error_fail17hf7d2a92268a53d29E+0x218>
+               	b.hi	0x817a4 <_ZN4core3str16slice_error_fail17hf7d2a92268a53d29E+0x218>
                	bfi	w8, w11, #6, #5
-               	b	0x81b4c <_ZN4core3str16slice_error_fail17hf7d2a92268a53d29E+0x278>
+               	b	0x81804 <_ZN4core3str16slice_error_fail17hf7d2a92268a53d29E+0x278>
                	ldrb	w11, [x8, #1]
                	add	x12, x8, #2
                	and	w8, w11, #0x3f
                	cmp	w9, #223
                	and	w11, w9, #0x1f
-               	b.ls	0x81acc <_ZN4core3str16slice_error_fail17hf7d2a92268a53d29E+0x1f8>
+               	b.ls	0x81784 <_ZN4core3str16slice_error_fail17hf7d2a92268a53d29E+0x1f8>
                	cmp	x12, x10
-               	b.ne	0x81b00 <_ZN4core3str16slice_error_fail17hf7d2a92268a53d29E+0x22c>
+               	b.ne	0x817b8 <_ZN4core3str16slice_error_fail17hf7d2a92268a53d29E+0x22c>
                	mov	w13, wzr
                	mov	x12, x10
-               	b	0x81b08 <_ZN4core3str16slice_error_fail17hf7d2a92268a53d29E+0x234>
+               	b	0x817c0 <_ZN4core3str16slice_error_fail17hf7d2a92268a53d29E+0x234>
                	ldrb	w13, [x12], #1
                	and	w13, w13, #0x3f
                	cmp	w9, #240
                	bfi	w13, w8, #6, #6
-               	b.lo	0x81b24 <_ZN4core3str16slice_error_fail17hf7d2a92268a53d29E+0x250>
+               	b.lo	0x817dc <_ZN4core3str16slice_error_fail17hf7d2a92268a53d29E+0x250>
                	cmp	x12, x10
-               	b.ne	0x81b30 <_ZN4core3str16slice_error_fail17hf7d2a92268a53d29E+0x25c>
+               	b.ne	0x817e8 <_ZN4core3str16slice_error_fail17hf7d2a92268a53d29E+0x25c>
                	mov	w8, wzr
-               	b	0x81b38 <_ZN4core3str16slice_error_fail17hf7d2a92268a53d29E+0x264>
+               	b	0x817f0 <_ZN4core3str16slice_error_fail17hf7d2a92268a53d29E+0x264>
                	bfi	w13, w11, #12, #5
                	mov	w8, w13
-               	b	0x81b4c <_ZN4core3str16slice_error_fail17hf7d2a92268a53d29E+0x278>
+               	b	0x81804 <_ZN4core3str16slice_error_fail17hf7d2a92268a53d29E+0x278>
                	ldrb	w8, [x12]
                	and	w8, w8, #0x3f
                	ubfiz	w9, w11, #18, #3
                	bfi	w9, w13, #6, #12
                	orr	w8, w9, w8
                	cmp	w8, #272, lsl #12
-               	b.eq	0x81a20 <_ZN4core3str16slice_error_fail17hf7d2a92268a53d29E+0x14c>
+               	b.eq	0x816d8 <_ZN4core3str16slice_error_fail17hf7d2a92268a53d29E+0x14c>
                	cmp	w8, #128
                	str	w8, [sp, #60]
-               	b.hs	0x81b60 <_ZN4core3str16slice_error_fail17hf7d2a92268a53d29E+0x28c>
+               	b.hs	0x81818 <_ZN4core3str16slice_error_fail17hf7d2a92268a53d29E+0x28c>
                	mov	w8, #1
-               	b	0x81b7c <_ZN4core3str16slice_error_fail17hf7d2a92268a53d29E+0x2a8>
+               	b	0x81834 <_ZN4core3str16slice_error_fail17hf7d2a92268a53d29E+0x2a8>
                	cmp	w8, #2048
-               	b.hs	0x81b70 <_ZN4core3str16slice_error_fail17hf7d2a92268a53d29E+0x29c>
+               	b.hs	0x81828 <_ZN4core3str16slice_error_fail17hf7d2a92268a53d29E+0x29c>
                	mov	w8, #2
-               	b	0x81b7c <_ZN4core3str16slice_error_fail17hf7d2a92268a53d29E+0x2a8>
+               	b	0x81834 <_ZN4core3str16slice_error_fail17hf7d2a92268a53d29E+0x2a8>
                	cmp	w8, #16, lsl #12
                	mov	w8, #3
                	cinc	x8, x8, hs
                	add	x8, x8, x3
                	adrp	x10, 0x80000 <_ZN4core3str16slice_error_fail17hf7d2a92268a53d29E+0x2a8>
                	add	x9, sp, #48
-               	add	x10, x10, #2500
+               	add	x10, x10, #1660
                	adrp	x12, 0x81000 <_ZN4core3str16slice_error_fail17hf7d2a92268a53d29E+0x2b8>
                	stp	x3, x8, [sp, #64]
                	adrp	x8, 0x80000 <_ZN4core3str16slice_error_fail17hf7d2a92268a53d29E+0x2bc>
                	add	x11, sp, #60
-               	add	x12, x12, #3064
+               	add	x12, x12, #2224
                	adrp	x14, 0x81000 <_ZN4core3str16slice_error_fail17hf7d2a92268a53d29E+0x2cc>
                	add	x15, sp, #16
-               	add	x8, x8, #3956
+               	add	x8, x8, #3116
                	stp	x9, x10, [sp, #128]
                	add	x9, sp, #32
                	adrp	x10, 0x83000 <_ZN4core3str16slice_error_fail17hf7d2a92268a53d29E+0x2e8>
                	add	x13, sp, #64
-               	add	x14, x14, #3584
+               	add	x14, x14, #2744
                	stp	x11, x12, [sp, #144]
-               	add	x10, x10, #2608
+               	add	x10, x10, #2392
                	mov	w11, #5
                	stp	x15, x8, [sp, #176]
                	stp	x9, x8, [sp, #192]
@@ -1851,7 +1641,7 @@ Disassembly of section .text:
                	stp	x8, x11, [sp, #112]
                	add	x0, sp, #80
                	mov	x1, x4
-               	bl	0x80b38 <_ZN4core9panicking9panic_fmt17h548b34a47a4ac578E>
+               	bl	0x807f0 <_ZN4core9panicking9panic_fmt17h548b34a47a4ac578E>
                	brk	#0x1
 
 <_ZN41_$LT$char$u20$as$u20$core..fmt..Debug$GT$3fmt17h1eea34d619488d03E>:
@@ -1868,7 +1658,7 @@ Disassembly of section .text:
                	mov	x0, x19
                	str	x2, [sp, #8]
                	blr	x2
-               	tbz	w0, #0, 0x81c50 <_ZN41_$LT$char$u20$as$u20$core..fmt..Debug$GT$3fmt17h1eea34d619488d03E+0x58>
+               	tbz	w0, #0, 0x81908 <_ZN41_$LT$char$u20$as$u20$core..fmt..Debug$GT$3fmt17h1eea34d619488d03E+0x58>
                	ldp	x20, x19, [sp, #80]
                	ldp	x22, x21, [sp, #64]
                	ldp	x24, x23, [sp, #48]
@@ -1880,9 +1670,9 @@ Disassembly of section .text:
                	ldr	w20, [x20]
                	sub	w8, w20, #9
                	cmp	w8, #30
-               	b.hi	0x81c8c <_ZN41_$LT$char$u20$as$u20$core..fmt..Debug$GT$3fmt17h1eea34d619488d03E+0x94>
+               	b.hi	0x81944 <_ZN41_$LT$char$u20$as$u20$core..fmt..Debug$GT$3fmt17h1eea34d619488d03E+0x94>
                	adrp	x9, 0x83000 <_ZN41_$LT$char$u20$as$u20$core..fmt..Debug$GT$3fmt17h1eea34d619488d03E+0x70>
-               	add	x9, x9, #1088
+               	add	x9, x9, #848
                	adr	x10, #24
                	ldrb	w11, [x9, x8]
                	add	x10, x10, x11, lsl #2
@@ -1891,24 +1681,24 @@ Disassembly of section .text:
                	br	x10
                	mov	w21, #110
                	mov	w24, #2
-               	b	0x81cf0 <_ZN41_$LT$char$u20$as$u20$core..fmt..Debug$GT$3fmt17h1eea34d619488d03E+0xf8>
+               	b	0x819a8 <_ZN41_$LT$char$u20$as$u20$core..fmt..Debug$GT$3fmt17h1eea34d619488d03E+0xf8>
                	cmp	w20, #92
-               	b.ne	0x81ca0 <_ZN41_$LT$char$u20$as$u20$core..fmt..Debug$GT$3fmt17h1eea34d619488d03E+0xa8>
+               	b.ne	0x81958 <_ZN41_$LT$char$u20$as$u20$core..fmt..Debug$GT$3fmt17h1eea34d619488d03E+0xa8>
                	mov	w24, #2
                	mov	w21, w20
-               	b	0x81cf0 <_ZN41_$LT$char$u20$as$u20$core..fmt..Debug$GT$3fmt17h1eea34d619488d03E+0xf8>
+               	b	0x819a8 <_ZN41_$LT$char$u20$as$u20$core..fmt..Debug$GT$3fmt17h1eea34d619488d03E+0xf8>
                	mov	w0, w20
-               	bl	0x820d0 <_ZN4core7unicode12unicode_data15grapheme_extend6lookup17h0525d17e88c4ad5eE>
-               	tbnz	w0, #0, 0x81cd0 <_ZN41_$LT$char$u20$as$u20$core..fmt..Debug$GT$3fmt17h1eea34d619488d03E+0xd8>
+               	bl	0x81d88 <_ZN4core7unicode12unicode_data15grapheme_extend6lookup17h0525d17e88c4ad5eE>
+               	tbnz	w0, #0, 0x81988 <_ZN41_$LT$char$u20$as$u20$core..fmt..Debug$GT$3fmt17h1eea34d619488d03E+0xd8>
                	mov	w0, w20
-               	bl	0x82208 <_ZN4core7unicode9printable12is_printable17h809bc46350007ff2E>
-               	tbz	w0, #0, 0x81cd0 <_ZN41_$LT$char$u20$as$u20$core..fmt..Debug$GT$3fmt17h1eea34d619488d03E+0xd8>
+               	bl	0x81ec0 <_ZN4core7unicode9printable12is_printable17h809bc46350007ff2E>
+               	tbz	w0, #0, 0x81988 <_ZN41_$LT$char$u20$as$u20$core..fmt..Debug$GT$3fmt17h1eea34d619488d03E+0xd8>
                	mov	w24, #1
                	mov	w21, w20
-               	b	0x81cf0 <_ZN41_$LT$char$u20$as$u20$core..fmt..Debug$GT$3fmt17h1eea34d619488d03E+0xf8>
+               	b	0x819a8 <_ZN41_$LT$char$u20$as$u20$core..fmt..Debug$GT$3fmt17h1eea34d619488d03E+0xf8>
                	mov	w21, #114
                	mov	w24, #2
-               	b	0x81cf0 <_ZN41_$LT$char$u20$as$u20$core..fmt..Debug$GT$3fmt17h1eea34d619488d03E+0xf8>
+               	b	0x819a8 <_ZN41_$LT$char$u20$as$u20$core..fmt..Debug$GT$3fmt17h1eea34d619488d03E+0xf8>
                	orr	w8, w20, #0x1
                	clz	w8, w8
                	mov	w9, w20
@@ -1919,17 +1709,17 @@ Disassembly of section .text:
                	mov	w24, #3
                	adrp	x20, 0x83000 <_ZN41_$LT$char$u20$as$u20$core..fmt..Debug$GT$3fmt17h1eea34d619488d03E+0x100>
                	adrp	x25, 0x83000 <_ZN41_$LT$char$u20$as$u20$core..fmt..Debug$GT$3fmt17h1eea34d619488d03E+0x104>
-               	add	x20, x20, #1119
-               	add	x25, x25, #1123
+               	add	x20, x20, #879
+               	add	x25, x25, #883
                	mov	w26, #87
                	mov	w27, #48
-               	b	0x81d24 <_ZN41_$LT$char$u20$as$u20$core..fmt..Debug$GT$3fmt17h1eea34d619488d03E+0x12c>
+               	b	0x819dc <_ZN41_$LT$char$u20$as$u20$core..fmt..Debug$GT$3fmt17h1eea34d619488d03E+0x12c>
                	mov	w24, wzr
                	mov	w1, w21
                	ldr	x2, [sp, #8]
                	mov	x0, x19
                	blr	x2
-               	tbnz	w0, #0, 0x81c30 <_ZN41_$LT$char$u20$as$u20$core..fmt..Debug$GT$3fmt17h1eea34d619488d03E+0x38>
+               	tbnz	w0, #0, 0x818e8 <_ZN41_$LT$char$u20$as$u20$core..fmt..Debug$GT$3fmt17h1eea34d619488d03E+0x38>
                	mov	w8, w24
                	adr	x9, #-28
                	ldrb	w10, [x20, x8]
@@ -1945,36 +1735,36 @@ Disassembly of section .text:
                	and	x23, x23, #0xffffff00ffffffff
                	mov	w24, #3
                	mov	w1, #125
-               	b	0x81d14 <_ZN41_$LT$char$u20$as$u20$core..fmt..Debug$GT$3fmt17h1eea34d619488d03E+0x11c>
+               	b	0x819cc <_ZN41_$LT$char$u20$as$u20$core..fmt..Debug$GT$3fmt17h1eea34d619488d03E+0x11c>
                	ubfiz	w8, w22, #2, #3
                	lsr	w8, w23, w8
                	and	w8, w8, #0xf
                	cmp	w8, #10
                	csel	w9, w27, w26, lo
                	add	w1, w9, w8
-               	cbz	x22, 0x81dc8 <_ZN41_$LT$char$u20$as$u20$core..fmt..Debug$GT$3fmt17h1eea34d619488d03E+0x1d0>
+               	cbz	x22, 0x81a80 <_ZN41_$LT$char$u20$as$u20$core..fmt..Debug$GT$3fmt17h1eea34d619488d03E+0x1d0>
                	sub	x22, x22, #1
                	mov	w24, #3
-               	b	0x81d14 <_ZN41_$LT$char$u20$as$u20$core..fmt..Debug$GT$3fmt17h1eea34d619488d03E+0x11c>
+               	b	0x819cc <_ZN41_$LT$char$u20$as$u20$core..fmt..Debug$GT$3fmt17h1eea34d619488d03E+0x11c>
                	and	x8, x23, #0xffffff00ffffffff
                	mov	w24, #3
                	orr	x23, x8, #0x200000000
                	mov	w1, #123
-               	b	0x81d14 <_ZN41_$LT$char$u20$as$u20$core..fmt..Debug$GT$3fmt17h1eea34d619488d03E+0x11c>
+               	b	0x819cc <_ZN41_$LT$char$u20$as$u20$core..fmt..Debug$GT$3fmt17h1eea34d619488d03E+0x11c>
                	and	x8, x23, #0xffffff00ffffffff
                	mov	w24, #3
                	orr	x23, x8, #0x300000000
                	mov	w1, #117
-               	b	0x81d14 <_ZN41_$LT$char$u20$as$u20$core..fmt..Debug$GT$3fmt17h1eea34d619488d03E+0x11c>
+               	b	0x819cc <_ZN41_$LT$char$u20$as$u20$core..fmt..Debug$GT$3fmt17h1eea34d619488d03E+0x11c>
                	and	x8, x23, #0xffffff00ffffffff
                	mov	w24, #3
                	orr	x23, x8, #0x400000000
                	mov	w1, #92
-               	b	0x81d14 <_ZN41_$LT$char$u20$as$u20$core..fmt..Debug$GT$3fmt17h1eea34d619488d03E+0x11c>
+               	b	0x819cc <_ZN41_$LT$char$u20$as$u20$core..fmt..Debug$GT$3fmt17h1eea34d619488d03E+0x11c>
                	and	x8, x23, #0xffffff00ffffffff
                	orr	x23, x8, #0x100000000
                	mov	w24, #3
-               	b	0x81d14 <_ZN41_$LT$char$u20$as$u20$core..fmt..Debug$GT$3fmt17h1eea34d619488d03E+0x11c>
+               	b	0x819cc <_ZN41_$LT$char$u20$as$u20$core..fmt..Debug$GT$3fmt17h1eea34d619488d03E+0x11c>
                	mov	x0, x19
                	ldr	x2, [sp, #8]
                	ldp	x20, x19, [sp, #80]
@@ -1993,20 +1783,20 @@ Disassembly of section .text:
                	mov	x20, x0
                	ldr	x0, [x0]
                	mov	x19, x1
-               	bl	0x81e7c <_ZN4core3fmt3num52_$LT$impl$u20$core..fmt..Debug$u20$for$u20$usize$GT$3fmt17h420029119b997121E>
-               	tbnz	w0, #0, 0x81e50 <_ZN71_$LT$core..ops..range..Range$LT$Idx$GT$$u20$as$u20$core..fmt..Debug$GT$3fmt17h38324d94ece27e25E+0x50>
+               	bl	0x81b34 <_ZN4core3fmt3num52_$LT$impl$u20$core..fmt..Debug$u20$for$u20$usize$GT$3fmt17h420029119b997121E>
+               	tbnz	w0, #0, 0x81b08 <_ZN71_$LT$core..ops..range..Range$LT$Idx$GT$$u20$as$u20$core..fmt..Debug$GT$3fmt17h38324d94ece27e25E+0x50>
                	ldp	x0, x1, [x19, #32]
                	adrp	x8, 0x83000 <_ZN71_$LT$core..ops..range..Range$LT$Idx$GT$$u20$as$u20$core..fmt..Debug$GT$3fmt17h38324d94ece27e25E+0x2c>
-               	add	x8, x8, #2272
+               	add	x8, x8, #2056
                	mov	w9, #1
                	stp	x8, x9, [sp]
                	adrp	x8, 0x83000 <_ZN71_$LT$core..ops..range..Range$LT$Idx$GT$$u20$as$u20$core..fmt..Debug$GT$3fmt17h38324d94ece27e25E+0x3c>
-               	add	x8, x8, #1632
+               	add	x8, x8, #1416
                	mov	x2, sp
                	stp	xzr, xzr, [sp, #16]
                	stp	x8, xzr, [sp, #32]
-               	bl	0x813a4 <_ZN4core3fmt5write17h4089dd81629a8d2eE>
-               	cbz	w0, 0x81e64 <_ZN71_$LT$core..ops..range..Range$LT$Idx$GT$$u20$as$u20$core..fmt..Debug$GT$3fmt17h38324d94ece27e25E+0x64>
+               	bl	0x8105c <_ZN4core3fmt5write17h4089dd81629a8d2eE>
+               	cbz	w0, 0x81b1c <_ZN71_$LT$core..ops..range..Range$LT$Idx$GT$$u20$as$u20$core..fmt..Debug$GT$3fmt17h38324d94ece27e25E+0x64>
                	ldp	x20, x19, [sp, #64]
                	ldr	x30, [sp, #48]
                	mov	w0, #1
@@ -2017,17 +1807,17 @@ Disassembly of section .text:
                	ldp	x20, x19, [sp, #64]
                	ldr	x30, [sp, #48]
                	add	sp, sp, #80
-               	b	0x81e7c <_ZN4core3fmt3num52_$LT$impl$u20$core..fmt..Debug$u20$for$u20$usize$GT$3fmt17h420029119b997121E>
+               	b	0x81b34 <_ZN4core3fmt3num52_$LT$impl$u20$core..fmt..Debug$u20$for$u20$usize$GT$3fmt17h420029119b997121E>
 
 <_ZN4core3fmt3num52_$LT$impl$u20$core..fmt..Debug$u20$for$u20$usize$GT$3fmt17h420029119b997121E>:
                	sub	sp, sp, #144
                	str	x30, [sp, #128]
                	ldr	w8, [x1, #48]
-               	tbnz	w8, #4, 0x81f3c <_ZN4core3fmt3num52_$LT$impl$u20$core..fmt..Debug$u20$for$u20$usize$GT$3fmt17h420029119b997121E+0xc0>
-               	tbnz	w8, #5, 0x81f78 <_ZN4core3fmt3num52_$LT$impl$u20$core..fmt..Debug$u20$for$u20$usize$GT$3fmt17h420029119b997121E+0xfc>
+               	tbnz	w8, #4, 0x81bf4 <_ZN4core3fmt3num52_$LT$impl$u20$core..fmt..Debug$u20$for$u20$usize$GT$3fmt17h420029119b997121E+0xc0>
+               	tbnz	w8, #5, 0x81c30 <_ZN4core3fmt3num52_$LT$impl$u20$core..fmt..Debug$u20$for$u20$usize$GT$3fmt17h420029119b997121E+0xfc>
                	lsr	x8, x0, #4
                	cmp	x8, #625
-               	b.lo	0x81ff0 <_ZN4core3fmt3num52_$LT$impl$u20$core..fmt..Debug$u20$for$u20$usize$GT$3fmt17h420029119b997121E+0x174>
+               	b.lo	0x81ca8 <_ZN4core3fmt3num52_$LT$impl$u20$core..fmt..Debug$u20$for$u20$usize$GT$3fmt17h420029119b997121E+0x174>
                	mov	x9, #22859
                	movk	x9, #14470, lsl #16
                	movk	x9, #50646, lsl #32
@@ -2039,7 +1829,7 @@ Disassembly of section .text:
                	mov	w10, #-10000
                	movk	w11, #20971, lsl #16
                	mov	w12, #-100
-               	add	x13, x13, #1778
+               	add	x13, x13, #1562
                	mov	x14, sp
                	movk	w15, #1525, lsl #16
                	umulh	x17, x0, x9
@@ -2063,11 +1853,11 @@ Disassembly of section .text:
                	strb	w2, [x18, #35]
                	strb	w3, [x18, #38]
                	strb	w16, [x18, #37]
-               	b.hi	0x81ed4 <_ZN4core3fmt3num52_$LT$impl$u20$core..fmt..Debug$u20$for$u20$usize$GT$3fmt17h420029119b997121E+0x58>
+               	b.hi	0x81b8c <_ZN4core3fmt3num52_$LT$impl$u20$core..fmt..Debug$u20$for$u20$usize$GT$3fmt17h420029119b997121E+0x58>
                	add	x8, x8, #39
                	cmp	x0, #99
-               	b.gt	0x81ffc <_ZN4core3fmt3num52_$LT$impl$u20$core..fmt..Debug$u20$for$u20$usize$GT$3fmt17h420029119b997121E+0x180>
-               	b	0x82044 <_ZN4core3fmt3num52_$LT$impl$u20$core..fmt..Debug$u20$for$u20$usize$GT$3fmt17h420029119b997121E+0x1c8>
+               	b.gt	0x81cb4 <_ZN4core3fmt3num52_$LT$impl$u20$core..fmt..Debug$u20$for$u20$usize$GT$3fmt17h420029119b997121E+0x180>
+               	b	0x81cfc <_ZN4core3fmt3num52_$LT$impl$u20$core..fmt..Debug$u20$for$u20$usize$GT$3fmt17h420029119b997121E+0x1c8>
                	mov	x8, xzr
                	mov	x9, sp
                	and	w12, w0, #0xf
@@ -2081,8 +1871,8 @@ Disassembly of section .text:
                	sub	x8, x8, #1
                	mov	x0, x11
                	strb	w12, [x10, #127]
-               	cbnz	x11, 0x81f44 <_ZN4core3fmt3num52_$LT$impl$u20$core..fmt..Debug$u20$for$u20$usize$GT$3fmt17h420029119b997121E+0xc8>
-               	b	0x81fb0 <_ZN4core3fmt3num52_$LT$impl$u20$core..fmt..Debug$u20$for$u20$usize$GT$3fmt17h420029119b997121E+0x134>
+               	cbnz	x11, 0x81bfc <_ZN4core3fmt3num52_$LT$impl$u20$core..fmt..Debug$u20$for$u20$usize$GT$3fmt17h420029119b997121E+0xc8>
+               	b	0x81c68 <_ZN4core3fmt3num52_$LT$impl$u20$core..fmt..Debug$u20$for$u20$usize$GT$3fmt17h420029119b997121E+0x134>
                	mov	x8, xzr
                	mov	x9, sp
                	and	w12, w0, #0xf
@@ -2096,34 +1886,34 @@ Disassembly of section .text:
                	sub	x8, x8, #1
                	mov	x0, x11
                	strb	w12, [x10, #127]
-               	cbnz	x11, 0x81f80 <_ZN4core3fmt3num52_$LT$impl$u20$core..fmt..Debug$u20$for$u20$usize$GT$3fmt17h420029119b997121E+0x104>
+               	cbnz	x11, 0x81c38 <_ZN4core3fmt3num52_$LT$impl$u20$core..fmt..Debug$u20$for$u20$usize$GT$3fmt17h420029119b997121E+0x104>
                	add	x0, x8, #128
                	cmp	x0, #129
-               	b.hs	0x820bc <_ZN4core3fmt3num52_$LT$impl$u20$core..fmt..Debug$u20$for$u20$usize$GT$3fmt17h420029119b997121E+0x240>
+               	b.hs	0x81d74 <_ZN4core3fmt3num52_$LT$impl$u20$core..fmt..Debug$u20$for$u20$usize$GT$3fmt17h420029119b997121E+0x240>
                	mov	x9, sp
                	neg	x4, x8
                	add	x8, x9, x8
                	add	x3, x8, #128
                	adrp	x8, 0x83000 <_ZN4core3fmt3num52_$LT$impl$u20$core..fmt..Debug$u20$for$u20$usize$GT$3fmt17h420029119b997121E+0x158>
-               	add	x8, x8, #2168
+               	add	x8, x8, #1952
                	mov	w2, #2
                	mov	x0, x1
                	mov	x1, x8
-               	bl	0x80b74 <_ZN4core3fmt9Formatter12pad_integral17h4be5fae25bf478d6E>
+               	bl	0x8082c <_ZN4core3fmt9Formatter12pad_integral17h4be5fae25bf478d6E>
                	ldr	x30, [sp, #128]
                	add	sp, sp, #144
                	ret
                	mov	w8, #39
                	cmp	x0, #99
-               	b.le	0x82044 <_ZN4core3fmt3num52_$LT$impl$u20$core..fmt..Debug$u20$for$u20$usize$GT$3fmt17h420029119b997121E+0x1c8>
+               	b.le	0x81cfc <_ZN4core3fmt3num52_$LT$impl$u20$core..fmt..Debug$u20$for$u20$usize$GT$3fmt17h420029119b997121E+0x1c8>
                	mov	w10, #34079
                	and	w9, w0, #0xffff
                	movk	w10, #20971, lsl #16
                	umull	x9, w9, w10
                	mov	w11, #-100
-               	adrp	x10, 0x83000 <_ZN4core3fmt3num52_$LT$impl$u20$core..fmt..Debug$u20$for$u20$usize$GT$3fmt17h420029119b997121E+0x198>
+               	adrp	x10, 0x83000 <_ZN4core3fmt3num52_$LT$impl$u20$core..fmt..Debug$u20$for$u20$usize$GT$3fmt17h420029119b997121E+0x19c>
                	lsr	x9, x9, #37
-               	add	x10, x10, #1778
+               	add	x10, x10, #1562
                	madd	w11, w9, w11, w0
                	add	x10, x10, w11, uxth #1
                	ldrb	w11, [x10, #1]
@@ -2135,14 +1925,14 @@ Disassembly of section .text:
                	strb	w11, [x12, #1]
                	strb	w10, [x12]
                	cmp	x0, #10
-               	b.ge	0x82060 <_ZN4core3fmt3num52_$LT$impl$u20$core..fmt..Debug$u20$for$u20$usize$GT$3fmt17h420029119b997121E+0x1e4>
+               	b.ge	0x81d18 <_ZN4core3fmt3num52_$LT$impl$u20$core..fmt..Debug$u20$for$u20$usize$GT$3fmt17h420029119b997121E+0x1e4>
                	sub	x8, x8, #1
                	add	w9, w0, #48
                	mov	x10, sp
                	strb	w9, [x10, x8]
-               	b	0x82088 <_ZN4core3fmt3num52_$LT$impl$u20$core..fmt..Debug$u20$for$u20$usize$GT$3fmt17h420029119b997121E+0x20c>
-               	adrp	x9, 0x83000 <_ZN4core3fmt3num52_$LT$impl$u20$core..fmt..Debug$u20$for$u20$usize$GT$3fmt17h420029119b997121E+0x1e8>
-               	add	x9, x9, #1778
+               	b	0x81d40 <_ZN4core3fmt3num52_$LT$impl$u20$core..fmt..Debug$u20$for$u20$usize$GT$3fmt17h420029119b997121E+0x20c>
+               	adrp	x9, 0x83000 <_ZN4core3fmt3num52_$LT$impl$u20$core..fmt..Debug$u20$for$u20$usize$GT$3fmt17h420029119b997121E+0x1ec>
+               	add	x9, x9, #1562
                	add	x9, x9, x0, lsl #1
                	ldrb	w10, [x9, #1]
                	ldrb	w9, [x9]
@@ -2155,199 +1945,199 @@ Disassembly of section .text:
                	mov	w10, #39
                	add	x3, x9, x8
                	sub	x4, x10, x8
-               	adrp	x8, 0x83000 <_ZN4core3fmt3num52_$LT$impl$u20$core..fmt..Debug$u20$for$u20$usize$GT$3fmt17h420029119b997121E+0x220>
-               	add	x8, x8, #1632
+               	adrp	x8, 0x83000 <_ZN4core3fmt3num52_$LT$impl$u20$core..fmt..Debug$u20$for$u20$usize$GT$3fmt17h420029119b997121E+0x224>
+               	add	x8, x8, #1416
                	mov	x0, x1
                	mov	x1, x8
                	mov	x2, xzr
-               	bl	0x80b74 <_ZN4core3fmt9Formatter12pad_integral17h4be5fae25bf478d6E>
+               	bl	0x8082c <_ZN4core3fmt9Formatter12pad_integral17h4be5fae25bf478d6E>
                	ldr	x30, [sp, #128]
                	add	sp, sp, #144
                	ret
-               	adrp	x2, 0x83000 <_ZN4core3fmt3num52_$LT$impl$u20$core..fmt..Debug$u20$for$u20$usize$GT$3fmt17h420029119b997121E+0x244>
-               	add	x2, x2, #2144
+               	adrp	x2, 0x83000 <_ZN4core3fmt3num52_$LT$impl$u20$core..fmt..Debug$u20$for$u20$usize$GT$3fmt17h420029119b997121E+0x248>
+               	add	x2, x2, #1928
                	mov	w1, #128
-               	bl	0x80eb0 <_ZN4core5slice5index26slice_start_index_len_fail17ha5c8a54d8fb05d93E>
+               	bl	0x80b68 <_ZN4core5slice5index26slice_start_index_len_fail17ha5c8a54d8fb05d93E>
                	brk	#0x1
 
 <_ZN4core7unicode12unicode_data15grapheme_extend6lookup17h0525d17e88c4ad5eE>:
-               	adrp	x10, 0x84000 <_ZN4core7unicode12unicode_data15grapheme_extend6lookup17h0525d17e88c4ad5eE+0x8>
+               	adrp	x10, 0x83000 <_ZN4core7unicode12unicode_data15grapheme_extend6lookup17h0525d17e88c4ad5eE+0x8>
                	mov	x8, xzr
                	lsl	w9, w0, #11
                	mov	w12, #31
-               	add	x10, x10, #116
+               	add	x10, x10, #3996
                	mov	w11, #31
-               	b	0x820f8 <_ZN4core7unicode12unicode_data15grapheme_extend6lookup17h0525d17e88c4ad5eE+0x28>
+               	b	0x81db0 <_ZN4core7unicode12unicode_data15grapheme_extend6lookup17h0525d17e88c4ad5eE+0x28>
                	add	x8, x12, #1
                	subs	x12, x11, x8
-               	b.ls	0x82118 <_ZN4core7unicode12unicode_data15grapheme_extend6lookup17h0525d17e88c4ad5eE+0x48>
+               	b.ls	0x81dd0 <_ZN4core7unicode12unicode_data15grapheme_extend6lookup17h0525d17e88c4ad5eE+0x48>
                	add	x12, x8, x12, lsr #1
                	ldr	w13, [x10, x12, lsl #2]
                	lsl	w13, w13, #11
                	cmp	w13, w9
-               	b.lo	0x820ec <_ZN4core7unicode12unicode_data15grapheme_extend6lookup17h0525d17e88c4ad5eE+0x1c>
+               	b.lo	0x81da4 <_ZN4core7unicode12unicode_data15grapheme_extend6lookup17h0525d17e88c4ad5eE+0x1c>
                	mov	x11, x12
-               	b.ne	0x820f0 <_ZN4core7unicode12unicode_data15grapheme_extend6lookup17h0525d17e88c4ad5eE+0x20>
+               	b.ne	0x81da8 <_ZN4core7unicode12unicode_data15grapheme_extend6lookup17h0525d17e88c4ad5eE+0x20>
                	add	x8, x12, #1
                	cmp	x8, #30
-               	b.hi	0x821d8 <_ZN4core7unicode12unicode_data15grapheme_extend6lookup17h0525d17e88c4ad5eE+0x108>
+               	b.hi	0x81e90 <_ZN4core7unicode12unicode_data15grapheme_extend6lookup17h0525d17e88c4ad5eE+0x108>
                	cmp	x8, #30
-               	b.ne	0x82148 <_ZN4core7unicode12unicode_data15grapheme_extend6lookup17h0525d17e88c4ad5eE+0x78>
+               	b.ne	0x81e00 <_ZN4core7unicode12unicode_data15grapheme_extend6lookup17h0525d17e88c4ad5eE+0x78>
                	mov	w11, #689
                	subs	x9, x8, #1
-               	b.lo	0x8215c <_ZN4core7unicode12unicode_data15grapheme_extend6lookup17h0525d17e88c4ad5eE+0x8c>
+               	b.lo	0x81e14 <_ZN4core7unicode12unicode_data15grapheme_extend6lookup17h0525d17e88c4ad5eE+0x8c>
                	cmp	x9, #31
-               	b.hs	0x821f0 <_ZN4core7unicode12unicode_data15grapheme_extend6lookup17h0525d17e88c4ad5eE+0x120>
+               	b.hs	0x81ea8 <_ZN4core7unicode12unicode_data15grapheme_extend6lookup17h0525d17e88c4ad5eE+0x120>
                	ldr	w9, [x10, x9, lsl #2]
                	and	w12, w9, #0x1fffff
-               	b	0x82160 <_ZN4core7unicode12unicode_data15grapheme_extend6lookup17h0525d17e88c4ad5eE+0x90>
+               	b	0x81e18 <_ZN4core7unicode12unicode_data15grapheme_extend6lookup17h0525d17e88c4ad5eE+0x90>
                	add	x9, x10, x8, lsl #2
                	ldr	w9, [x9, #4]
                	lsr	x11, x9, #21
                	subs	x9, x8, #1
-               	b.hs	0x82134 <_ZN4core7unicode12unicode_data15grapheme_extend6lookup17h0525d17e88c4ad5eE+0x64>
+               	b.hs	0x81dec <_ZN4core7unicode12unicode_data15grapheme_extend6lookup17h0525d17e88c4ad5eE+0x64>
                	mov	w12, wzr
                	ldr	w8, [x10, x8, lsl #2]
                	lsr	x8, x8, #21
                	add	x9, x8, #1
                	cmp	x11, x9
-               	b.eq	0x821bc <_ZN4core7unicode12unicode_data15grapheme_extend6lookup17h0525d17e88c4ad5eE+0xec>
+               	b.eq	0x81e74 <_ZN4core7unicode12unicode_data15grapheme_extend6lookup17h0525d17e88c4ad5eE+0xec>
                	sub	w10, w0, w12
                	cmp	x8, #689
                	mov	w12, #689
                	csel	x0, x8, x12, hi
-               	adrp	x12, 0x84000 <_ZN4core7unicode12unicode_data15grapheme_extend6lookup17h0525d17e88c4ad5eE+0xbc>
+               	adrp	x12, 0x84000 <_ZN4core7unicode12unicode_data15grapheme_extend6lookup17h0525d17e88c4ad5eE+0xc0>
                	mov	w9, wzr
                	sub	x11, x11, #1
-               	add	x12, x12, #288
+               	add	x12, x12, #72
                	cmp	x0, x8
-               	b.eq	0x821c4 <_ZN4core7unicode12unicode_data15grapheme_extend6lookup17h0525d17e88c4ad5eE+0xf4>
+               	b.eq	0x81e7c <_ZN4core7unicode12unicode_data15grapheme_extend6lookup17h0525d17e88c4ad5eE+0xf4>
                	ldrb	w13, [x12, x8]
                	add	w9, w9, w13
                	cmp	w9, w10
-               	b.hi	0x821bc <_ZN4core7unicode12unicode_data15grapheme_extend6lookup17h0525d17e88c4ad5eE+0xec>
+               	b.hi	0x81e74 <_ZN4core7unicode12unicode_data15grapheme_extend6lookup17h0525d17e88c4ad5eE+0xec>
                	add	x8, x8, #1
                	cmp	x11, x8
-               	b.ne	0x82194 <_ZN4core7unicode12unicode_data15grapheme_extend6lookup17h0525d17e88c4ad5eE+0xc4>
+               	b.ne	0x81e4c <_ZN4core7unicode12unicode_data15grapheme_extend6lookup17h0525d17e88c4ad5eE+0xc4>
                	mov	x8, x11
                	and	w0, w8, #0x1
                	ret
-               	adrp	x2, 0x84000 <_ZN4core7unicode12unicode_data15grapheme_extend6lookup17h0525d17e88c4ad5eE+0xfc>
-               	add	x2, x2, #984
+               	adrp	x2, 0x84000 <_ZN4core7unicode12unicode_data15grapheme_extend6lookup17h0525d17e88c4ad5eE+0x100>
+               	add	x2, x2, #768
                	mov	w1, #689
-               	bl	0x8097c <_ZN4core9panicking18panic_bounds_check17h21e59d1a29014f09E>
+               	bl	0x80634 <_ZN4core9panicking18panic_bounds_check17h21e59d1a29014f09E>
                	brk	#0x1
-               	adrp	x2, 0x84000 <_ZN4core7unicode12unicode_data15grapheme_extend6lookup17h0525d17e88c4ad5eE+0x110>
-               	add	x2, x2, #240
+               	adrp	x2, 0x84000 <_ZN4core7unicode12unicode_data15grapheme_extend6lookup17h0525d17e88c4ad5eE+0x114>
+               	add	x2, x2, #24
                	mov	w1, #31
                	mov	x0, x8
-               	bl	0x8097c <_ZN4core9panicking18panic_bounds_check17h21e59d1a29014f09E>
+               	bl	0x80634 <_ZN4core9panicking18panic_bounds_check17h21e59d1a29014f09E>
                	brk	#0x1
-               	adrp	x2, 0x84000 <_ZN4core7unicode12unicode_data15grapheme_extend6lookup17h0525d17e88c4ad5eE+0x128>
-               	add	x2, x2, #264
+               	adrp	x2, 0x84000 <_ZN4core7unicode12unicode_data15grapheme_extend6lookup17h0525d17e88c4ad5eE+0x12c>
+               	add	x2, x2, #48
                	mov	w1, #31
                	mov	x0, x9
-               	bl	0x8097c <_ZN4core9panicking18panic_bounds_check17h21e59d1a29014f09E>
+               	bl	0x80634 <_ZN4core9panicking18panic_bounds_check17h21e59d1a29014f09E>
                	brk	#0x1
 
 <_ZN4core7unicode9printable12is_printable17h809bc46350007ff2E>:
                	cmp	w0, #16, lsl #12
-               	b.hs	0x822a0 <_ZN4core7unicode9printable12is_printable17h809bc46350007ff2E+0x98>
-               	adrp	x12, 0x83000 <_ZN4core7unicode9printable12is_printable17h809bc46350007ff2E+0xc>
-               	adrp	x11, 0x83000 <_ZN4core7unicode9printable12is_printable17h809bc46350007ff2E+0x10>
-               	adrp	x13, 0x83000 <_ZN4core7unicode9printable12is_printable17h809bc46350007ff2E+0x14>
+               	b.hs	0x81f58 <_ZN4core7unicode9printable12is_printable17h809bc46350007ff2E+0x98>
+               	adrp	x12, 0x83000 <_ZN4core7unicode9printable12is_printable17h809bc46350007ff2E+0x10>
+               	adrp	x11, 0x83000 <_ZN4core7unicode9printable12is_printable17h809bc46350007ff2E+0x14>
+               	adrp	x13, 0x83000 <_ZN4core7unicode9printable12is_printable17h809bc46350007ff2E+0x18>
                	mov	x9, xzr
-               	add	x12, x12, #2767
+               	add	x12, x12, #2551
                	lsr	w10, w0, #8
-               	add	x11, x11, #2880
-               	add	x13, x13, #2849
+               	add	x11, x11, #2664
+               	add	x13, x13, #2633
                	ldrb	w8, [x12]
                	ldrb	w14, [x12, #1]
                	add	x12, x12, #2
                	cmp	w8, w10, uxtb
                	add	x8, x9, x14
-               	b.ne	0x82274 <_ZN4core7unicode9printable12is_printable17h809bc46350007ff2E+0x6c>
+               	b.ne	0x81f2c <_ZN4core7unicode9printable12is_printable17h809bc46350007ff2E+0x6c>
                	cmp	x8, x9
-               	b.lo	0x82480 <_ZN4core7unicode9printable12is_printable17h809bc46350007ff2E+0x278>
+               	b.lo	0x82138 <_ZN4core7unicode9printable12is_printable17h809bc46350007ff2E+0x278>
                	cmp	x8, #290
-               	b.hi	0x82498 <_ZN4core7unicode9printable12is_printable17h809bc46350007ff2E+0x290>
+               	b.hi	0x82150 <_ZN4core7unicode9printable12is_printable17h809bc46350007ff2E+0x290>
                	add	x9, x11, x9
-               	cbz	x14, 0x82278 <_ZN4core7unicode9printable12is_printable17h809bc46350007ff2E+0x70>
+               	cbz	x14, 0x81f30 <_ZN4core7unicode9printable12is_printable17h809bc46350007ff2E+0x70>
                	ldrb	w15, [x9], #1
                	sub	x14, x14, #1
                	cmp	w15, w0, uxtb
-               	b.ne	0x8225c <_ZN4core7unicode9printable12is_printable17h809bc46350007ff2E+0x54>
-               	b	0x82338 <_ZN4core7unicode9printable12is_printable17h809bc46350007ff2E+0x130>
-               	b.hi	0x82284 <_ZN4core7unicode9printable12is_printable17h809bc46350007ff2E+0x7c>
+               	b.ne	0x81f14 <_ZN4core7unicode9printable12is_printable17h809bc46350007ff2E+0x54>
+               	b	0x81ff0 <_ZN4core7unicode9printable12is_printable17h809bc46350007ff2E+0x130>
+               	b.hi	0x81f3c <_ZN4core7unicode9printable12is_printable17h809bc46350007ff2E+0x7c>
                	cmp	x12, x13
                	mov	x9, x8
-               	b.ne	0x82230 <_ZN4core7unicode9printable12is_printable17h809bc46350007ff2E+0x28>
-               	adrp	x11, 0x83000 <_ZN4core7unicode9printable12is_printable17h809bc46350007ff2E+0x80>
-               	adrp	x10, 0x83000 <_ZN4core7unicode9printable12is_printable17h809bc46350007ff2E+0x84>
+               	b.ne	0x81ee8 <_ZN4core7unicode9printable12is_printable17h809bc46350007ff2E+0x28>
+               	adrp	x11, 0x83000 <_ZN4core7unicode9printable12is_printable17h809bc46350007ff2E+0x84>
+               	adrp	x10, 0x83000 <_ZN4core7unicode9printable12is_printable17h809bc46350007ff2E+0x88>
                	and	w9, w0, #0xffff
-               	add	x11, x11, #3170
+               	add	x11, x11, #2954
                	mov	w8, #1
-               	add	x10, x10, #3479
-               	b	0x82358 <_ZN4core7unicode9printable12is_printable17h809bc46350007ff2E+0x150>
+               	add	x10, x10, #3263
+               	b	0x82010 <_ZN4core7unicode9printable12is_printable17h809bc46350007ff2E+0x150>
                	cmp	w0, #32, lsl #12
-               	b.hs	0x8238c <_ZN4core7unicode9printable12is_printable17h809bc46350007ff2E+0x184>
-               	adrp	x12, 0x83000 <_ZN4core7unicode9printable12is_printable17h809bc46350007ff2E+0xa4>
-               	adrp	x11, 0x83000 <_ZN4core7unicode9printable12is_printable17h809bc46350007ff2E+0xa8>
-               	adrp	x13, 0x83000 <_ZN4core7unicode9printable12is_printable17h809bc46350007ff2E+0xac>
+               	b.hs	0x82044 <_ZN4core7unicode9printable12is_printable17h809bc46350007ff2E+0x184>
+               	adrp	x12, 0x83000 <_ZN4core7unicode9printable12is_printable17h809bc46350007ff2E+0xa8>
+               	adrp	x11, 0x83000 <_ZN4core7unicode9printable12is_printable17h809bc46350007ff2E+0xac>
+               	adrp	x13, 0x83000 <_ZN4core7unicode9printable12is_printable17h809bc46350007ff2E+0xb0>
                	mov	x9, xzr
-               	add	x12, x12, #3504
+               	add	x12, x12, #3288
                	lsr	w10, w0, #8
-               	add	x11, x11, #3580
-               	add	x13, x13, #3580
+               	add	x11, x11, #3364
+               	add	x13, x13, #3364
                	ldrb	w8, [x12]
                	ldrb	w14, [x12, #1]
                	add	x12, x12, #2
                	cmp	w8, w10, uxtb
                	add	x8, x9, x14
-               	b.ne	0x8230c <_ZN4core7unicode9printable12is_printable17h809bc46350007ff2E+0x104>
+               	b.ne	0x81fc4 <_ZN4core7unicode9printable12is_printable17h809bc46350007ff2E+0x104>
                	cmp	x8, x9
-               	b.lo	0x82480 <_ZN4core7unicode9printable12is_printable17h809bc46350007ff2E+0x278>
+               	b.lo	0x82138 <_ZN4core7unicode9printable12is_printable17h809bc46350007ff2E+0x278>
                	cmp	x8, #175
-               	b.hi	0x824a8 <_ZN4core7unicode9printable12is_printable17h809bc46350007ff2E+0x2a0>
+               	b.hi	0x82160 <_ZN4core7unicode9printable12is_printable17h809bc46350007ff2E+0x2a0>
                	add	x9, x11, x9
-               	cbz	x14, 0x82310 <_ZN4core7unicode9printable12is_printable17h809bc46350007ff2E+0x108>
+               	cbz	x14, 0x81fc8 <_ZN4core7unicode9printable12is_printable17h809bc46350007ff2E+0x108>
                	ldrb	w15, [x9], #1
                	sub	x14, x14, #1
                	cmp	w15, w0, uxtb
-               	b.ne	0x822f4 <_ZN4core7unicode9printable12is_printable17h809bc46350007ff2E+0xec>
-               	b	0x82338 <_ZN4core7unicode9printable12is_printable17h809bc46350007ff2E+0x130>
-               	b.hi	0x8231c <_ZN4core7unicode9printable12is_printable17h809bc46350007ff2E+0x114>
+               	b.ne	0x81fac <_ZN4core7unicode9printable12is_printable17h809bc46350007ff2E+0xec>
+               	b	0x81ff0 <_ZN4core7unicode9printable12is_printable17h809bc46350007ff2E+0x130>
+               	b.hi	0x81fd4 <_ZN4core7unicode9printable12is_printable17h809bc46350007ff2E+0x114>
                	cmp	x12, x13
                	mov	x9, x8
-               	b.ne	0x822c8 <_ZN4core7unicode9printable12is_printable17h809bc46350007ff2E+0xc0>
-               	adrp	x11, 0x83000 <_ZN4core7unicode9printable12is_printable17h809bc46350007ff2E+0x118>
-               	adrp	x10, 0x84000 <_ZN4core7unicode9printable12is_printable17h809bc46350007ff2E+0x120>
+               	b.ne	0x81f80 <_ZN4core7unicode9printable12is_printable17h809bc46350007ff2E+0xc0>
+               	adrp	x11, 0x83000 <_ZN4core7unicode9printable12is_printable17h809bc46350007ff2E+0x11c>
+               	adrp	x10, 0x83000 <_ZN4core7unicode9printable12is_printable17h809bc46350007ff2E+0x120>
                	and	w9, w0, #0xffff
-               	add	x11, x11, #3755
+               	add	x11, x11, #3539
                	mov	w8, #1
-               	add	x10, x10, #78
-               	b	0x82448 <_ZN4core7unicode9printable12is_printable17h809bc46350007ff2E+0x240>
+               	add	x10, x10, #3958
+               	b	0x82100 <_ZN4core7unicode9printable12is_printable17h809bc46350007ff2E+0x240>
                	and	w0, wzr, #0x1
                	ret
                	mov	x11, x13
                	subs	w9, w9, w12
-               	b.mi	0x82478 <_ZN4core7unicode9printable12is_printable17h809bc46350007ff2E+0x270>
+               	b.mi	0x82130 <_ZN4core7unicode9printable12is_printable17h809bc46350007ff2E+0x270>
                	cmp	x11, x10
                	eor	w8, w8, #0x1
-               	b.eq	0x82478 <_ZN4core7unicode9printable12is_printable17h809bc46350007ff2E+0x270>
+               	b.eq	0x82130 <_ZN4core7unicode9printable12is_printable17h809bc46350007ff2E+0x270>
                	mov	x13, x11
                	ldrsb	w14, [x13], #1
                	and	w12, w14, #0xff
-               	tbz	w14, #31, 0x82340 <_ZN4core7unicode9printable12is_printable17h809bc46350007ff2E+0x138>
+               	tbz	w14, #31, 0x81ff8 <_ZN4core7unicode9printable12is_printable17h809bc46350007ff2E+0x138>
                	cmp	x13, x10
-               	b.eq	0x824c0 <_ZN4core7unicode9printable12is_printable17h809bc46350007ff2E+0x2b8>
+               	b.eq	0x82178 <_ZN4core7unicode9printable12is_printable17h809bc46350007ff2E+0x2b8>
                	and	w13, w12, #0x7f
                	ldrb	w12, [x11, #1]
                	add	x11, x11, #2
                	bfi	w12, w13, #8, #7
                	subs	w9, w9, w12
-               	b.pl	0x8234c <_ZN4core7unicode9printable12is_printable17h809bc46350007ff2E+0x144>
-               	b	0x82478 <_ZN4core7unicode9printable12is_printable17h809bc46350007ff2E+0x270>
+               	b.pl	0x82004 <_ZN4core7unicode9printable12is_printable17h809bc46350007ff2E+0x144>
+               	b	0x82130 <_ZN4core7unicode9printable12is_printable17h809bc46350007ff2E+0x270>
                	mov	w8, #60597
                	movk	w8, #65532, lsl #16
                	mov	w9, #60853
@@ -2355,35 +2145,35 @@ Disassembly of section .text:
                	movk	w9, #10, lsl #16
                	cmp	w8, w9
                	mov	w8, wzr
-               	b.lo	0x82478 <_ZN4core7unicode9printable12is_printable17h809bc46350007ff2E+0x270>
+               	b.lo	0x82130 <_ZN4core7unicode9printable12is_printable17h809bc46350007ff2E+0x270>
                	mov	w9, #1506
                	movk	w9, #65533, lsl #16
                	add	w9, w0, w9
                	cmp	w9, #1506
-               	b.lo	0x82478 <_ZN4core7unicode9printable12is_printable17h809bc46350007ff2E+0x270>
+               	b.lo	0x82130 <_ZN4core7unicode9printable12is_printable17h809bc46350007ff2E+0x270>
                	add	w9, w9, #3645
                	cmp	w9, #3103
-               	b.lo	0x82478 <_ZN4core7unicode9printable12is_printable17h809bc46350007ff2E+0x270>
+               	b.lo	0x82130 <_ZN4core7unicode9printable12is_printable17h809bc46350007ff2E+0x270>
                	mov	w9, #12638
                	movk	w9, #65533, lsl #16
                	add	w9, w0, w9
                	cmp	w9, #14
-               	b.lo	0x82478 <_ZN4core7unicode9printable12is_printable17h809bc46350007ff2E+0x270>
+               	b.lo	0x82130 <_ZN4core7unicode9printable12is_printable17h809bc46350007ff2E+0x270>
                	mov	w10, #47134
                	and	w9, w0, #0x1ffffe
                	movk	w10, #2, lsl #16
                	cmp	w9, w10
-               	b.eq	0x82478 <_ZN4core7unicode9printable12is_printable17h809bc46350007ff2E+0x270>
+               	b.eq	0x82130 <_ZN4core7unicode9printable12is_printable17h809bc46350007ff2E+0x270>
                	mov	w9, #22818
                	movk	w9, #65533, lsl #16
                	add	w9, w0, w9
                	cmp	w9, #34
-               	b.lo	0x82478 <_ZN4core7unicode9printable12is_printable17h809bc46350007ff2E+0x270>
+               	b.lo	0x82130 <_ZN4core7unicode9printable12is_printable17h809bc46350007ff2E+0x270>
                	mov	w9, #18635
                	movk	w9, #65533, lsl #16
                	add	w9, w0, w9
                	cmp	w9, #11
-               	b.lo	0x82478 <_ZN4core7unicode9printable12is_printable17h809bc46350007ff2E+0x270>
+               	b.lo	0x82130 <_ZN4core7unicode9printable12is_printable17h809bc46350007ff2E+0x270>
                	mov	w8, #496
                	movk	w8, #14, lsl #16
                	cmp	w0, w8
@@ -2391,46 +2181,46 @@ Disassembly of section .text:
                	ret
                	mov	x11, x13
                	subs	w9, w9, w12
-               	b.mi	0x82478 <_ZN4core7unicode9printable12is_printable17h809bc46350007ff2E+0x270>
+               	b.mi	0x82130 <_ZN4core7unicode9printable12is_printable17h809bc46350007ff2E+0x270>
                	cmp	x11, x10
                	eor	w8, w8, #0x1
-               	b.eq	0x82478 <_ZN4core7unicode9printable12is_printable17h809bc46350007ff2E+0x270>
+               	b.eq	0x82130 <_ZN4core7unicode9printable12is_printable17h809bc46350007ff2E+0x270>
                	mov	x13, x11
                	ldrsb	w14, [x13], #1
                	and	w12, w14, #0xff
-               	tbz	w14, #31, 0x82430 <_ZN4core7unicode9printable12is_printable17h809bc46350007ff2E+0x228>
+               	tbz	w14, #31, 0x820e8 <_ZN4core7unicode9printable12is_printable17h809bc46350007ff2E+0x228>
                	cmp	x13, x10
-               	b.eq	0x824c0 <_ZN4core7unicode9printable12is_printable17h809bc46350007ff2E+0x2b8>
+               	b.eq	0x82178 <_ZN4core7unicode9printable12is_printable17h809bc46350007ff2E+0x2b8>
                	and	w13, w12, #0x7f
                	ldrb	w12, [x11, #1]
                	add	x11, x11, #2
                	bfi	w12, w13, #8, #7
                	subs	w9, w9, w12
-               	b.pl	0x8243c <_ZN4core7unicode9printable12is_printable17h809bc46350007ff2E+0x234>
+               	b.pl	0x820f4 <_ZN4core7unicode9printable12is_printable17h809bc46350007ff2E+0x234>
                	and	w0, w8, #0x1
                	ret
                	adrp	x2, 0x83000 <_ZN4core7unicode9printable12is_printable17h809bc46350007ff2E+0x27c>
-               	add	x2, x2, #2856
+               	add	x2, x2, #2640
                	mov	x0, x9
                	mov	x1, x8
-               	bl	0x815a0 <_ZN4core5slice5index22slice_index_order_fail17he71d7140076fff6eE>
+               	bl	0x81258 <_ZN4core5slice5index22slice_index_order_fail17he71d7140076fff6eE>
                	brk	#0x1
                	adrp	x2, 0x83000 <_ZN4core7unicode9printable12is_printable17h809bc46350007ff2E+0x294>
-               	add	x2, x2, #2856
+               	add	x2, x2, #2640
                	mov	w1, #290
-               	b	0x824b4 <_ZN4core7unicode9printable12is_printable17h809bc46350007ff2E+0x2ac>
+               	b	0x8216c <_ZN4core7unicode9printable12is_printable17h809bc46350007ff2E+0x2ac>
                	adrp	x2, 0x83000 <_ZN4core7unicode9printable12is_printable17h809bc46350007ff2E+0x2a4>
-               	add	x2, x2, #2856
+               	add	x2, x2, #2640
                	mov	w1, #175
                	mov	x0, x8
-               	bl	0x80ef8 <_ZN4core5slice5index24slice_end_index_len_fail17h827cf37c6cc32b14E>
+               	bl	0x80bb0 <_ZN4core5slice5index24slice_end_index_len_fail17h827cf37c6cc32b14E>
                	brk	#0x1
                	adrp	x0, 0x83000 <_ZN4core7unicode9printable12is_printable17h809bc46350007ff2E+0x2bc>
                	adrp	x2, 0x83000 <_ZN4core7unicode9printable12is_printable17h809bc46350007ff2E+0x2c0>
-               	add	x0, x0, #2560
-               	add	x2, x2, #3480
+               	add	x0, x0, #2344
+               	add	x2, x2, #3264
                	mov	w1, #43
-               	bl	0x80f40 <_ZN4core9panicking5panic17ha7217054e020f4cfE>
+               	bl	0x80bf8 <_ZN4core9panicking5panic17ha7217054e020f4cfE>
                	brk	#0x1
 
 <_ZN4core3fmt8builders11DebugStruct5field17hdc89cd457900d764E>:
@@ -2443,7 +2233,7 @@ Disassembly of section .text:
                	mov	x19, x0
                	mov	w25, #1
                	mov	w0, #1
-               	cbnz	w8, 0x8264c <_ZN4core3fmt8builders11DebugStruct5field17hdc89cd457900d764E+0x170>
+               	cbnz	w8, 0x82304 <_ZN4core3fmt8builders11DebugStruct5field17hdc89cd457900d764E+0x170>
                	ldr	x22, [x19]
                	ldrb	w9, [x19, #9]
                	mov	x21, x4
@@ -2451,45 +2241,45 @@ Disassembly of section .text:
                	ldr	w8, [x22, #48]
                	mov	x23, x2
                	mov	x24, x1
-               	tbnz	w8, #2, 0x8259c <_ZN4core3fmt8builders11DebugStruct5field17hdc89cd457900d764E+0xc0>
+               	tbnz	w8, #2, 0x82254 <_ZN4core3fmt8builders11DebugStruct5field17hdc89cd457900d764E+0xc0>
                	ldp	x0, x8, [x22, #32]
                	adrp	x10, 0x84000 <_ZN4core3fmt8builders11DebugStruct5field17hdc89cd457900d764E+0x54>
                	adrp	x11, 0x84000 <_ZN4core3fmt8builders11DebugStruct5field17hdc89cd457900d764E+0x58>
-               	add	x10, x10, #1087
+               	add	x10, x10, #871
                	ldr	x8, [x8, #24]
-               	add	x11, x11, #1084
+               	add	x11, x11, #868
                	cmp	w9, #0
                	mov	w9, #2
                	csel	x1, x11, x10, eq
                	cinc	x2, x9, eq
                	blr	x8
-               	tbnz	w0, #0, 0x82648 <_ZN4core3fmt8builders11DebugStruct5field17hdc89cd457900d764E+0x16c>
+               	tbnz	w0, #0, 0x82300 <_ZN4core3fmt8builders11DebugStruct5field17hdc89cd457900d764E+0x16c>
                	ldp	x0, x8, [x22, #32]
                	mov	x1, x24
                	mov	x2, x23
                	ldr	x8, [x8, #24]
                	blr	x8
-               	tbnz	w0, #0, 0x82648 <_ZN4core3fmt8builders11DebugStruct5field17hdc89cd457900d764E+0x16c>
+               	tbnz	w0, #0, 0x82300 <_ZN4core3fmt8builders11DebugStruct5field17hdc89cd457900d764E+0x16c>
                	ldp	x0, x8, [x22, #32]
                	adrp	x1, 0x83000 <_ZN4core3fmt8builders11DebugStruct5field17hdc89cd457900d764E+0x98>
-               	add	x1, x1, #2336
+               	add	x1, x1, #2120
                	mov	w2, #2
                	ldr	x8, [x8, #24]
                	blr	x8
-               	tbnz	w0, #0, 0x82648 <_ZN4core3fmt8builders11DebugStruct5field17hdc89cd457900d764E+0x16c>
+               	tbnz	w0, #0, 0x82300 <_ZN4core3fmt8builders11DebugStruct5field17hdc89cd457900d764E+0x16c>
                	ldr	x8, [x21, #24]
                	mov	x0, x20
                	mov	x1, x22
                	blr	x8
-               	b	0x8264c <_ZN4core3fmt8builders11DebugStruct5field17hdc89cd457900d764E+0x170>
-               	cbnz	w9, 0x825c0 <_ZN4core3fmt8builders11DebugStruct5field17hdc89cd457900d764E+0xe4>
+               	b	0x82304 <_ZN4core3fmt8builders11DebugStruct5field17hdc89cd457900d764E+0x170>
+               	cbnz	w9, 0x82278 <_ZN4core3fmt8builders11DebugStruct5field17hdc89cd457900d764E+0xe4>
                	ldp	x0, x8, [x22, #32]
                	adrp	x1, 0x84000 <_ZN4core3fmt8builders11DebugStruct5field17hdc89cd457900d764E+0xd0>
-               	add	x1, x1, #1089
+               	add	x1, x1, #873
                	mov	w2, #3
                	ldr	x8, [x8, #24]
                	blr	x8
-               	tbnz	w0, #0, 0x82648 <_ZN4core3fmt8builders11DebugStruct5field17hdc89cd457900d764E+0x16c>
+               	tbnz	w0, #0, 0x82300 <_ZN4core3fmt8builders11DebugStruct5field17hdc89cd457900d764E+0x16c>
                	ldr	w8, [x22, #48]
                	mov	w9, #1
                	strb	w9, [sp, #28]
@@ -2505,26 +2295,26 @@ Disassembly of section .text:
                	ldp	x14, x15, [x22, #16]
                	stp	w8, w9, [sp, #80]
                	adrp	x8, 0x84000 <_ZN4core3fmt8builders11DebugStruct5field17hdc89cd457900d764E+0x120>
-               	add	x8, x8, #1096
+               	add	x8, x8, #880
                	mov	x1, x24
                	mov	x2, x23
                	strb	w10, [sp, #88]
                	stp	x11, x13, [sp, #32]
                	stp	x14, x15, [sp, #48]
                	stp	x12, x8, [sp, #64]
-               	bl	0x81644 <_ZN68_$LT$core..fmt..builders..PadAdapter$u20$as$u20$core..fmt..Write$GT$9write_str17h006d11991b68be72E>
-               	tbnz	w0, #0, 0x82648 <_ZN4core3fmt8builders11DebugStruct5field17hdc89cd457900d764E+0x16c>
+               	bl	0x812fc <_ZN68_$LT$core..fmt..builders..PadAdapter$u20$as$u20$core..fmt..Write$GT$9write_str17h006d11991b68be72E>
+               	tbnz	w0, #0, 0x82300 <_ZN4core3fmt8builders11DebugStruct5field17hdc89cd457900d764E+0x16c>
                	adrp	x1, 0x83000 <_ZN4core3fmt8builders11DebugStruct5field17hdc89cd457900d764E+0x144>
-               	add	x1, x1, #2336
+               	add	x1, x1, #2120
                	mov	x0, sp
                	mov	w2, #2
-               	bl	0x81644 <_ZN68_$LT$core..fmt..builders..PadAdapter$u20$as$u20$core..fmt..Write$GT$9write_str17h006d11991b68be72E>
-               	cbnz	w0, 0x82648 <_ZN4core3fmt8builders11DebugStruct5field17hdc89cd457900d764E+0x16c>
+               	bl	0x812fc <_ZN68_$LT$core..fmt..builders..PadAdapter$u20$as$u20$core..fmt..Write$GT$9write_str17h006d11991b68be72E>
+               	cbnz	w0, 0x82300 <_ZN4core3fmt8builders11DebugStruct5field17hdc89cd457900d764E+0x16c>
                	ldr	x8, [x21, #24]
                	add	x1, sp, #32
                	mov	x0, x20
                	blr	x8
-               	tbz	w0, #0, 0x82670 <_ZN4core3fmt8builders11DebugStruct5field17hdc89cd457900d764E+0x194>
+               	tbz	w0, #0, 0x82328 <_ZN4core3fmt8builders11DebugStruct5field17hdc89cd457900d764E+0x194>
                	mov	w0, #1
                	strb	w0, [x19, #8]
                	strb	w25, [x19, #9]
@@ -2537,25 +2327,25 @@ Disassembly of section .text:
                	ret
                	ldp	x0, x8, [sp, #64]
                	adrp	x1, 0x84000 <_ZN4core3fmt8builders11DebugStruct5field17hdc89cd457900d764E+0x1a0>
-               	add	x1, x1, #1144
+               	add	x1, x1, #928
                	mov	w2, #2
                	ldr	x8, [x8, #24]
                	blr	x8
-               	b	0x8264c <_ZN4core3fmt8builders11DebugStruct5field17hdc89cd457900d764E+0x170>
+               	b	0x82304 <_ZN4core3fmt8builders11DebugStruct5field17hdc89cd457900d764E+0x170>
 
 <_ZN4core3fmt5Write10write_char17h9e2cca690dfc629fE>:
                	str	x30, [sp, #-16]!
                	cmp	w1, #128
                	str	wzr, [sp, #12]
-               	b.hs	0x826b4 <_ZN4core3fmt5Write10write_char17h9e2cca690dfc629fE+0x28>
+               	b.hs	0x8236c <_ZN4core3fmt5Write10write_char17h9e2cca690dfc629fE+0x28>
                	strb	w1, [sp, #12]
                	mov	w2, #1
                	add	x1, sp, #12
-               	bl	0x81644 <_ZN68_$LT$core..fmt..builders..PadAdapter$u20$as$u20$core..fmt..Write$GT$9write_str17h006d11991b68be72E>
+               	bl	0x812fc <_ZN68_$LT$core..fmt..builders..PadAdapter$u20$as$u20$core..fmt..Write$GT$9write_str17h006d11991b68be72E>
                	ldr	x30, [sp], #16
                	ret
                	cmp	w1, #2048
-               	b.hs	0x826e8 <_ZN4core3fmt5Write10write_char17h9e2cca690dfc629fE+0x5c>
+               	b.hs	0x823a0 <_ZN4core3fmt5Write10write_char17h9e2cca690dfc629fE+0x5c>
                	lsr	w8, w1, #6
                	mov	w9, #128
                	orr	w8, w8, #0xc0
@@ -2564,11 +2354,11 @@ Disassembly of section .text:
                	strb	w9, [sp, #13]
                	mov	w2, #2
                	add	x1, sp, #12
-               	bl	0x81644 <_ZN68_$LT$core..fmt..builders..PadAdapter$u20$as$u20$core..fmt..Write$GT$9write_str17h006d11991b68be72E>
+               	bl	0x812fc <_ZN68_$LT$core..fmt..builders..PadAdapter$u20$as$u20$core..fmt..Write$GT$9write_str17h006d11991b68be72E>
                	ldr	x30, [sp], #16
                	ret
                	cmp	w1, #16, lsl #12
-               	b.hs	0x82728 <_ZN4core3fmt5Write10write_char17h9e2cca690dfc629fE+0x9c>
+               	b.hs	0x823e0 <_ZN4core3fmt5Write10write_char17h9e2cca690dfc629fE+0x9c>
                	lsr	w8, w1, #12
                	mov	w9, #128
                	mov	w10, #128
@@ -2580,7 +2370,7 @@ Disassembly of section .text:
                	strb	w9, [sp, #14]
                	mov	w2, #3
                	add	x1, sp, #12
-               	bl	0x81644 <_ZN68_$LT$core..fmt..builders..PadAdapter$u20$as$u20$core..fmt..Write$GT$9write_str17h006d11991b68be72E>
+               	bl	0x812fc <_ZN68_$LT$core..fmt..builders..PadAdapter$u20$as$u20$core..fmt..Write$GT$9write_str17h006d11991b68be72E>
                	ldr	x30, [sp], #16
                	ret
                	lsr	w8, w1, #18
@@ -2597,7 +2387,7 @@ Disassembly of section .text:
                	strb	w11, [sp, #14]
                	strb	w9, [sp, #15]
                	add	x1, sp, #12
-               	bl	0x81644 <_ZN68_$LT$core..fmt..builders..PadAdapter$u20$as$u20$core..fmt..Write$GT$9write_str17h006d11991b68be72E>
+               	bl	0x812fc <_ZN68_$LT$core..fmt..builders..PadAdapter$u20$as$u20$core..fmt..Write$GT$9write_str17h006d11991b68be72E>
                	ldr	x30, [sp], #16
                	ret
 
@@ -2606,34 +2396,34 @@ Disassembly of section .text:
                	stp	x30, x0, [sp, #48]
                	mov	x0, sp
                	mov	w2, #48
-               	bl	0x833d0 <memcpy>
+               	bl	0x832e0 <memcpy>
                	adrp	x1, 0x84000 <_ZN4core3fmt5Write9write_fmt17h031e20469903bdb9E+0x1c>
-               	add	x1, x1, #1152
+               	add	x1, x1, #936
                	add	x0, sp, #56
                	mov	x2, sp
-               	bl	0x813a4 <_ZN4core3fmt5write17h4089dd81629a8d2eE>
+               	bl	0x8105c <_ZN4core3fmt5write17h4089dd81629a8d2eE>
                	ldr	x30, [sp, #48]
                	add	sp, sp, #64
                	ret
 
 <_ZN50_$LT$$RF$mut$u20$W$u20$as$u20$core..fmt..Write$GT$9write_str17h06cee42cc043f099E>:
                	ldr	x0, [x0]
-               	b	0x81644 <_ZN68_$LT$core..fmt..builders..PadAdapter$u20$as$u20$core..fmt..Write$GT$9write_str17h006d11991b68be72E>
+               	b	0x812fc <_ZN68_$LT$core..fmt..builders..PadAdapter$u20$as$u20$core..fmt..Write$GT$9write_str17h006d11991b68be72E>
 
 <_ZN50_$LT$$RF$mut$u20$W$u20$as$u20$core..fmt..Write$GT$10write_char17h84d77c247f809bd9E>:
                	str	x30, [sp, #-16]!
                	ldr	x0, [x0]
                	cmp	w1, #128
                	str	wzr, [sp, #12]
-               	b.hs	0x827d4 <_ZN50_$LT$$RF$mut$u20$W$u20$as$u20$core..fmt..Write$GT$10write_char17h84d77c247f809bd9E+0x2c>
+               	b.hs	0x8248c <_ZN50_$LT$$RF$mut$u20$W$u20$as$u20$core..fmt..Write$GT$10write_char17h84d77c247f809bd9E+0x2c>
                	strb	w1, [sp, #12]
                	mov	w2, #1
                	add	x1, sp, #12
-               	bl	0x81644 <_ZN68_$LT$core..fmt..builders..PadAdapter$u20$as$u20$core..fmt..Write$GT$9write_str17h006d11991b68be72E>
+               	bl	0x812fc <_ZN68_$LT$core..fmt..builders..PadAdapter$u20$as$u20$core..fmt..Write$GT$9write_str17h006d11991b68be72E>
                	ldr	x30, [sp], #16
                	ret
                	cmp	w1, #2048
-               	b.hs	0x82808 <_ZN50_$LT$$RF$mut$u20$W$u20$as$u20$core..fmt..Write$GT$10write_char17h84d77c247f809bd9E+0x60>
+               	b.hs	0x824c0 <_ZN50_$LT$$RF$mut$u20$W$u20$as$u20$core..fmt..Write$GT$10write_char17h84d77c247f809bd9E+0x60>
                	lsr	w8, w1, #6
                	mov	w9, #128
                	orr	w8, w8, #0xc0
@@ -2642,11 +2432,11 @@ Disassembly of section .text:
                	strb	w9, [sp, #13]
                	mov	w2, #2
                	add	x1, sp, #12
-               	bl	0x81644 <_ZN68_$LT$core..fmt..builders..PadAdapter$u20$as$u20$core..fmt..Write$GT$9write_str17h006d11991b68be72E>
+               	bl	0x812fc <_ZN68_$LT$core..fmt..builders..PadAdapter$u20$as$u20$core..fmt..Write$GT$9write_str17h006d11991b68be72E>
                	ldr	x30, [sp], #16
                	ret
                	cmp	w1, #16, lsl #12
-               	b.hs	0x82848 <_ZN50_$LT$$RF$mut$u20$W$u20$as$u20$core..fmt..Write$GT$10write_char17h84d77c247f809bd9E+0xa0>
+               	b.hs	0x82500 <_ZN50_$LT$$RF$mut$u20$W$u20$as$u20$core..fmt..Write$GT$10write_char17h84d77c247f809bd9E+0xa0>
                	lsr	w8, w1, #12
                	mov	w9, #128
                	mov	w10, #128
@@ -2658,7 +2448,7 @@ Disassembly of section .text:
                	strb	w9, [sp, #14]
                	mov	w2, #3
                	add	x1, sp, #12
-               	bl	0x81644 <_ZN68_$LT$core..fmt..builders..PadAdapter$u20$as$u20$core..fmt..Write$GT$9write_str17h006d11991b68be72E>
+               	bl	0x812fc <_ZN68_$LT$core..fmt..builders..PadAdapter$u20$as$u20$core..fmt..Write$GT$9write_str17h006d11991b68be72E>
                	ldr	x30, [sp], #16
                	ret
                	lsr	w8, w1, #18
@@ -2675,7 +2465,7 @@ Disassembly of section .text:
                	strb	w11, [sp, #14]
                	strb	w9, [sp, #15]
                	add	x1, sp, #12
-               	bl	0x81644 <_ZN68_$LT$core..fmt..builders..PadAdapter$u20$as$u20$core..fmt..Write$GT$9write_str17h006d11991b68be72E>
+               	bl	0x812fc <_ZN68_$LT$core..fmt..builders..PadAdapter$u20$as$u20$core..fmt..Write$GT$9write_str17h006d11991b68be72E>
                	ldr	x30, [sp], #16
                	ret
 
@@ -2685,12 +2475,12 @@ Disassembly of section .text:
                	mov	x0, sp
                	mov	w2, #48
                	stp	x30, x8, [sp, #48]
-               	bl	0x833d0 <memcpy>
+               	bl	0x832e0 <memcpy>
                	adrp	x1, 0x84000 <_ZN50_$LT$$RF$mut$u20$W$u20$as$u20$core..fmt..Write$GT$9write_fmt17h17dad8312d16cedaE+0x20>
-               	add	x1, x1, #1152
+               	add	x1, x1, #936
                	add	x0, sp, #56
                	mov	x2, sp
-               	bl	0x813a4 <_ZN4core3fmt5write17h4089dd81629a8d2eE>
+               	bl	0x8105c <_ZN4core3fmt5write17h4089dd81629a8d2eE>
                	ldr	x30, [sp, #48]
                	add	sp, sp, #64
                	ret
@@ -2700,12 +2490,12 @@ Disassembly of section .text:
                	str	x30, [sp, #128]
                	ldr	w8, [x1, #48]
                	ldr	x9, [x0]
-               	tbnz	w8, #4, 0x8298c <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h0ce5f74af94e46edE+0xc8>
-               	tbnz	w8, #5, 0x829cc <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h0ce5f74af94e46edE+0x108>
+               	tbnz	w8, #4, 0x82644 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h0ce5f74af94e46edE+0xc8>
+               	tbnz	w8, #5, 0x82684 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h0ce5f74af94e46edE+0x108>
                	ldr	w8, [x9]
                	ubfx	x9, x8, #4, #28
                	cmp	w9, #625
-               	b.lo	0x82a48 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h0ce5f74af94e46edE+0x184>
+               	b.lo	0x82700 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h0ce5f74af94e46edE+0x184>
                	mov	x10, #22859
                	movk	x10, #14470, lsl #16
                	movk	x10, #50646, lsl #32
@@ -2717,7 +2507,7 @@ Disassembly of section .text:
                	mov	w11, #-10000
                	movk	w12, #20971, lsl #16
                	mov	w13, #-100
-               	add	x14, x14, #1778
+               	add	x14, x14, #1562
                	mov	x15, sp
                	movk	w16, #1525, lsl #16
                	mov	x17, x8
@@ -2741,11 +2531,11 @@ Disassembly of section .text:
                	strb	w2, [x18, #35]
                	strb	w3, [x18, #38]
                	strb	w17, [x18, #37]
-               	b.hi	0x82924 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h0ce5f74af94e46edE+0x60>
+               	b.hi	0x825dc <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h0ce5f74af94e46edE+0x60>
                	add	x9, x9, #39
                	cmp	x8, #99
-               	b.hi	0x82a54 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h0ce5f74af94e46edE+0x190>
-               	b	0x82a9c <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h0ce5f74af94e46edE+0x1d8>
+               	b.hi	0x8270c <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h0ce5f74af94e46edE+0x190>
+               	b	0x82754 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h0ce5f74af94e46edE+0x1d8>
                	ldr	w10, [x9]
                	mov	x8, xzr
                	mov	x9, sp
@@ -2760,8 +2550,8 @@ Disassembly of section .text:
                	strb	w10, [x11, #127]
                	sub	x8, x8, #1
                	mov	w10, w12
-               	cbnz	w12, 0x82998 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h0ce5f74af94e46edE+0xd4>
-               	b	0x82a08 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h0ce5f74af94e46edE+0x144>
+               	cbnz	w12, 0x82650 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h0ce5f74af94e46edE+0xd4>
+               	b	0x826c0 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h0ce5f74af94e46edE+0x144>
                	ldr	w10, [x9]
                	mov	x8, xzr
                	mov	x9, sp
@@ -2776,26 +2566,26 @@ Disassembly of section .text:
                	strb	w10, [x11, #127]
                	sub	x8, x8, #1
                	mov	w10, w12
-               	cbnz	w12, 0x829d8 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h0ce5f74af94e46edE+0x114>
+               	cbnz	w12, 0x82690 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h0ce5f74af94e46edE+0x114>
                	add	x0, x8, #128
                	cmp	x0, #129
-               	b.hs	0x82b14 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h0ce5f74af94e46edE+0x250>
+               	b.hs	0x827cc <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h0ce5f74af94e46edE+0x250>
                	mov	x9, sp
                	neg	x4, x8
                	add	x8, x9, x8
                	add	x3, x8, #128
                	adrp	x8, 0x83000 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h0ce5f74af94e46edE+0x164>
-               	add	x8, x8, #2168
+               	add	x8, x8, #1952
                	mov	w2, #2
                	mov	x0, x1
                	mov	x1, x8
-               	bl	0x80b74 <_ZN4core3fmt9Formatter12pad_integral17h4be5fae25bf478d6E>
+               	bl	0x8082c <_ZN4core3fmt9Formatter12pad_integral17h4be5fae25bf478d6E>
                	ldr	x30, [sp, #128]
                	add	sp, sp, #144
                	ret
                	mov	w9, #39
                	cmp	x8, #99
-               	b.ls	0x82a9c <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h0ce5f74af94e46edE+0x1d8>
+               	b.ls	0x82754 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h0ce5f74af94e46edE+0x1d8>
                	mov	w11, #34079
                	and	w10, w8, #0xffff
                	movk	w11, #20971, lsl #16
@@ -2803,7 +2593,7 @@ Disassembly of section .text:
                	mov	w12, #-100
                	adrp	x11, 0x83000 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h0ce5f74af94e46edE+0x1a8>
                	lsr	x10, x10, #37
-               	add	x11, x11, #1778
+               	add	x11, x11, #1562
                	madd	w8, w10, w12, w8
                	add	x8, x11, w8, uxth #1
                	ldrb	w11, [x8, #1]
@@ -2815,14 +2605,14 @@ Disassembly of section .text:
                	mov	x8, x10
                	strb	w11, [x12, #1]
                	cmp	x8, #10
-               	b.ge	0x82ab8 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h0ce5f74af94e46edE+0x1f4>
+               	b.ge	0x82770 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h0ce5f74af94e46edE+0x1f4>
                	sub	x9, x9, #1
                	add	w8, w8, #48
                	mov	x10, sp
                	strb	w8, [x10, x9]
-               	b	0x82ae0 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h0ce5f74af94e46edE+0x21c>
+               	b	0x82798 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h0ce5f74af94e46edE+0x21c>
                	adrp	x10, 0x83000 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h0ce5f74af94e46edE+0x1f8>
-               	add	x10, x10, #1778
+               	add	x10, x10, #1562
                	add	x8, x10, x8, lsl #1
                	ldrb	w10, [x8, #1]
                	ldrb	w8, [x8]
@@ -2835,19 +2625,19 @@ Disassembly of section .text:
                	add	x3, x8, x9
                	adrp	x8, 0x83000 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h0ce5f74af94e46edE+0x228>
                	mov	w10, #39
-               	add	x8, x8, #1632
+               	add	x8, x8, #1416
                	sub	x4, x10, x9
                	mov	x0, x1
                	mov	x1, x8
                	mov	x2, xzr
-               	bl	0x80b74 <_ZN4core3fmt9Formatter12pad_integral17h4be5fae25bf478d6E>
+               	bl	0x8082c <_ZN4core3fmt9Formatter12pad_integral17h4be5fae25bf478d6E>
                	ldr	x30, [sp, #128]
                	add	sp, sp, #144
                	ret
                	adrp	x2, 0x83000 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h0ce5f74af94e46edE+0x254>
-               	add	x2, x2, #2144
+               	add	x2, x2, #1928
                	mov	w1, #128
-               	bl	0x80eb0 <_ZN4core5slice5index26slice_start_index_len_fail17ha5c8a54d8fb05d93E>
+               	bl	0x80b68 <_ZN4core5slice5index26slice_start_index_len_fail17ha5c8a54d8fb05d93E>
                	brk	#0x1
 
 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h4bfed742e82838c6E>:
@@ -2868,7 +2658,7 @@ Disassembly of section .text:
                	stp	x8, x10, [sp, #40]
                	str	x2, [sp, #56]
                	blr	x2
-               	tbz	w0, #0, 0x82b94 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h4bfed742e82838c6E+0x6c>
+               	tbz	w0, #0, 0x8284c <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h4bfed742e82838c6E+0x6c>
                	ldp	x20, x19, [sp, #144]
                	ldp	x22, x21, [sp, #128]
                	ldp	x24, x23, [sp, #112]
@@ -2879,74 +2669,74 @@ Disassembly of section .text:
                	add	sp, sp, #160
                	ret
                	ldr	x11, [sp, #40]
-               	cbz	x11, 0x82f30 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h4bfed742e82838c6E+0x408>
+               	cbz	x11, 0x82be8 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h4bfed742e82838c6E+0x408>
                	ldr	x8, [sp, #48]
                	adrp	x27, 0x83000 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h4bfed742e82838c6E+0x7c>
                	adrp	x14, 0x83000 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h4bfed742e82838c6E+0x80>
                	mov	x24, xzr
                	mov	x3, xzr
                	add	x21, x8, x11
-               	add	x27, x27, #1155
-               	add	x14, x14, #1129
+               	add	x27, x27, #915
+               	add	x14, x14, #889
                	mov	x12, x8
                	mov	x10, x8
                	mov	x28, x10
                	ldrsb	w8, [x28], #1
                	and	w29, w8, #0xff
-               	tbnz	w8, #31, 0x82bdc <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h4bfed742e82838c6E+0xb4>
+               	tbnz	w8, #31, 0x82894 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h4bfed742e82838c6E+0xb4>
                	mov	x13, x28
-               	b	0x82c94 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h4bfed742e82838c6E+0x16c>
+               	b	0x8294c <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h4bfed742e82838c6E+0x16c>
                	cmp	x28, x21
-               	b.eq	0x82c30 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h4bfed742e82838c6E+0x108>
+               	b.eq	0x828e8 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h4bfed742e82838c6E+0x108>
                	ldrb	w8, [x10, #1]
                	add	x13, x10, #2
                	and	w10, w8, #0x3f
                	cmp	w29, #223
                	and	w8, w29, #0x1f
-               	b.ls	0x82c44 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h4bfed742e82838c6E+0x11c>
+               	b.ls	0x828fc <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h4bfed742e82838c6E+0x11c>
                	cmp	x13, x21
-               	b.eq	0x82c54 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h4bfed742e82838c6E+0x12c>
+               	b.eq	0x8290c <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h4bfed742e82838c6E+0x12c>
                	ldrb	w9, [x13], #1
                	and	w9, w9, #0x3f
                	cmp	w29, #240
                	bfi	w9, w10, #6, #6
-               	b.lo	0x82c68 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h4bfed742e82838c6E+0x140>
+               	b.lo	0x82920 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h4bfed742e82838c6E+0x140>
                	cmp	x13, x21
-               	b.eq	0x82c78 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h4bfed742e82838c6E+0x150>
+               	b.eq	0x82930 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h4bfed742e82838c6E+0x150>
                	ldrb	w10, [x13], #1
                	and	w10, w10, #0x3f
                	mov	x28, x13
-               	b	0x82c80 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h4bfed742e82838c6E+0x158>
+               	b	0x82938 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h4bfed742e82838c6E+0x158>
                	mov	w10, wzr
                	mov	x13, x21
                	cmp	w29, #223
                	and	w8, w29, #0x1f
-               	b.hi	0x82bfc <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h4bfed742e82838c6E+0xd4>
+               	b.hi	0x828b4 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h4bfed742e82838c6E+0xd4>
                	bfi	w10, w8, #6, #5
                	mov	x28, x13
                	mov	w29, w10
-               	b	0x82c94 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h4bfed742e82838c6E+0x16c>
+               	b	0x8294c <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h4bfed742e82838c6E+0x16c>
                	mov	w9, wzr
                	mov	x13, x21
                	cmp	w29, #240
                	bfi	w9, w10, #6, #6
-               	b.hs	0x82c18 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h4bfed742e82838c6E+0xf0>
+               	b.hs	0x828d0 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h4bfed742e82838c6E+0xf0>
                	bfi	w9, w8, #12, #5
                	mov	x28, x13
                	mov	w29, w9
-               	b	0x82c94 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h4bfed742e82838c6E+0x16c>
+               	b	0x8294c <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h4bfed742e82838c6E+0x16c>
                	mov	w10, wzr
                	mov	x28, x21
                	ubfiz	w8, w8, #18, #3
                	bfi	w8, w9, #6, #12
                	orr	w29, w8, w10
                	cmp	w29, #272, lsl #12
-               	b.eq	0x82f10 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h4bfed742e82838c6E+0x3e8>
+               	b.eq	0x82bc8 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h4bfed742e82838c6E+0x3e8>
                	sub	w8, w29, #9
                	cmp	w8, #25
                	stp	x13, x12, [sp, #16]
                	str	x28, [sp, #8]
-               	b.hi	0x82ccc <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h4bfed742e82838c6E+0x1a4>
+               	b.hi	0x82984 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h4bfed742e82838c6E+0x1a4>
                	adr	x9, #24
                	ldrb	w10, [x14, x8]
                	add	x9, x9, x10, lsl #2
@@ -2955,27 +2745,27 @@ Disassembly of section .text:
                	br	x9
                	mov	w23, #110
                	mov	w25, #2
-               	b	0x82d44 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h4bfed742e82838c6E+0x21c>
+               	b	0x829fc <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h4bfed742e82838c6E+0x21c>
                	cmp	w29, #92
-               	b.ne	0x82ce0 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h4bfed742e82838c6E+0x1b8>
+               	b.ne	0x82998 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h4bfed742e82838c6E+0x1b8>
                	mov	w25, #2
                	mov	w23, w29
-               	b	0x82d44 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h4bfed742e82838c6E+0x21c>
+               	b	0x829fc <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h4bfed742e82838c6E+0x21c>
                	mov	w0, w29
                	mov	x20, x3
-               	bl	0x820d0 <_ZN4core7unicode12unicode_data15grapheme_extend6lookup17h0525d17e88c4ad5eE>
-               	tbnz	w0, #0, 0x82d1c <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h4bfed742e82838c6E+0x1f4>
+               	bl	0x81d88 <_ZN4core7unicode12unicode_data15grapheme_extend6lookup17h0525d17e88c4ad5eE>
+               	tbnz	w0, #0, 0x829d4 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h4bfed742e82838c6E+0x1f4>
                	mov	w0, w29
-               	bl	0x82208 <_ZN4core7unicode9printable12is_printable17h809bc46350007ff2E>
-               	tbz	w0, #0, 0x82d1c <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h4bfed742e82838c6E+0x1f4>
+               	bl	0x81ec0 <_ZN4core7unicode9printable12is_printable17h809bc46350007ff2E>
+               	tbz	w0, #0, 0x829d4 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h4bfed742e82838c6E+0x1f4>
                	ldr	x11, [sp, #40]
                	ldp	x10, x9, [sp, #16]
                	mov	x28, x21
                	mov	x21, x20
-               	b	0x82eec <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h4bfed742e82838c6E+0x3c4>
+               	b	0x82ba4 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h4bfed742e82838c6E+0x3c4>
                	mov	w23, #114
                	mov	w25, #2
-               	b	0x82d44 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h4bfed742e82838c6E+0x21c>
+               	b	0x829fc <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h4bfed742e82838c6E+0x21c>
                	orr	w8, w29, #0x1
                	ldr	x11, [sp, #40]
                	clz	w8, w8
@@ -2987,29 +2777,29 @@ Disassembly of section .text:
                	mov	w25, #3
                	mov	x3, x20
                	cmp	x3, x24
-               	b.lo	0x82f8c <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h4bfed742e82838c6E+0x464>
-               	cbz	x24, 0x82d70 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h4bfed742e82838c6E+0x248>
+               	b.lo	0x82c44 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h4bfed742e82838c6E+0x464>
+               	cbz	x24, 0x82a28 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h4bfed742e82838c6E+0x248>
                	cmp	x24, x11
-               	b.hs	0x82d6c <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h4bfed742e82838c6E+0x244>
+               	b.hs	0x82a24 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h4bfed742e82838c6E+0x244>
                	ldr	x8, [sp, #48]
                	ldrsb	w8, [x8, x24]
                	cmn	w8, #64
-               	b.ge	0x82d70 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h4bfed742e82838c6E+0x248>
-               	b	0x82f8c <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h4bfed742e82838c6E+0x464>
-               	b.ne	0x82f8c <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h4bfed742e82838c6E+0x464>
-               	cbz	x3, 0x82d94 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h4bfed742e82838c6E+0x26c>
+               	b.ge	0x82a28 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h4bfed742e82838c6E+0x248>
+               	b	0x82c44 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h4bfed742e82838c6E+0x464>
+               	b.ne	0x82c44 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h4bfed742e82838c6E+0x464>
+               	cbz	x3, 0x82a4c <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h4bfed742e82838c6E+0x26c>
                	cmp	x3, x11
-               	b.hs	0x82d9c <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h4bfed742e82838c6E+0x274>
+               	b.hs	0x82a54 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h4bfed742e82838c6E+0x274>
                	ldr	x8, [sp, #48]
                	mov	x20, x3
                	ldrsb	w8, [x8, x3]
                	cmn	w8, #65
-               	b.gt	0x82da4 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h4bfed742e82838c6E+0x27c>
-               	b	0x82f8c <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h4bfed742e82838c6E+0x464>
+               	b.gt	0x82a5c <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h4bfed742e82838c6E+0x27c>
+               	b	0x82c44 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h4bfed742e82838c6E+0x464>
                	mov	x20, xzr
-               	b	0x82da4 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h4bfed742e82838c6E+0x27c>
+               	b	0x82a5c <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h4bfed742e82838c6E+0x27c>
                	mov	x20, x11
-               	b.ne	0x82f8c <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h4bfed742e82838c6E+0x464>
+               	b.ne	0x82c44 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h4bfed742e82838c6E+0x464>
                	ldr	x8, [sp, #32]
                	ldr	x9, [sp, #48]
                	sub	x2, x20, x24
@@ -3020,15 +2810,15 @@ Disassembly of section .text:
                	mov	x21, x3
                	blr	x8
                	adrp	x24, 0x83000 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h4bfed742e82838c6E+0x2a4>
-               	add	x24, x24, #1159
-               	tbz	w0, #0, 0x82df0 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h4bfed742e82838c6E+0x2c8>
-               	b	0x82b70 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h4bfed742e82838c6E+0x48>
+               	add	x24, x24, #919
+               	tbz	w0, #0, 0x82aa8 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h4bfed742e82838c6E+0x2c8>
+               	b	0x82828 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h4bfed742e82838c6E+0x48>
                	mov	w25, wzr
                	mov	w1, w23
                	ldr	x2, [sp, #56]
                	mov	x0, x19
                	blr	x2
-               	tbnz	w0, #0, 0x82b70 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h4bfed742e82838c6E+0x48>
+               	tbnz	w0, #0, 0x82828 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h4bfed742e82838c6E+0x48>
                	mov	w8, w25
                	adr	x9, #-28
                	ldrb	w10, [x27, x8]
@@ -3044,12 +2834,12 @@ Disassembly of section .text:
                	and	x26, x26, #0xffffff00ffffffff
                	mov	w25, #3
                	mov	w1, #125
-               	b	0x82de0 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h4bfed742e82838c6E+0x2b8>
+               	b	0x82a98 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h4bfed742e82838c6E+0x2b8>
                	and	x8, x26, #0xffffff00ffffffff
                	mov	w25, #3
                	orr	x26, x8, #0x300000000
                	mov	w1, #117
-               	b	0x82de0 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h4bfed742e82838c6E+0x2b8>
+               	b	0x82a98 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h4bfed742e82838c6E+0x2b8>
                	ubfiz	w8, w22, #2, #3
                	lsr	w8, w26, w8
                	and	w8, w8, #0xf
@@ -3058,36 +2848,36 @@ Disassembly of section .text:
                	mov	w10, #48
                	csel	w9, w10, w9, lo
                	add	w1, w9, w8
-               	cbz	x22, 0x82e9c <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h4bfed742e82838c6E+0x374>
+               	cbz	x22, 0x82b54 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h4bfed742e82838c6E+0x374>
                	sub	x22, x22, #1
                	mov	w25, #3
-               	b	0x82de0 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h4bfed742e82838c6E+0x2b8>
+               	b	0x82a98 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h4bfed742e82838c6E+0x2b8>
                	and	x8, x26, #0xffffff00ffffffff
                	mov	w25, #3
                	orr	x26, x8, #0x200000000
                	mov	w1, #123
-               	b	0x82de0 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h4bfed742e82838c6E+0x2b8>
+               	b	0x82a98 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h4bfed742e82838c6E+0x2b8>
                	and	x8, x26, #0xffffff00ffffffff
                	mov	w25, #3
                	orr	x26, x8, #0x400000000
                	mov	w1, #92
-               	b	0x82de0 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h4bfed742e82838c6E+0x2b8>
+               	b	0x82a98 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h4bfed742e82838c6E+0x2b8>
                	and	x8, x26, #0xffffff00ffffffff
                	orr	x26, x8, #0x100000000
                	mov	w25, #3
-               	b	0x82de0 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h4bfed742e82838c6E+0x2b8>
+               	b	0x82a98 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h4bfed742e82838c6E+0x2b8>
                	cmp	w29, #128
-               	b.hs	0x82ec4 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h4bfed742e82838c6E+0x39c>
+               	b.hs	0x82b7c <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h4bfed742e82838c6E+0x39c>
                	ldr	x11, [sp, #40]
                	ldp	x10, x9, [sp, #16]
                	mov	w8, #1
-               	b	0x82ee8 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h4bfed742e82838c6E+0x3c0>
+               	b	0x82ba0 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h4bfed742e82838c6E+0x3c0>
                	ldr	x11, [sp, #40]
                	ldp	x10, x9, [sp, #16]
                	cmp	w29, #2048
-               	b.hs	0x82edc <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h4bfed742e82838c6E+0x3b4>
+               	b.hs	0x82b94 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h4bfed742e82838c6E+0x3b4>
                	mov	w8, #2
-               	b	0x82ee8 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h4bfed742e82838c6E+0x3c0>
+               	b	0x82ba0 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h4bfed742e82838c6E+0x3c0>
                	cmp	w29, #16, lsl #12
                	mov	w8, #3
                	cinc	x8, x8, hs
@@ -3099,16 +2889,16 @@ Disassembly of section .text:
                	cmp	x10, x28
                	add	x3, x8, x9
                	mov	x12, x10
-               	add	x14, x14, #1129
-               	b.ne	0x82bc4 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h4bfed742e82838c6E+0x9c>
-               	cbz	x24, 0x82f34 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h4bfed742e82838c6E+0x40c>
+               	add	x14, x14, #889
+               	b.ne	0x8287c <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h4bfed742e82838c6E+0x9c>
+               	cbz	x24, 0x82bec <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h4bfed742e82838c6E+0x40c>
                	cmp	x24, x11
-               	b.hs	0x82f80 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h4bfed742e82838c6E+0x458>
+               	b.hs	0x82c38 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h4bfed742e82838c6E+0x458>
                	ldr	x8, [sp, #48]
                	ldrsb	w8, [x8, x24]
                	cmn	w8, #65
-               	b.gt	0x82f34 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h4bfed742e82838c6E+0x40c>
-               	b	0x82fa8 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h4bfed742e82838c6E+0x480>
+               	b.gt	0x82bec <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h4bfed742e82838c6E+0x40c>
+               	b	0x82c60 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h4bfed742e82838c6E+0x480>
                	mov	x24, xzr
                	ldr	x8, [sp, #32]
                	ldr	x9, [sp, #48]
@@ -3117,7 +2907,7 @@ Disassembly of section .text:
                	ldr	x8, [x8, #24]
                	add	x1, x9, x24
                	blr	x8
-               	tbnz	w0, #0, 0x82b70 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h4bfed742e82838c6E+0x48>
+               	tbnz	w0, #0, 0x82828 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h4bfed742e82838c6E+0x48>
                	mov	x0, x19
                	ldr	x2, [sp, #56]
                	ldp	x20, x19, [sp, #144]
@@ -3129,23 +2919,23 @@ Disassembly of section .text:
                	mov	w1, #34
                	add	sp, sp, #160
                	br	x2
-               	b.ne	0x82fa8 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h4bfed742e82838c6E+0x480>
+               	b.ne	0x82c60 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h4bfed742e82838c6E+0x480>
                	mov	x24, x11
-               	b	0x82f34 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h4bfed742e82838c6E+0x40c>
+               	b	0x82bec <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h4bfed742e82838c6E+0x40c>
                	ldr	x0, [sp, #48]
                	adrp	x4, 0x84000 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h4bfed742e82838c6E+0x470>
-               	add	x4, x4, #1232
+               	add	x4, x4, #1016
                	mov	x1, x11
                	mov	x2, x24
-               	bl	0x818d4 <_ZN4core3str16slice_error_fail17hf7d2a92268a53d29E>
+               	bl	0x8158c <_ZN4core3str16slice_error_fail17hf7d2a92268a53d29E>
                	brk	#0x1
                	ldr	x0, [sp, #48]
                	adrp	x4, 0x84000 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h4bfed742e82838c6E+0x48c>
-               	add	x4, x4, #1208
+               	add	x4, x4, #992
                	mov	x1, x11
                	mov	x2, x24
                	mov	x3, x11
-               	bl	0x818d4 <_ZN4core3str16slice_error_fail17hf7d2a92268a53d29E>
+               	bl	0x8158c <_ZN4core3str16slice_error_fail17hf7d2a92268a53d29E>
                	brk	#0x1
 
 <_ZN71_$LT$core..panic..panic_info..PanicInfo$u20$as$u20$core..fmt..Debug$GT$3fmt17hdab5301ab1e937b8E>:
@@ -3157,59 +2947,59 @@ Disassembly of section .text:
                	ldp	x0, x8, [x1, #32]
                	mov	x19, x1
                	adrp	x1, 0x84000 <_ZN71_$LT$core..panic..panic_info..PanicInfo$u20$as$u20$core..fmt..Debug$GT$3fmt17hdab5301ab1e937b8E+0x24>
-               	add	x1, x1, #1355
+               	add	x1, x1, #1139
                	ldr	x8, [x8, #24]
                	mov	w2, #9
                	add	x21, x20, #16
                	add	x22, x20, #24
                	blr	x8
                	cmp	w0, #0
-               	adrp	x1, 0x84000 <_ZN71_$LT$core..panic..panic_info..PanicInfo$u20$as$u20$core..fmt..Debug$GT$3fmt17hdab5301ab1e937b8E+0x40>
-               	adrp	x4, 0x84000 <_ZN71_$LT$core..panic..panic_info..PanicInfo$u20$as$u20$core..fmt..Debug$GT$3fmt17hdab5301ab1e937b8E+0x44>
+               	adrp	x1, 0x84000 <_ZN71_$LT$core..panic..panic_info..PanicInfo$u20$as$u20$core..fmt..Debug$GT$3fmt17hdab5301ab1e937b8E+0x44>
+               	adrp	x4, 0x84000 <_ZN71_$LT$core..panic..panic_info..PanicInfo$u20$as$u20$core..fmt..Debug$GT$3fmt17hdab5301ab1e937b8E+0x48>
                	cset	x8, ne
-               	add	x1, x1, #1364
-               	add	x4, x4, #1376
+               	add	x1, x1, #1148
+               	add	x4, x4, #1160
                	mov	x0, sp
                	add	x3, sp, #24
                	mov	w2, #7
                	stp	x19, x8, [sp]
                	str	x20, [sp, #24]
-               	bl	0x824dc <_ZN4core3fmt8builders11DebugStruct5field17hdc89cd457900d764E>
-               	adrp	x1, 0x84000 <_ZN71_$LT$core..panic..panic_info..PanicInfo$u20$as$u20$core..fmt..Debug$GT$3fmt17hdab5301ab1e937b8E+0x6c>
-               	adrp	x4, 0x84000 <_ZN71_$LT$core..panic..panic_info..PanicInfo$u20$as$u20$core..fmt..Debug$GT$3fmt17hdab5301ab1e937b8E+0x70>
-               	add	x1, x1, #1408
-               	add	x4, x4, #1416
+               	bl	0x82194 <_ZN4core3fmt8builders11DebugStruct5field17hdc89cd457900d764E>
+               	adrp	x1, 0x84000 <_ZN71_$LT$core..panic..panic_info..PanicInfo$u20$as$u20$core..fmt..Debug$GT$3fmt17hdab5301ab1e937b8E+0x70>
+               	adrp	x4, 0x84000 <_ZN71_$LT$core..panic..panic_info..PanicInfo$u20$as$u20$core..fmt..Debug$GT$3fmt17hdab5301ab1e937b8E+0x74>
+               	add	x1, x1, #1192
+               	add	x4, x4, #1200
                	mov	x0, sp
                	add	x3, sp, #24
                	mov	w2, #7
                	str	x21, [sp, #24]
-               	bl	0x824dc <_ZN4core3fmt8builders11DebugStruct5field17hdc89cd457900d764E>
-               	adrp	x1, 0x83000 <_ZN71_$LT$core..panic..panic_info..PanicInfo$u20$as$u20$core..fmt..Debug$GT$3fmt17hdab5301ab1e937b8E+0x8c>
-               	adrp	x4, 0x84000 <_ZN71_$LT$core..panic..panic_info..PanicInfo$u20$as$u20$core..fmt..Debug$GT$3fmt17hdab5301ab1e937b8E+0x94>
-               	add	x1, x1, #2745
-               	add	x4, x4, #1448
+               	bl	0x82194 <_ZN4core3fmt8builders11DebugStruct5field17hdc89cd457900d764E>
+               	adrp	x1, 0x83000 <_ZN71_$LT$core..panic..panic_info..PanicInfo$u20$as$u20$core..fmt..Debug$GT$3fmt17hdab5301ab1e937b8E+0x90>
+               	adrp	x4, 0x84000 <_ZN71_$LT$core..panic..panic_info..PanicInfo$u20$as$u20$core..fmt..Debug$GT$3fmt17hdab5301ab1e937b8E+0x98>
+               	add	x1, x1, #2529
+               	add	x4, x4, #1232
                	mov	x0, sp
                	add	x3, sp, #24
                	mov	w2, #8
                	str	x22, [sp, #24]
-               	bl	0x824dc <_ZN4core3fmt8builders11DebugStruct5field17hdc89cd457900d764E>
+               	bl	0x82194 <_ZN4core3fmt8builders11DebugStruct5field17hdc89cd457900d764E>
                	ldrb	w8, [sp, #9]
                	ldrb	w0, [sp, #8]
-               	cbz	w8, 0x830c8 <_ZN71_$LT$core..panic..panic_info..PanicInfo$u20$as$u20$core..fmt..Debug$GT$3fmt17hdab5301ab1e937b8E+0x100>
-               	cbz	w0, 0x83090 <_ZN71_$LT$core..panic..panic_info..PanicInfo$u20$as$u20$core..fmt..Debug$GT$3fmt17hdab5301ab1e937b8E+0xc8>
+               	cbz	w8, 0x82d80 <_ZN71_$LT$core..panic..panic_info..PanicInfo$u20$as$u20$core..fmt..Debug$GT$3fmt17hdab5301ab1e937b8E+0x100>
+               	cbz	w0, 0x82d48 <_ZN71_$LT$core..panic..panic_info..PanicInfo$u20$as$u20$core..fmt..Debug$GT$3fmt17hdab5301ab1e937b8E+0xc8>
                	mov	w0, #1
-               	b	0x830c8 <_ZN71_$LT$core..panic..panic_info..PanicInfo$u20$as$u20$core..fmt..Debug$GT$3fmt17hdab5301ab1e937b8E+0x100>
+               	b	0x82d80 <_ZN71_$LT$core..panic..panic_info..PanicInfo$u20$as$u20$core..fmt..Debug$GT$3fmt17hdab5301ab1e937b8E+0x100>
                	ldr	x8, [sp]
                	ldrb	w9, [x8, #48]
-               	tbnz	w9, #2, 0x830b0 <_ZN71_$LT$core..panic..panic_info..PanicInfo$u20$as$u20$core..fmt..Debug$GT$3fmt17hdab5301ab1e937b8E+0xe8>
+               	tbnz	w9, #2, 0x82d68 <_ZN71_$LT$core..panic..panic_info..PanicInfo$u20$as$u20$core..fmt..Debug$GT$3fmt17hdab5301ab1e937b8E+0xe8>
                	ldp	x0, x9, [x8, #32]
-               	adrp	x1, 0x84000 <_ZN71_$LT$core..panic..panic_info..PanicInfo$u20$as$u20$core..fmt..Debug$GT$3fmt17hdab5301ab1e937b8E+0xdc>
-               	add	x1, x1, #1201
+               	adrp	x1, 0x84000 <_ZN71_$LT$core..panic..panic_info..PanicInfo$u20$as$u20$core..fmt..Debug$GT$3fmt17hdab5301ab1e937b8E+0xe0>
+               	add	x1, x1, #985
                	mov	w2, #2
-               	b	0x830c0 <_ZN71_$LT$core..panic..panic_info..PanicInfo$u20$as$u20$core..fmt..Debug$GT$3fmt17hdab5301ab1e937b8E+0xf8>
+               	b	0x82d78 <_ZN71_$LT$core..panic..panic_info..PanicInfo$u20$as$u20$core..fmt..Debug$GT$3fmt17hdab5301ab1e937b8E+0xf8>
                	ldp	x0, x9, [x8, #32]
-               	adrp	x1, 0x84000 <_ZN71_$LT$core..panic..panic_info..PanicInfo$u20$as$u20$core..fmt..Debug$GT$3fmt17hdab5301ab1e937b8E+0xf0>
-               	add	x1, x1, #1200
+               	adrp	x1, 0x84000 <_ZN71_$LT$core..panic..panic_info..PanicInfo$u20$as$u20$core..fmt..Debug$GT$3fmt17hdab5301ab1e937b8E+0xf4>
+               	add	x1, x1, #984
                	mov	w2, #1
                	ldr	x8, [x9, #24]
                	blr	x8
@@ -3229,61 +3019,61 @@ Disassembly of section .text:
                	ldr	x8, [x0]
                	ldp	x0, x9, [x1, #32]
                	mov	x19, x1
-               	adrp	x1, 0x83000 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17hdb3565c8b9fbe464E+0x1c>
+               	adrp	x1, 0x83000 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17hdb3565c8b9fbe464E+0x20>
                	ldr	x20, [x8]
                	ldr	x8, [x9, #24]
-               	add	x1, x1, #2753
+               	add	x1, x1, #2537
                	mov	w2, #8
                	add	x21, x20, #16
                	add	x22, x20, #20
                	blr	x8
                	cmp	w0, #0
-               	adrp	x1, 0x83000 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17hdb3565c8b9fbe464E+0x40>
-               	adrp	x4, 0x84000 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17hdb3565c8b9fbe464E+0x48>
+               	adrp	x1, 0x83000 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17hdb3565c8b9fbe464E+0x44>
+               	adrp	x4, 0x84000 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17hdb3565c8b9fbe464E+0x4c>
                	cset	x8, ne
-               	add	x1, x1, #2350
-               	add	x4, x4, #1288
+               	add	x1, x1, #2134
+               	add	x4, x4, #1072
                	mov	x0, sp
                	add	x3, sp, #24
                	mov	w2, #4
                	stp	x19, x8, [sp]
                	str	x20, [sp, #24]
-               	bl	0x824dc <_ZN4core3fmt8builders11DebugStruct5field17hdc89cd457900d764E>
-               	adrp	x19, 0x84000 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17hdb3565c8b9fbe464E+0x70>
-               	adrp	x1, 0x83000 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17hdb3565c8b9fbe464E+0x70>
-               	add	x19, x19, #1320
-               	add	x1, x1, #2354
+               	bl	0x82194 <_ZN4core3fmt8builders11DebugStruct5field17hdc89cd457900d764E>
+               	adrp	x19, 0x84000 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17hdb3565c8b9fbe464E+0x74>
+               	adrp	x1, 0x83000 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17hdb3565c8b9fbe464E+0x74>
+               	add	x19, x19, #1104
+               	add	x1, x1, #2138
                	mov	x0, sp
                	add	x3, sp, #24
                	mov	w2, #4
                	mov	x4, x19
                	str	x21, [sp, #24]
-               	bl	0x824dc <_ZN4core3fmt8builders11DebugStruct5field17hdc89cd457900d764E>
-               	adrp	x1, 0x84000 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17hdb3565c8b9fbe464E+0x98>
-               	add	x1, x1, #1352
+               	bl	0x82194 <_ZN4core3fmt8builders11DebugStruct5field17hdc89cd457900d764E>
+               	adrp	x1, 0x84000 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17hdb3565c8b9fbe464E+0x9c>
+               	add	x1, x1, #1136
                	mov	x0, sp
                	add	x3, sp, #24
                	mov	w2, #3
                	mov	x4, x19
                	str	x22, [sp, #24]
-               	bl	0x824dc <_ZN4core3fmt8builders11DebugStruct5field17hdc89cd457900d764E>
+               	bl	0x82194 <_ZN4core3fmt8builders11DebugStruct5field17hdc89cd457900d764E>
                	ldrb	w8, [sp, #9]
                	ldrb	w0, [sp, #8]
-               	cbz	w8, 0x831e8 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17hdb3565c8b9fbe464E+0x104>
-               	cbz	w0, 0x831b0 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17hdb3565c8b9fbe464E+0xcc>
+               	cbz	w8, 0x82ea0 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17hdb3565c8b9fbe464E+0x104>
+               	cbz	w0, 0x82e68 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17hdb3565c8b9fbe464E+0xcc>
                	mov	w0, #1
-               	b	0x831e8 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17hdb3565c8b9fbe464E+0x104>
+               	b	0x82ea0 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17hdb3565c8b9fbe464E+0x104>
                	ldr	x8, [sp]
                	ldrb	w9, [x8, #48]
-               	tbnz	w9, #2, 0x831d0 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17hdb3565c8b9fbe464E+0xec>
+               	tbnz	w9, #2, 0x82e88 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17hdb3565c8b9fbe464E+0xec>
                	ldp	x0, x9, [x8, #32]
-               	adrp	x1, 0x84000 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17hdb3565c8b9fbe464E+0xe0>
-               	add	x1, x1, #1201
+               	adrp	x1, 0x84000 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17hdb3565c8b9fbe464E+0xe4>
+               	add	x1, x1, #985
                	mov	w2, #2
-               	b	0x831e0 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17hdb3565c8b9fbe464E+0xfc>
+               	b	0x82e98 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17hdb3565c8b9fbe464E+0xfc>
                	ldp	x0, x9, [x8, #32]
-               	adrp	x1, 0x84000 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17hdb3565c8b9fbe464E+0xf4>
-               	add	x1, x1, #1200
+               	adrp	x1, 0x84000 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17hdb3565c8b9fbe464E+0xf8>
+               	add	x1, x1, #984
                	mov	w2, #1
                	ldr	x8, [x9, #24]
                	blr	x8
@@ -3303,15 +3093,15 @@ Disassembly of section .text:
                	ldr	x23, [x0]
                	mov	x21, x1
                	ldr	x8, [x23]
-               	cbz	x8, 0x83260 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h91a03beae5aa8267E+0x5c>
+               	cbz	x8, 0x82f18 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h91a03beae5aa8267E+0x5c>
                	ldp	x19, x20, [x21, #32]
-               	adrp	x1, 0x83000 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h91a03beae5aa8267E+0x24>
-               	add	x1, x1, #2342
+               	adrp	x1, 0x83000 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h91a03beae5aa8267E+0x28>
+               	add	x1, x1, #2126
                	mov	w2, #4
                	ldr	x22, [x20, #24]
                	mov	x0, x19
                	blr	x22
-               	tbz	w0, #0, 0x83288 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h91a03beae5aa8267E+0x84>
+               	tbz	w0, #0, 0x82f40 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h91a03beae5aa8267E+0x84>
                	mov	w21, #1
                	mov	w0, w21
                	ldp	x20, x19, [sp, #112]
@@ -3324,37 +3114,37 @@ Disassembly of section .text:
                	ldp	x22, x21, [sp, #96]
                	ldp	x30, x23, [sp, #80]
                	ldr	x3, [x8, #24]
-               	adrp	x1, 0x83000 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h91a03beae5aa8267E+0x70>
-               	add	x1, x1, #2358
+               	adrp	x1, 0x83000 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h91a03beae5aa8267E+0x74>
+               	add	x1, x1, #2142
                	mov	w2, #4
                	add	sp, sp, #128
                	br	x3
                	ldrb	w8, [x21, #48]
-               	tbnz	w8, #2, 0x832d4 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h91a03beae5aa8267E+0xd0>
-               	adrp	x1, 0x84000 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h91a03beae5aa8267E+0x90>
-               	add	x1, x1, #1203
+               	tbnz	w8, #2, 0x82f8c <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h91a03beae5aa8267E+0xd0>
+               	adrp	x1, 0x84000 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h91a03beae5aa8267E+0x94>
+               	add	x1, x1, #987
                	mov	w2, #1
                	mov	x0, x19
                	mov	w21, #1
                	blr	x22
-               	tbnz	w0, #0, 0x83248 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h91a03beae5aa8267E+0x44>
+               	tbnz	w0, #0, 0x82f00 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h91a03beae5aa8267E+0x44>
                	ldr	x1, [x23]
                	add	x0, sp, #32
                	mov	w2, #48
-               	bl	0x833d0 <memcpy>
+               	bl	0x832e0 <memcpy>
                	add	x2, sp, #32
                	mov	x0, x19
                	mov	x1, x20
-               	bl	0x813a4 <_ZN4core3fmt5write17h4089dd81629a8d2eE>
-               	tbnz	w0, #0, 0x83244 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h91a03beae5aa8267E+0x40>
-               	b	0x83340 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h91a03beae5aa8267E+0x13c>
-               	adrp	x1, 0x84000 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h91a03beae5aa8267E+0xd4>
-               	add	x1, x1, #1204
+               	bl	0x8105c <_ZN4core3fmt5write17h4089dd81629a8d2eE>
+               	tbnz	w0, #0, 0x82efc <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h91a03beae5aa8267E+0x40>
+               	b	0x82ff8 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h91a03beae5aa8267E+0x13c>
+               	adrp	x1, 0x84000 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h91a03beae5aa8267E+0xd8>
+               	add	x1, x1, #988
                	mov	w2, #2
                	mov	x0, x19
                	blr	x22
                	mov	w21, #1
-               	tbnz	w0, #0, 0x83248 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h91a03beae5aa8267E+0x44>
+               	tbnz	w0, #0, 0x82f00 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h91a03beae5aa8267E+0x44>
                	add	x8, sp, #28
                	strb	w21, [sp, #28]
                	stp	x19, x20, [sp]
@@ -3362,39 +3152,39 @@ Disassembly of section .text:
                	ldr	x1, [x23]
                	add	x0, sp, #32
                	mov	w2, #48
-               	bl	0x833d0 <memcpy>
-               	adrp	x1, 0x84000 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h91a03beae5aa8267E+0x110>
-               	add	x1, x1, #1096
+               	bl	0x832e0 <memcpy>
+               	adrp	x1, 0x84000 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h91a03beae5aa8267E+0x114>
+               	add	x1, x1, #880
                	mov	x0, sp
                	add	x2, sp, #32
-               	bl	0x813a4 <_ZN4core3fmt5write17h4089dd81629a8d2eE>
-               	tbnz	w0, #0, 0x83244 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h91a03beae5aa8267E+0x40>
-               	adrp	x1, 0x84000 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h91a03beae5aa8267E+0x128>
-               	add	x1, x1, #1144
+               	bl	0x8105c <_ZN4core3fmt5write17h4089dd81629a8d2eE>
+               	tbnz	w0, #0, 0x82efc <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h91a03beae5aa8267E+0x40>
+               	adrp	x1, 0x84000 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h91a03beae5aa8267E+0x12c>
+               	add	x1, x1, #928
                	mov	x0, sp
                	mov	w2, #2
-               	bl	0x81644 <_ZN68_$LT$core..fmt..builders..PadAdapter$u20$as$u20$core..fmt..Write$GT$9write_str17h006d11991b68be72E>
-               	tbnz	w0, #0, 0x83244 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h91a03beae5aa8267E+0x40>
-               	adrp	x1, 0x84000 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h91a03beae5aa8267E+0x140>
-               	add	x1, x1, #1206
+               	bl	0x812fc <_ZN68_$LT$core..fmt..builders..PadAdapter$u20$as$u20$core..fmt..Write$GT$9write_str17h006d11991b68be72E>
+               	tbnz	w0, #0, 0x82efc <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h91a03beae5aa8267E+0x40>
+               	adrp	x1, 0x84000 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h91a03beae5aa8267E+0x144>
+               	add	x1, x1, #990
                	mov	w2, #1
                	mov	x0, x19
                	blr	x22
                	mov	w21, w0
-               	b	0x83248 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h91a03beae5aa8267E+0x44>
+               	b	0x82f00 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17h91a03beae5aa8267E+0x44>
 
 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17hc72048f68cee3930E>:
                	sub	sp, sp, #32
                	stp	x30, x19, [sp, #16]
                	ldp	x19, x8, [x1, #32]
                	adrp	x1, 0x83000 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17hc72048f68cee3930E+0xc>
-               	add	x1, x1, #2290
+               	add	x1, x1, #2074
                	mov	w2, #3
                	ldr	x3, [x8, #24]
                	mov	x0, x19
                	str	x3, [sp, #8]
                	blr	x3
-               	tbz	w0, #0, 0x83398 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17hc72048f68cee3930E+0x3c>
+               	tbz	w0, #0, 0x83050 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17hc72048f68cee3930E+0x3c>
                	ldp	x30, x19, [sp, #16]
                	mov	w0, #1
                	add	sp, sp, #32
@@ -3403,46 +3193,198 @@ Disassembly of section .text:
                	ldr	x3, [sp, #8]
                	ldp	x30, x19, [sp, #16]
                	adrp	x1, 0x83000 <_ZN42_$LT$$RF$T$u20$as$u20$core..fmt..Debug$GT$3fmt17hc72048f68cee3930E+0x48>
-               	add	x1, x1, #2293
+               	add	x1, x1, #2077
                	mov	w2, #7
                	add	sp, sp, #32
                	br	x3
 
+<_ZN66_$LT$core..sync..atomic..AtomicU32$u20$as$u20$core..fmt..Debug$GT$3fmt17h38b5cf5104051f17E>:
+               	sub	sp, sp, #144
+               	str	x30, [sp, #128]
+               	ldar	w8, [x0]
+               	ldr	w9, [x1, #48]
+               	tbnz	w9, #4, 0x83134 <_ZN66_$LT$core..sync..atomic..AtomicU32$u20$as$u20$core..fmt..Debug$GT$3fmt17h38b5cf5104051f17E+0xc4>
+               	tbnz	w9, #5, 0x83170 <_ZN66_$LT$core..sync..atomic..AtomicU32$u20$as$u20$core..fmt..Debug$GT$3fmt17h38b5cf5104051f17E+0x100>
+               	lsr	w9, w8, #4
+               	cmp	w9, #625
+               	b.lo	0x831e8 <_ZN66_$LT$core..sync..atomic..AtomicU32$u20$as$u20$core..fmt..Debug$GT$3fmt17h38b5cf5104051f17E+0x178>
+               	mov	x10, #22859
+               	movk	x10, #14470, lsl #16
+               	movk	x10, #50646, lsl #32
+               	mov	w12, #34079
+               	adrp	x14, 0x83000 <_ZN66_$LT$core..sync..atomic..AtomicU32$u20$as$u20$core..fmt..Debug$GT$3fmt17h38b5cf5104051f17E+0x34>
+               	mov	w16, #57599
+               	mov	x9, xzr
+               	movk	x10, #13421, lsl #48
+               	mov	w11, #-10000
+               	movk	w12, #20971, lsl #16
+               	mov	w13, #-100
+               	add	x14, x14, #1562
+               	mov	x15, sp
+               	movk	w16, #1525, lsl #16
+               	mov	x17, x8
+               	umulh	x8, x8, x10
+               	lsr	x8, x8, #11
+               	cmp	x17, x16
+               	madd	w17, w8, w11, w17
+               	and	w0, w17, #0xffff
+               	umull	x0, w0, w12
+               	lsr	x0, x0, #37
+               	madd	w17, w0, w13, w17
+               	add	x0, x14, x0, lsl #1
+               	add	x17, x14, w17, uxth #1
+               	ldrb	w2, [x0]
+               	ldrb	w0, [x0, #1]
+               	ldrb	w3, [x17, #1]
+               	ldrb	w17, [x17]
+               	add	x18, x15, x9
+               	sub	x9, x9, #4
+               	strb	w0, [x18, #36]
+               	strb	w2, [x18, #35]
+               	strb	w3, [x18, #38]
+               	strb	w17, [x18, #37]
+               	b.hi	0x830cc <_ZN66_$LT$core..sync..atomic..AtomicU32$u20$as$u20$core..fmt..Debug$GT$3fmt17h38b5cf5104051f17E+0x5c>
+               	add	x9, x9, #39
+               	cmp	x8, #99
+               	b.hi	0x831f4 <_ZN66_$LT$core..sync..atomic..AtomicU32$u20$as$u20$core..fmt..Debug$GT$3fmt17h38b5cf5104051f17E+0x184>
+               	b	0x8323c <_ZN66_$LT$core..sync..atomic..AtomicU32$u20$as$u20$core..fmt..Debug$GT$3fmt17h38b5cf5104051f17E+0x1cc>
+               	mov	x9, xzr
+               	mov	x10, sp
+               	and	w13, w8, #0xf
+               	mov	w14, #48
+               	lsr	w12, w8, #4
+               	bfxil	w14, w8, #0, #4
+               	add	w8, w13, #87
+               	cmp	w13, #10
+               	add	x11, x10, x9
+               	csel	w8, w14, w8, lo
+               	strb	w8, [x11, #127]
+               	sub	x9, x9, #1
+               	mov	w8, w12
+               	cbnz	w12, 0x8313c <_ZN66_$LT$core..sync..atomic..AtomicU32$u20$as$u20$core..fmt..Debug$GT$3fmt17h38b5cf5104051f17E+0xcc>
+               	b	0x831a8 <_ZN66_$LT$core..sync..atomic..AtomicU32$u20$as$u20$core..fmt..Debug$GT$3fmt17h38b5cf5104051f17E+0x138>
+               	mov	x9, xzr
+               	mov	x10, sp
+               	and	w13, w8, #0xf
+               	mov	w14, #48
+               	lsr	w12, w8, #4
+               	bfxil	w14, w8, #0, #4
+               	add	w8, w13, #55
+               	cmp	w13, #10
+               	add	x11, x10, x9
+               	csel	w8, w14, w8, lo
+               	strb	w8, [x11, #127]
+               	sub	x9, x9, #1
+               	mov	w8, w12
+               	cbnz	w12, 0x83178 <_ZN66_$LT$core..sync..atomic..AtomicU32$u20$as$u20$core..fmt..Debug$GT$3fmt17h38b5cf5104051f17E+0x108>
+               	add	x0, x9, #128
+               	cmp	x0, #129
+               	b.hs	0x832b4 <_ZN66_$LT$core..sync..atomic..AtomicU32$u20$as$u20$core..fmt..Debug$GT$3fmt17h38b5cf5104051f17E+0x244>
+               	mov	x8, sp
+               	add	x8, x8, x9
+               	add	x3, x8, #128
+               	adrp	x8, 0x83000 <_ZN66_$LT$core..sync..atomic..AtomicU32$u20$as$u20$core..fmt..Debug$GT$3fmt17h38b5cf5104051f17E+0x150>
+               	add	x8, x8, #1952
+               	neg	x4, x9
+               	mov	w2, #2
+               	mov	x0, x1
+               	mov	x1, x8
+               	bl	0x8082c <_ZN4core3fmt9Formatter12pad_integral17h4be5fae25bf478d6E>
+               	ldr	x30, [sp, #128]
+               	add	sp, sp, #144
+               	ret
+               	mov	w9, #39
+               	cmp	x8, #99
+               	b.ls	0x8323c <_ZN66_$LT$core..sync..atomic..AtomicU32$u20$as$u20$core..fmt..Debug$GT$3fmt17h38b5cf5104051f17E+0x1cc>
+               	mov	w11, #34079
+               	and	w10, w8, #0xffff
+               	movk	w11, #20971, lsl #16
+               	umull	x10, w10, w11
+               	mov	w12, #-100
+               	adrp	x11, 0x83000 <_ZN66_$LT$core..sync..atomic..AtomicU32$u20$as$u20$core..fmt..Debug$GT$3fmt17h38b5cf5104051f17E+0x198>
+               	lsr	x10, x10, #37
+               	add	x11, x11, #1562
+               	madd	w8, w10, w12, w8
+               	add	x8, x11, w8, uxth #1
+               	ldrb	w11, [x8, #1]
+               	ldrb	w8, [x8]
+               	sub	x9, x9, #2
+               	mov	x12, sp
+               	add	x12, x12, x9
+               	strb	w8, [x12]
+               	mov	x8, x10
+               	strb	w11, [x12, #1]
+               	cmp	x8, #10
+               	b.ge	0x83258 <_ZN66_$LT$core..sync..atomic..AtomicU32$u20$as$u20$core..fmt..Debug$GT$3fmt17h38b5cf5104051f17E+0x1e8>
+               	sub	x9, x9, #1
+               	add	w8, w8, #48
+               	mov	x10, sp
+               	strb	w8, [x10, x9]
+               	b	0x83280 <_ZN66_$LT$core..sync..atomic..AtomicU32$u20$as$u20$core..fmt..Debug$GT$3fmt17h38b5cf5104051f17E+0x210>
+               	adrp	x10, 0x83000 <_ZN66_$LT$core..sync..atomic..AtomicU32$u20$as$u20$core..fmt..Debug$GT$3fmt17h38b5cf5104051f17E+0x1e8>
+               	add	x10, x10, #1562
+               	add	x8, x10, x8, lsl #1
+               	ldrb	w10, [x8, #1]
+               	ldrb	w8, [x8]
+               	sub	x9, x9, #2
+               	mov	x11, sp
+               	add	x11, x11, x9
+               	strb	w10, [x11, #1]
+               	strb	w8, [x11]
+               	mov	x8, sp
+               	add	x3, x8, x9
+               	adrp	x8, 0x83000 <_ZN66_$LT$core..sync..atomic..AtomicU32$u20$as$u20$core..fmt..Debug$GT$3fmt17h38b5cf5104051f17E+0x218>
+               	mov	w10, #39
+               	add	x8, x8, #1416
+               	sub	x4, x10, x9
+               	mov	x0, x1
+               	mov	x1, x8
+               	mov	x2, xzr
+               	bl	0x8082c <_ZN4core3fmt9Formatter12pad_integral17h4be5fae25bf478d6E>
+               	ldr	x30, [sp, #128]
+               	add	sp, sp, #144
+               	ret
+               	adrp	x2, 0x83000 <_ZN66_$LT$core..sync..atomic..AtomicU32$u20$as$u20$core..fmt..Debug$GT$3fmt17h38b5cf5104051f17E+0x244>
+               	add	x2, x2, #1928
+               	mov	w1, #128
+               	bl	0x80b68 <_ZN4core5slice5index26slice_start_index_len_fail17ha5c8a54d8fb05d93E>
+               	brk	#0x1
+
 <_ZN53_$LT$core..fmt..Error$u20$as$u20$core..fmt..Debug$GT$3fmt17h7940a6b0f953e665E>:
                	ldp	x0, x8, [x1, #32]
                	adrp	x1, 0x84000 <_ZN53_$LT$core..fmt..Error$u20$as$u20$core..fmt..Debug$GT$3fmt17h7940a6b0f953e665E+0x8>
-               	add	x1, x1, #1480
+               	add	x1, x1, #1264
                	mov	w2, #5
                	ldr	x3, [x8, #24]
                	br	x3
 
 <memcpy>:
-               	cbz	x2, 0x833e8 <memcpy+0x18>
+               	cbz	x2, 0x832f8 <memcpy+0x18>
                	mov	x8, x0
                	ldrb	w9, [x1], #1
                	subs	x2, x2, #1
                	strb	w9, [x8], #1
-               	b.ne	0x833d8 <memcpy+0x8>
+               	b.ne	0x832e8 <memcpy+0x8>
                	ret
 
 <memset>:
-               	cbz	x2, 0x83438 <memset+0x4c>
+               	cbz	x2, 0x83348 <memset+0x4c>
                	cmp	x2, #1
-               	b.ne	0x83400 <memset+0x14>
+               	b.ne	0x83310 <memset+0x14>
                	mov	x8, xzr
-               	b	0x83424 <memset+0x38>
+               	b	0x83334 <memset+0x38>
                	and	x8, x2, #0xfffffffffffffffe
                	add	x9, x0, #1
                	mov	x10, x8
                	sturb	w1, [x9, #-1]
                	strb	w1, [x9], #2
                	subs	x10, x10, #2
-               	b.ne	0x8340c <memset+0x20>
+               	b.ne	0x8331c <memset+0x20>
                	cmp	x8, x2
-               	b.eq	0x83438 <memset+0x4c>
+               	b.eq	0x83348 <memset+0x4c>
                	sub	x9, x2, x8
                	add	x8, x0, x8
                	subs	x9, x9, #1
                	strb	w1, [x8], #1
-               	b.ne	0x8342c <memset+0x40>
+               	b.ne	0x8333c <memset+0x40>
                	ret

@@ -3,7 +3,7 @@
 #![feature(asm)]
 #![feature(const_ptr_offset)]
 
-use core::{fmt::Write, ops::Range, ptr};
+use core::{fmt::Write, ops::Range, ptr, sync::atomic::AtomicU32};
 
 mod gpio;
 mod grit;
@@ -42,13 +42,16 @@ fn main() -> ! {
 	let mut act_led = Gpio::new(29);
 	act_led.configure(gpio::Func::Output);
 
-	for _ in 0..10 {
+	let mut test = AtomicU32::new(45);
+
+	for _ in 0..1 {
 		act_led.high();
 		delay(1_000_000);
 
 		act_led.low();
-		writeln!(&mut uart1, "Hello World!").unwrap();
+		writeln!(&mut uart1, "Hello World: {:?}", test).unwrap();
 		delay(4_000_000);
+		test.fetch_add(2, core::sync::atomic::Ordering::Relaxed);
 	}
 	panic!("End of program.");
 }
