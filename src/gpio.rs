@@ -57,6 +57,7 @@ impl Gpio {
 		let offset = pin as u32 % 32;
 		unsafe { RegField::new(WriteOnly(gpclr), 1, offset) }
 	}
+	#[allow(unused)]
 	const fn gplev(pin: u8) -> RegField<ReadOnly> {
 		let gplev = unsafe { GPIO_BASE.offset(13 + pin as isize / 32) as *const u32 };
 		let offset = pin as u32 % 32;

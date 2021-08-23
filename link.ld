@@ -14,6 +14,11 @@ SECTIONS {
 	.bss : { *(.bss*) }
 	__bss_end = ALIGN(8);
 
+	__interrupt_vector = ALIGN(4096);
+	.interrupts : SUBALIGN(128) {
+		*(.int_vec*)
+	}
+
 	/DISCARD/ : {
 		*(.debug*)
 		*(.comment*)

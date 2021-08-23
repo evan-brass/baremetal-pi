@@ -24,29 +24,43 @@ fn halt() -> ! {
 }
 
 // STAGE 0: Since we're setting up the stack pointer in this function, we can't use the stack pointer.  If we have any calls in here then a function prelude will be inserted that
-#[cfg(target_arch = "aarch64")]
 #[no_mangle]
 #[link_section = ".boot"]
-pub extern "C" fn _start() -> ! {
-	unsafe {
-		// Setup stack pointer for the boot core:
-		asm!("mov sp, {}", const 0x80_000); // The stack grows down in memory.
+#[naked]
+pub unsafe extern "C" fn _start() -> ! {
+	asm!(
+		"mrs x8, mpidr_el1",
+		"tst x8, #0x3",
+		"b.eq 3f",
+		"2:",
+		"wfe",
+		"b 2b",
+		"3:",
+		"mov sp, {}",
+		"b rust_entry",
+		const 0x80_000,
+		options(noreturn)
+	);
 
-		// Sleep if running on a core other than core 0:
-		let cpu_info: u64;
-		asm!("mrs {}, mpidr_el1", out(reg) cpu_info);
-		let cpu_id = cpu_info & 0b11;
-		if cpu_id != 0 {
-			loop {
-				asm!("wfe");
-			}
-		}
-	}
-	stage_one();
+	// // Sleep if running on a core other than core 0:
+	// let cpu_info: u64;
+	// asm!("mrs {}, mpidr_el1", out(reg) cpu_info);
+	// let cpu_id = cpu_info & 0b11;
+	// while cpu_id != 0 {
+	// 	asm!("wfe");
+	// }
+
+	// // Setup stack pointer for the boot core:
+	// asm!("mov sp, {}", const 0x80_000); // The stack grows down in memory.
+
+	// // TODO: Jump to the entry function.
+
+	// rust_entry();
 }
 
 // STAGE 1: Now that the stack pointer is setup and only one processor is running, we need to clear BSS and (TODO) setup globals.
-fn stage_one() -> ! {
+#[no_mangle]
+fn rust_entry() -> ! {
 	// Zero the bss section
 	let bss = unsafe {
 		core::slice::from_raw_parts_mut(__bss_start, __bss_start.offset_from(__bss_end) as usize)

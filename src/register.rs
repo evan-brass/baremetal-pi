@@ -1,3 +1,4 @@
+#![allow(unused)]
 use core::{
 	ptr,
 	sync::atomic::{AtomicU32, Ordering},

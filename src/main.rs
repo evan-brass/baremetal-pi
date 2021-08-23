@@ -2,10 +2,13 @@
 #![cfg_attr(not(target_arch = "aarch64"), allow(unused))]
 #![feature(asm)]
 #![feature(const_ptr_offset)]
+#![feature(naked_functions)]
+#![allow(unused_imports)]
 
 use core::{fmt::Write, ops::Range, ptr, sync::atomic::AtomicU32};
 
 mod gpio;
+#[cfg(target_arch = "aarch64")]
 mod grit;
 mod register;
 mod uart;
@@ -42,16 +45,13 @@ fn main() -> ! {
 	let mut act_led = Gpio::new(29);
 	act_led.configure(gpio::Func::Output);
 
-	let mut test = AtomicU32::new(45);
-
-	for _ in 0..1 {
+	for _ in 0..5 {
+		writeln!(&mut uart1, "Hello World!").unwrap();
 		act_led.high();
 		delay(1_000_000);
 
 		act_led.low();
-		writeln!(&mut uart1, "Hello World: {:?}", test).unwrap();
 		delay(4_000_000);
-		test.fetch_add(2, core::sync::atomic::Ordering::Relaxed);
 	}
 	panic!("End of program.");
 }
