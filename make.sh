@@ -1,4 +1,4 @@
-TARGET=aarch64-unknown-none-softfloat
+TARGET=aarch64-unknown-none
 
 # Clean
 rm ./tftp-root/kernel8.img
@@ -7,7 +7,7 @@ rm ./elfinfo.txt
 # Output the binary and assembly
 cargo build --release --target $TARGET
 rust-objcopy -O binary target/$TARGET/release/baremetal-pi tftp-root/kernel8.img
-rust-objdump -D target/$TARGET/release/baremetal-pi > kernel8.S
+rust-objdump -d target/$TARGET/release/baremetal-pi > kernel8.S
 readelf -a target/$TARGET/release/baremetal-pi > elfinfo.txt
 # rust-objdump -d --no-leading-addr --no-show-raw-insn target/$TARGET/release/baremetal-pi > kernel8.S
 

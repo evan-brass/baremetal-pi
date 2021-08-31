@@ -1,6 +1,6 @@
 {
 	"editor.formatOnSave": true,
-	"rust-analyzer.cargo.target": "aarch64-unknown-none-softfloat",
+	"rust-analyzer.cargo.target": "aarch64-unknown-none",
 	"rust-analyzer.lens.debug": false,
 	"rust-analyzer.lens.run": false
 }

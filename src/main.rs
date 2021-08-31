@@ -3,6 +3,7 @@
 #![feature(asm)]
 #![feature(const_ptr_offset)]
 #![feature(naked_functions)]
+#![feature(global_asm)]
 #![allow(unused_imports)]
 
 use core::{fmt::Write, ops::Range, ptr, sync::atomic::AtomicU32};
@@ -10,9 +11,17 @@ use core::{fmt::Write, ops::Range, ptr, sync::atomic::AtomicU32};
 mod gpio;
 #[cfg(target_arch = "aarch64")]
 mod grit;
+#[cfg(target_arch = "aarch64")]
+mod interrupts;
 mod register;
 mod uart;
 use self::{gpio::Gpio, uart::Uart1};
+
+extern "C" {
+	static __int_vec_base: *const u8;
+	static __bss_start: *const u8;
+	static __bss_end: *const u8;
+}
 
 #[inline]
 unsafe fn set_bits(target: *mut u32, r: Range<u32>, val: u32) {
@@ -39,13 +48,65 @@ fn delay(count: usize) {
 	}
 }
 
+macro_rules! get_sys_reg {
+	($reg_name:literal) => {
+		{
+			let a: u64;
+			unsafe {
+				asm!(concat!("mrs {}, ", $reg_name), out(reg) a, options(nomem));
+			}
+			a
+		}
+	}
+}
+
 fn main() -> ! {
 	let mut uart1 = Uart1::new();
+
+	writeln!(
+		&mut uart1,
+		"Current Exception level: {:b}",
+		get_sys_reg!("CurrentEL")
+	)
+	.unwrap();
+	// writeln!(
+	// 	&mut uart1,
+	// 	"CNTHV_CVAL_EL2: {:b}",
+	// 	get_sys_reg!("CNTHV_CVAL_EL2")
+	// )
+	// .unwrap();
+	writeln!(&mut uart1, "CNTFRQ_EL0: {:?}", get_sys_reg!("CNTFRQ_EL0")).unwrap();
+	writeln!(&mut uart1, "CNTVCT_EL0: {:?}", get_sys_reg!("CNTVCT_EL0")).unwrap();
+	writeln!(&mut uart1, "SPSel: {:?}", get_sys_reg!("SPSel")).unwrap();
+	writeln!(&mut uart1, "DAIF: {:b}", get_sys_reg!("DAIF")).unwrap();
+	writeln!(
+		&mut uart1,
+		"RVBAR_EL3: {:p}",
+		get_sys_reg!("RVBAR_EL3") as *const u8
+	)
+	.unwrap();
+
+	interrupts::setup_interrupts(&mut uart1);
+
+	writeln!(&mut uart1, "DAIF after setup: {:b}", get_sys_reg!("DAIF")).unwrap();
+
+	// Learning how to use linker symbols:
+	let test = unsafe { __int_vec_base as *const u8 };
+	writeln!(&mut uart1, "1: {:p}", test).unwrap();
+	let test: *const u8;
+	unsafe {
+		asm!("ldr {}, __int_vec_base", out(reg) test);
+	}
+	writeln!(&mut uart1, "2: {:p}", test).unwrap();
+	writeln!(&mut uart1, "3: {:p}", unsafe {
+		core::ptr::addr_of!(__int_vec_base)
+	})
+	.unwrap();
 
 	let mut act_led = Gpio::new(29);
 	act_led.configure(gpio::Func::Output);
 
-	for _ in 0..5 {
+	for _ in 0..1 {
 		writeln!(&mut uart1, "Hello World!").unwrap();
 		act_led.high();
 		delay(1_000_000);
@@ -53,6 +114,12 @@ fn main() -> ! {
 		act_led.low();
 		delay(4_000_000);
 	}
+
+	unsafe {
+		asm!("wfi");
+		// asm!("hvc {}", const 42);
+	}
+
 	panic!("End of program.");
 }
 

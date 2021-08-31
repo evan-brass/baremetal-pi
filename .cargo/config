@@ -1,9 +1,9 @@
 [build]
-target = "aarch64-unknown-none-softfloat"
+target = "aarch64-unknown-none"
 
 [alias]
 
-[target.aarch64-unknown-none-softfloat]
+[target.aarch64-unknown-none]
 rustflags = [
 	"-C", "link-arg=-Tlink.ld",
 	"-C", "target-cpu=cortex-a53",

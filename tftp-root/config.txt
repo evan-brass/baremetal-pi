@@ -5,6 +5,10 @@
 start_file=start_cd.elf
 fixup_file=fixup_cd.dat
 
+# To access EL3 we can't use the default armstub.
+# kernel_old=1
+armstub=armstub8.bin
+
 # Our kernel is for 64 bit mode
 arm_64bit=1
 
@@ -12,7 +16,3 @@ arm_64bit=1
 boot_delay=0
 uart_2ndstage=1
 gpu_mem=16
-
-# (From the default config.txt)
-# Enable audio (loads snd_bcm2835)
-# dtparam=audio=on
