@@ -1,4 +1,8 @@
-use super::uart::Uart1;
+use super::{
+	delay,
+	gpio::{self, Gpio},
+	uart::Uart1,
+};
 use core::fmt::Write;
 
 /* C-calling convention: ARM (A64)
@@ -26,15 +30,15 @@ v16 to v31: Local variables, caller saved.
 */
 
 extern "C" {
-	static __int_vec_base: u64;
+	static __int_vec_base: u8;
 }
 
 macro_rules! make_interrupt {
 	($function_name:ident, $id:literal, $handler_name:literal) => {
-		#[link_section = ".int_vec"]
+		#[link_section = concat!(".int_vec.", stringify!($function_name))]
 		#[no_mangle]
 		#[naked]
-		pub unsafe extern "C" fn $function_name () {
+		pub unsafe extern "C" fn $function_name() {
 			asm!(
 				// Store corruptible registers
 				"stp x0, x1, [sp, #-16]!",
@@ -45,11 +49,17 @@ macro_rules! make_interrupt {
 				"stp x10, x11, [sp, #-16]!",
 				"stp x12, x13, [sp, #-16]!",
 				"stp x14, x15, [sp, #-16]!",
+				"stp x16, x17, [sp, #-16]!",
+				"stp x18, x19, [sp, #-16]!",
+				"stp x29, x30, [sp, #-16]!",
 				// Pass the exception level to the handler
-				"mov x0, {}",
+				// "mov x0, {}",
 				// Call the Rust interrupt handler
 				concat!("bl ", $handler_name),
 				// Restore corruptible registers
+				"ldp x29, x30, [sp], #16",
+				"ldp x18, x19, [sp], #16",
+				"ldp x16, x17, [sp], #16",
 				"ldp x14, x15, [sp], #16",
 				"ldp x12, x13, [sp], #16",
 				"ldp x10, x11, [sp], #16",
@@ -60,7 +70,7 @@ macro_rules! make_interrupt {
 				"ldp x0, x1, [sp], #16",
 				// Return from the exception
 				"eret",
-				const $id,
+				// const $id,
 				options(noreturn)
 			);
 		}
@@ -89,45 +99,58 @@ make_interrupt!(int_fiq_lel32, 14, "interrupt_handler");
 make_interrupt!(int_serr_lel32, 15, "interrupt_handler");
 
 #[no_mangle]
-pub extern "C" fn interrupt_handler(id: u32) {
-	unsafe {
-		(0x3F20_001c as *mut u32).write_volatile(1 << 29);
-	}
+pub extern "C" fn interrupt_handler() {
+	// TODO: Make this function work for more then just el3
+	let link: *const u8;
 	let esr: u64;
 	let far: u64;
-	let mut elr: u64;
+	let mut elr: *const u8;
 	unsafe {
 		asm!(
-			"mrs {:x}, ESR_EL1",
-			"mrs {:x}, FAR_EL1",
-			"mrs {:x}, ELR_EL1",
+			"mov {}, x30",
+			"mrs {:x}, ESR_EL3",
+			"mrs {:x}, FAR_EL3",
+			"mrs {:x}, ELR_EL3",
+			out(reg) link,
 			out(reg) esr,
 			out(reg) far,
 			out(reg) elr
 		);
 	}
+	let vbase = unsafe { core::ptr::addr_of!(__int_vec_base) };
+	let id = unsafe { link.offset_from(vbase) } / 128;
+	let instruction_length = (esr >> 25) & 0b1;
+	let exception_class = (esr >> 26) & 0b111111;
 	let mut uart1 = Uart1::new();
 	writeln!(&mut uart1, "Exception occured ({}):", id).unwrap();
-	writeln!(&mut uart1, "- Syndrome: {}", esr).unwrap();
+	writeln!(&mut uart1, "- Link Register: {:p}", link).unwrap();
+	writeln!(
+		&mut uart1,
+		"- Syndrome: {:b} {:b}",
+		exception_class, instruction_length
+	)
+	.unwrap();
 	writeln!(&mut uart1, "- Fault Address: {}", far).unwrap();
-	writeln!(&mut uart1, "- Link: {}", elr).unwrap();
+	writeln!(&mut uart1, "- Exception Link: {:p}", elr).unwrap();
+	writeln!(&mut uart1, "Exception ended.").unwrap();
 
-	elr += 4;
+	// elr += 4;
 
-	unsafe {
-		asm!(
-			"msr ELR_EL1, {:x}",
-			in(reg) elr
-		);
-	}
+	// unsafe {
+	// 	asm!(
+	// 		"msr ELR_EL3, {:x}",
+	// 		in(reg) elr
+	// 	);
+	// }
 }
 
 pub fn setup_interrupts(console: &mut Uart1) {
-	let vbar: u64 = unsafe { __int_vec_base };
+	let vbar = unsafe { core::ptr::addr_of!(__int_vec_base) };
 	// unsafe {
 	// 	asm!("ldr {}, __interrupt_vector", out(reg) vbar);
 	// }
-	let res = vbar & 0b11111111111;
+	writeln!(console, "Interrupt vector base: {:p}", vbar).unwrap();
+	let res = vbar as u64 & 0b11111111111;
 	if res != 0 {
 		writeln!(
 			console,

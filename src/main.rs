@@ -90,19 +90,6 @@ fn main() -> ! {
 
 	writeln!(&mut uart1, "DAIF after setup: {:b}", get_sys_reg!("DAIF")).unwrap();
 
-	// Learning how to use linker symbols:
-	let test = unsafe { __int_vec_base as *const u8 };
-	writeln!(&mut uart1, "1: {:p}", test).unwrap();
-	let test: *const u8;
-	unsafe {
-		asm!("ldr {}, __int_vec_base", out(reg) test);
-	}
-	writeln!(&mut uart1, "2: {:p}", test).unwrap();
-	writeln!(&mut uart1, "3: {:p}", unsafe {
-		core::ptr::addr_of!(__int_vec_base)
-	})
-	.unwrap();
-
 	let mut act_led = Gpio::new(29);
 	act_led.configure(gpio::Func::Output);
 
@@ -116,8 +103,8 @@ fn main() -> ! {
 	}
 
 	unsafe {
-		asm!("wfi");
-		// asm!("hvc {}", const 42);
+		// asm!("wfi");
+		asm!("smc {}", const 42);
 	}
 
 	panic!("End of program.");
