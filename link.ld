@@ -12,7 +12,7 @@ SECTIONS {
 	
 	.text : ALIGN(8) { *(.text*) }
 	
-	.int_vec ALIGN(2048) : SUBALIGN(128) {
+	.int_vec : ALIGN(2048) SUBALIGN(128) {
 		__int_vec_base = .;
 		KEEP(*(.int_vec*))
 	}

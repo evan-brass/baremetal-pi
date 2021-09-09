@@ -1,103 +1,26 @@
+use bitvec::{array::BitArray, order::Msb0};
+
+use crate::memory::interrupts::*;
+use crate::memory::timer::TIMER_CONTROL_STATUS;
+
 use super::{
+	cpu::ExceptionLevel,
 	delay,
 	gpio::{self, Gpio},
 	uart::Uart1,
 };
 use core::fmt::Write;
 
-/* C-calling convention: ARM (A64)
-
-The 64-bit ARM (AArch64) calling convention allocates the 31 general-purpose registers as:[2]
-
-x31 (SP): Stack pointer or a zero register, depending on context.
-x30 (LR): Procedure link register, used to return from subroutines.
-x29 (FP): Frame pointer.
-x19 to x29: Callee-saved.
-x18 (PR): Platform register. Used for some operating-system-specific special purpose, or an additional caller-saved register.
-x16 (IP0) and x17 (IP1): Intra-Procedure-call scratch registers.
-x9 to x15: Local variables, caller saved.
-x8 (XR): Indirect return value address.
-x0 to x7: Argument values passed to and results returned from a subroutine.
-
-
-All registers starting with x have a corresponding 32-bit register prefixed with w. Thus, a 32-bit x0 is called w0.
-
-Similarly, the 32 floating-point registers are allocated as:[3]
-
-v0 to v7: Argument values passed to and results returned from a subroutine.
-v8 to v15: callee-saved, but only the bottom 64 bits need to be preserved.
-v16 to v31: Local variables, caller saved.
-*/
-
 extern "C" {
 	static __int_vec_base: u8;
 }
 
-macro_rules! make_interrupt {
-	($function_name:ident, $id:literal, $handler_name:literal) => {
-		#[link_section = concat!(".int_vec.", stringify!($function_name))]
-		#[no_mangle]
-		#[naked]
-		pub unsafe extern "C" fn $function_name() {
-			asm!(
-				// Store corruptible registers
-				"stp x0, x1, [sp, #-16]!",
-				"stp x2, x3, [sp, #-16]!",
-				"stp x4, x5, [sp, #-16]!",
-				"stp x6, x7, [sp, #-16]!",
-				"stp x8, x9, [sp, #-16]!",
-				"stp x10, x11, [sp, #-16]!",
-				"stp x12, x13, [sp, #-16]!",
-				"stp x14, x15, [sp, #-16]!",
-				"stp x16, x17, [sp, #-16]!",
-				"stp x18, x19, [sp, #-16]!",
-				"stp x29, x30, [sp, #-16]!",
-				// Pass the exception level to the handler
-				// "mov x0, {}",
-				// Call the Rust interrupt handler
-				concat!("bl ", $handler_name),
-				// Restore corruptible registers
-				"ldp x29, x30, [sp], #16",
-				"ldp x18, x19, [sp], #16",
-				"ldp x16, x17, [sp], #16",
-				"ldp x14, x15, [sp], #16",
-				"ldp x12, x13, [sp], #16",
-				"ldp x10, x11, [sp], #16",
-				"ldp x8, x9, [sp], #16",
-				"ldp x6, x7, [sp], #16",
-				"ldp x4, x5, [sp], #16",
-				"ldp x2, x3, [sp], #16",
-				"ldp x0, x1, [sp], #16",
-				// Return from the exception
-				"eret",
-				// const $id,
-				options(noreturn)
-			);
-		}
-	};
-}
+/*
+	The base (bus) address for the interrupt registers is: 0x7E00B000
+	The base (bus) address for the system timer is: 0x7E003000
+*/
 
-// Current Exception level - Stack 0
-make_interrupt!(int_sync_sp0, 0, "interrupt_handler");
-make_interrupt!(int_irq_sp0, 1, "interrupt_handler");
-make_interrupt!(int_fiq_sp0, 2, "interrupt_handler");
-make_interrupt!(int_serr_sp0, 3, "interrupt_handler");
-// Current Exception level - Stack x
-make_interrupt!(int_sync_spx, 4, "interrupt_handler");
-make_interrupt!(int_irq_spx, 5, "interrupt_handler");
-make_interrupt!(int_fiq_spx, 6, "interrupt_handler");
-make_interrupt!(int_serr_spx, 7, "interrupt_handler");
-// Lower Exception level - aarch64
-make_interrupt!(int_sync_lel64, 8, "interrupt_handler");
-make_interrupt!(int_irq_lel64, 9, "interrupt_handler");
-make_interrupt!(int_fiq_lel64, 10, "interrupt_handler");
-make_interrupt!(int_serr_lel64, 11, "interrupt_handler");
-// Lower Exception level - aarch32
-make_interrupt!(int_sync_lel32, 12, "interrupt_handler");
-make_interrupt!(int_irq_lel32, 13, "interrupt_handler");
-make_interrupt!(int_fiq_lel32, 14, "interrupt_handler");
-make_interrupt!(int_serr_lel32, 15, "interrupt_handler");
-
+// We use the same interrupt vector for all exception levels, so this handler is called for all exceptions.
 #[no_mangle]
 pub extern "C" fn interrupt_handler() {
 	// TODO: Make this function work for more then just el3
@@ -122,7 +45,7 @@ pub extern "C" fn interrupt_handler() {
 	let instruction_length = (esr >> 25) & 0b1;
 	let exception_class = (esr >> 26) & 0b111111;
 	let mut uart1 = Uart1::new();
-	writeln!(&mut uart1, "Exception occured ({}):", id).unwrap();
+	writeln!(&mut uart1, "\nException occured ({}):", id).unwrap();
 	writeln!(&mut uart1, "- Link Register: {:p}", link).unwrap();
 	writeln!(
 		&mut uart1,
@@ -132,16 +55,42 @@ pub extern "C" fn interrupt_handler() {
 	.unwrap();
 	writeln!(&mut uart1, "- Fault Address: {}", far).unwrap();
 	writeln!(&mut uart1, "- Exception Link: {:p}", elr).unwrap();
+	match id {
+		0 | 4 | 8 | 12 => {
+			// Sync
+		}
+		1 | 5 | 9 | 13 => {
+			// IRQ
+			let basic = unsafe { core::ptr::read_volatile(IRQ_PEND_BASIC) };
+			writeln!(&mut uart1, "- IRQ Basic: {:b}", basic).unwrap();
+			if basic & 0b100000000 != 0 {
+				let irq1 = unsafe { core::ptr::read_volatile(IRQ_PEND_1) };
+				writeln!(&mut uart1, "  - IRQ 1: {:b}", irq1).unwrap();
+				unsafe {
+					core::ptr::write_volatile(IRQ_PEND_1, 0);
+				}
+				if irq1 & 0b10 != 0 {
+					writeln!(&mut uart1, "  - TIMER_CS: {:b}", unsafe {
+						core::ptr::read_volatile(TIMER_CONTROL_STATUS)
+					})
+					.unwrap();
+					unsafe { core::ptr::write_volatile(TIMER_CONTROL_STATUS, 0b10) };
+				}
+			}
+			if basic & 0b1000000000 != 0 {
+				let irq2 = unsafe { core::ptr::read_volatile(IRQ_PEND_2) };
+				writeln!(&mut uart1, "  - IRQ 2: {:b}", irq2).unwrap();
+			}
+		}
+		2 | 6 | 10 | 14 => {
+			// FIQ
+		}
+		3 | 7 | 11 | 15 => {
+			// SError
+		}
+		_ => unreachable!(),
+	}
 	writeln!(&mut uart1, "Exception ended.").unwrap();
-
-	// elr += 4;
-
-	// unsafe {
-	// 	asm!(
-	// 		"msr ELR_EL3, {:x}",
-	// 		in(reg) elr
-	// 	);
-	// }
 }
 
 pub fn setup_interrupts(console: &mut Uart1) {
@@ -170,8 +119,87 @@ pub fn setup_interrupts(console: &mut Uart1) {
 			in(reg) vbar
 		);
 
+		// Setup interrupt routing: SError / Abort, FIQ, and IRQ should be taken and routed to EL3
+		asm!(
+			"mrs x8, SCR_EL3",
+			"orr x8, x8, {}",
+			"msr SCR_EL3, x8",
+			const 0b1110,
+			out("x8") _
+		);
+
+		// Unmask the IRQs that we're allowed to access (The others are only for the GPU)
+
 		// Unmask all interrupts (Interrupts are bits 9-6; 0 is unmasked.)
 		let mask = 0b0000 << 6;
 		asm!("msr DAIF, {:x}", in(reg) mask);
+
+		// Enable all the basic interrupts in the interrupt *controller*
+		core::ptr::write_volatile(IRQ_ENABLE_BASIC, !0b11111111);
+
+		// Enable Sytem Timer Match IRQ 1
+		core::ptr::write_volatile(IRQ_ENABLE_1, 0b10);
 	}
 }
+
+macro_rules! make_interrupt {
+	($function_name:ident, $handler_name:literal) => {
+		#[link_section = concat!(".int_vec.", stringify!($function_name))]
+		#[no_mangle]
+		#[naked]
+		pub unsafe extern "C" fn $function_name() {
+			asm!(
+				// Store corruptible registers
+				"stp x0, x1, [sp, #-16]!",
+				"stp x2, x3, [sp, #-16]!",
+				"stp x4, x5, [sp, #-16]!",
+				"stp x6, x7, [sp, #-16]!",
+				"stp x8, x9, [sp, #-16]!",
+				"stp x10, x11, [sp, #-16]!",
+				"stp x12, x13, [sp, #-16]!",
+				"stp x14, x15, [sp, #-16]!",
+				"stp x16, x17, [sp, #-16]!",
+				"stp x18, x19, [sp, #-16]!",
+				"stp x29, x30, [sp, #-16]!",
+				// Call the Rust interrupt handler
+				concat!("bl ", $handler_name),
+				// Restore corruptible registers
+				"ldp x29, x30, [sp], #16",
+				"ldp x18, x19, [sp], #16",
+				"ldp x16, x17, [sp], #16",
+				"ldp x14, x15, [sp], #16",
+				"ldp x12, x13, [sp], #16",
+				"ldp x10, x11, [sp], #16",
+				"ldp x8, x9, [sp], #16",
+				"ldp x6, x7, [sp], #16",
+				"ldp x4, x5, [sp], #16",
+				"ldp x2, x3, [sp], #16",
+				"ldp x0, x1, [sp], #16",
+				// Return from the exception
+				"eret",
+				options(noreturn)
+			);
+		}
+	};
+}
+
+// Current Exception level - Stack 0
+make_interrupt!(int_sync_sp0, "interrupt_handler");
+make_interrupt!(int_irq_sp0, "interrupt_handler");
+make_interrupt!(int_fiq_sp0, "interrupt_handler");
+make_interrupt!(int_serr_sp0, "interrupt_handler");
+// Current Exception level - Stack x
+make_interrupt!(int_sync_spx, "interrupt_handler");
+make_interrupt!(int_irq_spx, "interrupt_handler");
+make_interrupt!(int_fiq_spx, "interrupt_handler");
+make_interrupt!(int_serr_spx, "interrupt_handler");
+// Lower Exception level - aarch64
+make_interrupt!(int_sync_lel64, "interrupt_handler");
+make_interrupt!(int_irq_lel64, "interrupt_handler");
+make_interrupt!(int_fiq_lel64, "interrupt_handler");
+make_interrupt!(int_serr_lel64, "interrupt_handler");
+// Lower Exception level - aarch32
+make_interrupt!(int_sync_lel32, "interrupt_handler");
+make_interrupt!(int_irq_lel32, "interrupt_handler");
+make_interrupt!(int_fiq_lel32, "interrupt_handler");
+make_interrupt!(int_serr_lel32, "interrupt_handler");

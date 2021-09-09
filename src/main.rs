@@ -8,11 +8,15 @@
 
 use core::{fmt::Write, ops::Range, ptr, sync::atomic::AtomicU32};
 
+#[cfg(target_arch = "aarch64")]
+mod cpu;
 mod gpio;
 #[cfg(target_arch = "aarch64")]
 mod grit;
 #[cfg(target_arch = "aarch64")]
 mod interrupts;
+#[cfg(target_arch = "aarch64")]
+mod memory;
 mod register;
 mod uart;
 use self::{gpio::Gpio, uart::Uart1};
@@ -36,8 +40,6 @@ unsafe fn set_bits(target: *mut u32, r: Range<u32>, val: u32) {
 	m |= val;
 	ptr::write_volatile(target, m);
 }
-
-const IO_BASE: usize = 0x3F000000;
 
 #[inline]
 fn delay(count: usize) {
@@ -65,8 +67,15 @@ fn main() -> ! {
 
 	writeln!(
 		&mut uart1,
-		"Current Exception level: {:b}",
-		get_sys_reg!("CurrentEL")
+		"CNTPS_TVAL_EL1: {}",
+		get_sys_reg!("CNTPS_TVAL_EL1")
+	)
+	.unwrap();
+
+	writeln!(
+		&mut uart1,
+		"Current Exception level: {:?}",
+		cpu::ExceptionLevel::current_el()
 	)
 	.unwrap();
 	// writeln!(
@@ -89,6 +98,12 @@ fn main() -> ! {
 	interrupts::setup_interrupts(&mut uart1);
 
 	writeln!(&mut uart1, "DAIF after setup: {:b}", get_sys_reg!("DAIF")).unwrap();
+	writeln!(
+		&mut uart1,
+		"SCR_EL3 after setup: {:b}",
+		get_sys_reg!("SCR_EL3")
+	)
+	.unwrap();
 
 	let mut act_led = Gpio::new(29);
 	act_led.configure(gpio::Func::Output);
@@ -107,7 +122,35 @@ fn main() -> ! {
 		asm!("smc {}", const 42);
 	}
 
-	panic!("End of program.");
+	// let timeout = 1000;
+	// let el3_timer_ctl = 0b001; // Enable the timer and unmask the interrupts
+	// unsafe {
+	// 	asm!(
+	// 		"msr cntps_tval_el1, {:x}",
+	// 		"msr cntps_ctl_el1, {:x}",
+	// 		// "wfi",
+	// 		in(reg) timeout,
+	// 		in(reg) el3_timer_ctl
+	// 	);
+	// // }
+	// loop {
+	// 	let tval = get_sys_reg!("CNTPS_TVAL_EL1");
+	// 	writeln!(&mut uart1, "CNTPS_TVAL_EL1: {}", tval).unwrap();
+
+	// 	delay(1_000_000);
+	// }
+	loop {
+		unsafe {
+			let lower = core::ptr::read_volatile(memory::timer::TIMER_COUNTER_LO);
+			let compare = lower + 3 * 250 * 1000;
+			core::ptr::write_volatile(memory::timer::TIMER_COMPARE_1, compare);
+			writeln!(&mut uart1, "Setting Timer compare 1 to: {}", compare).unwrap();
+
+			asm!("wfi");
+		}
+	}
+
+	// panic!("End of program.");
 }
 
 #[cfg(all(not(target_arch = "aarch64"), test))]

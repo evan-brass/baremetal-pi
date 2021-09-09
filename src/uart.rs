@@ -1,7 +1,7 @@
 use super::{
 	delay,
 	gpio::{self, Gpio},
-	set_bits, IO_BASE,
+	set_bits,
 };
 use core::{
 	fmt::{self, Write},
@@ -9,11 +9,7 @@ use core::{
 	ptr,
 };
 
-const AUX_MU_IO_REG: *mut u32 = (IO_BASE + 0x21_5040) as *mut u32;
-const AUX_MU_LCR_REG: *mut u32 = (IO_BASE + 0x21_504c) as *mut u32;
-const AUX_MU_CNTL_REG: *mut u32 = (IO_BASE + 0x21_5060) as *mut u32;
-const AUX_MU_STAT_REG: *mut u32 = (IO_BASE + 0x21_5064) as *mut u32;
-const AUX_MU_BAUD: *mut u32 = (IO_BASE + 0x21_5068) as *mut u32;
+use super::memory::uart::*;
 
 pub struct Uart1;
 impl Uart1 {

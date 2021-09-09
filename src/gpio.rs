@@ -1,8 +1,7 @@
 use super::register::{ReadOnly, ReadWrite, RegField, Shared, WriteOnly};
-use super::IO_BASE;
 use core::sync::atomic::AtomicU32;
 
-const GPIO_BASE: *const AtomicU32 = (IO_BASE + 0x20_0000) as *const AtomicU32;
+use super::memory::gpio::*;
 
 #[allow(unused)]
 pub enum Func {

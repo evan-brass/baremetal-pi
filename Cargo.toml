@@ -5,6 +5,7 @@ authors = ["Evan Brass <evan-brass@pm.me>"]
 edition = "2018"
 
 [dependencies]
+bitvec = { version = "0.22", default-features=false }
 
 [profile.dev]
 panic = "abort"
